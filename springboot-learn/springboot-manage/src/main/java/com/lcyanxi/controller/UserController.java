@@ -1,7 +1,6 @@
 package com.lcyanxi.controller;
 
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUserLessonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Reference
+    @Autowired
     private IUserLessonService userLessonService;
 
 
