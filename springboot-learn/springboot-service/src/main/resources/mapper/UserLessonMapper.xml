@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lcyanxi.dto.UserLessonMapper" >
+  <resultMap id="BaseResultMap" type="com.lcyanxi.model.UserLesson" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="class_course_id" property="classCourseId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="parent_class_id" property="parentClassId" jdbcType="INTEGER" />
+    <result column="lesson_id" property="lessonId" jdbcType="INTEGER" />
+    <result column="buy_time" property="buyTime" jdbcType="TIMESTAMP" />
+    <result column="buy_status" property="buyStatus" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_uid" property="createUid" jdbcType="VARCHAR" />
+    <result column="create_username" property="createUsername" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="VARCHAR" />
+    <result column="update_username" property="updateUsername" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, class_course_id, user_id, order_no, product_id, class_id, parent_class_id, lesson_id,
+    buy_time, buy_status, status, create_uid, create_username, update_uid, update_username, create_time, update_time, is_deleted
+  </sql>
+
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+    insert into pr_user_lesson (
+    class_course_id, user_id, order_no,
+    product_id, class_id, parent_class_id,
+    lesson_id, buy_time, buy_status, status,
+    create_uid, create_username,create_time,
+    update_username, update_uid, update_time,
+    is_deleted)
+    values
+    <foreach collection="userLessons" item="item" index="index" separator=",">
+      (
+      #{item.classCourseId,jdbcType=INTEGER}, #{item.userId,jdbcType=INTEGER}, #{item.orderNo,jdbcType=VARCHAR},
+      #{item.productId,jdbcType=INTEGER}, #{item.classId,jdbcType=INTEGER}, #{item.parentClassId,jdbcType=INTEGER},
+      #{item.lessonId,jdbcType=INTEGER}, #{item.buyTime,jdbcType=TIMESTAMP}, #{item.buyStatus,jdbcType=BIT},#{item.status,jdbcType=TINYINT},
+      #{item.createUid,jdbcType=VARCHAR},#{item.createUsername,jdbcType=VARCHAR},now(),
+      #{item.updateUsername,jdbcType=VARCHAR},#{item.updateUid,jdbcType=VARCHAR}, now(),
+      0)
+    </foreach>
+  </insert>
+
+</mapper>

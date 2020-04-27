@@ -1,13 +1,17 @@
 package com.lcyanxi.springbootservice;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @EnableDubbo
+@MapperScan("com.lcyanxi.dto")
 @ComponentScan(basePackages = {"com.lcyanxi.service.impl"})
 @ImportResource("classpath:dubbo_config/springboot-service-provider.xml")
 public class SpringbootServiceApplication {
