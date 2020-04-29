@@ -34,7 +34,7 @@ public class UserController {
         UserLesson userLesson=new UserLesson();
         userLesson.setParentClassId(1);
         userLesson.setBuyStatus(false);
-        userLesson.setOrderNo("202004280349");
+        userLesson.setOrderNo(System.currentTimeMillis()+"");
         userLesson.setClassId(1);
         userLesson.setBuyTime(new Date());
         userLesson.setClassCourseId(11);
@@ -45,7 +45,7 @@ public class UserController {
         userLesson.setUpdateUid(name);
         userLesson.setUpdateUsername(name);
         userLesson.setProductId(11);
-        userLesson.setUserId(201);
+        userLesson.setUserId(Integer.parseInt(name));
         lessons.add(userLesson);
         System.out.println("userLessonService"+userLessonService);
         boolean result = userLessonService.insertUserLesson(lessons);

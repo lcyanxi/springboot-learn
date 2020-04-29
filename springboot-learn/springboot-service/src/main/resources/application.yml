@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    username: root
+    password: lc121718
+    url: jdbc:mysql://47.93.245.76:3306/test?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 连接池配置
+      # 配置初始化大小、最小、最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 3000
+
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#mybatis.config-location=classpath:app_config/mybatis_config.xml
