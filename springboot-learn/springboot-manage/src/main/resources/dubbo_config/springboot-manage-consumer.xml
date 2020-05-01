@@ -10,7 +10,8 @@ http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <!-- 注册中心配置，使用zookeeper注册中心暴露服务地址 -->
 <!--    <dubbo:registry protocol="zookeeper" address="47.93.245.76:2181,47.93.245.76:2182,47.93.245.76:2183" timeout="60000" />-->
-    <dubbo:registry protocol="zookeeper" address="localhost:2181" timeout="60000" />
+    <!--<dubbo:registry protocol="zookeeper" address="localhost:2181" timeout="60000" />-->
+    <dubbo:registry protocol="zookeeper" address="lcyanxi03:2181" timeout="60000" />
     <!--关闭服务消费方所有服务的启动检查。dubbo缺省会在启动时检查依赖的服务是否可用，不可用时会抛出异常，阻止Spring初始化完成。-->
 <!--    <dubbo:consumer check="false" />-->
     <dubbo:protocol name="dubbo" port="20880" />
