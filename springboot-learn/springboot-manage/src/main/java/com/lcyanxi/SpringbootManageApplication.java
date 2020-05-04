@@ -1,4 +1,4 @@
-package com.lcyanxi.springbootmanage;
+package com.lcyanxi;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
