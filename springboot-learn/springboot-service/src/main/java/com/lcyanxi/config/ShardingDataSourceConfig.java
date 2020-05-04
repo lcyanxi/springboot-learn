@@ -60,8 +60,11 @@ public class ShardingDataSourceConfig {
         ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();
         shardingRuleConfig.getTableRuleConfigs().add(tableRuleConfiguration);
 
+        Properties properties = new Properties();
+        properties.put("show.sql","true");
+
         // 获取数据源对象
-        return ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig, new Properties());
+        return ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig, properties);
     }
 
     @Bean
