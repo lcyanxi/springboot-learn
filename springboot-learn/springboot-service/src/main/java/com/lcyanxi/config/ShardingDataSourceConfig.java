@@ -2,9 +2,11 @@ package com.lcyanxi.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.shardingsphere.api.config.sharding.KeyGeneratorConfiguration;
 import org.apache.shardingsphere.api.config.sharding.ShardingRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.TableRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.strategy.InlineShardingStrategyConfiguration;
+import org.apache.shardingsphere.core.constant.properties.ShardingPropertiesConstant;
 import org.apache.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,11 +48,13 @@ public class ShardingDataSourceConfig {
 
     @Bean
     public DataSource getDataSource() throws SQLException {
-        //分库设置
+        // 分库设置
         Map<String, DataSource> dataSourceMap = createDataSource();
 
-        // 配置Order表规则
+        // 配置表规则
         TableRuleConfiguration tableRuleConfiguration = new TableRuleConfiguration("pr_user_lesson","ds${0..1}.pr_user_lesson_${0..3}");
+        // 全局唯一主键ID
+        tableRuleConfiguration.setKeyGeneratorConfig(getKeyGeneratorConfiguration());
 
         // 配置分库 + 分表策略
         tableRuleConfiguration.setDatabaseShardingStrategyConfig(new InlineShardingStrategyConfiguration("product_id", "ds${product_id % 2}"));
@@ -61,7 +65,7 @@ public class ShardingDataSourceConfig {
         shardingRuleConfig.getTableRuleConfigs().add(tableRuleConfiguration);
 
         Properties properties = new Properties();
-        properties.put("show.sql","true");
+        properties.put(ShardingPropertiesConstant.SQL_SHOW.getKey(),"true");
 
         // 获取数据源对象
         return ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig, properties);
@@ -77,6 +81,10 @@ public class ShardingDataSourceConfig {
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
 
         return sqlSessionFactoryBean.getObject();
+    }
+
+    private static KeyGeneratorConfiguration getKeyGeneratorConfiguration() {
+        return new KeyGeneratorConfiguration("SNOWFLAKE", "user_id", new Properties());
     }
 
 

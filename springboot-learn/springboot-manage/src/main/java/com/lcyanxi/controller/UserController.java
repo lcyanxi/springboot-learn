@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login(String userId){
+    public String login(Integer productId,String userId){
         List<UserLesson> lessons = new ArrayList<>();
         String name = "admin";
         for (int i = 0 ;i < 10 ;i++){
@@ -43,12 +43,12 @@ public class UserController {
             userLesson.setCreateUsername(name);
             userLesson.setUpdateUid(name);
             userLesson.setUpdateUsername(name);
-            userLesson.setProductId(11);
+            userLesson.setProductId(productId);
             userLesson.setUserId(Integer.parseInt(userId));
             lessons.add(userLesson);
         }
 
-        System.out.println("userLessonService"+userLessonService);
+        System.out.println("userLessonService"+lessons);
         boolean result = userLessonService.insertUserLesson(lessons);
         return name+"登陆"+result;
     }
