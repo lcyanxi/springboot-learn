@@ -31,25 +31,12 @@
         <module>springboot-manage</module>
         <module>springboot-api</module>
         <module>springboot-service</module>
+        <module>springboot-worker</module>
     </modules>
 
 
     <dependencyManagement>   <!--dependencyManagement用于管理依赖版本号-->
         <dependencies>
-            <!--新增后续dubbo项目中所需依赖，dubbo、zk-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba</groupId>-->
-<!--                <artifactId>dubbo</artifactId>-->
-<!--                &lt;!&ndash;<version>2.5.3</version>&ndash;&gt;    &lt;!&ndash;使用properties中配置的版本号&ndash;&gt;-->
-<!--                <version>${dubbo.version}</version>-->
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.springframework</groupId>-->
-<!--                        <artifactId>spring</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
-<!--            </dependency>-->
-
             <dependency>
                 <groupId>com.alibaba.boot</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>

@@ -1,14 +1,21 @@
 package com.lcyanxi.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.lcyanxi.enums.RocketTopicInfoEnum;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUserLessonService;
+import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.client.producer.SendStatus;
+import org.apache.rocketmq.common.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +25,9 @@ public class UserController {
 
     @Autowired
     private IUserLessonService userLessonService;
+
+    @Resource
+    private DefaultMQProducer defaultMQProducer;
 
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
@@ -48,8 +58,15 @@ public class UserController {
             lessons.add(userLesson);
         }
 
-        System.out.println("userLessonService"+lessons);
-        boolean result = userLessonService.insertUserLesson(lessons);
-        return name+"登陆"+result;
+        try {
+            Message sendMsg = new Message(RocketTopicInfoEnum.USER_LESSON_TOPIC.getTopic(), JSONObject.toJSONBytes(lessons));
+            SendResult sendResult = defaultMQProducer.send(sendMsg);
+            if (sendResult.getSendStatus() == SendStatus.SEND_OK){
+                return name+"登陆成功";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name+"登陆失败";
     }
 }

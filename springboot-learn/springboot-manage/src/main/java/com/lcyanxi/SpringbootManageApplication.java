@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @EnableDubbo
-@ComponentScan(basePackages = {"com.lcyanxi.controller"})
 @ImportResource("classpath:dubbo_config/springboot-manage-consumer.xml")
 public class SpringbootManageApplication {
 
