@@ -25,6 +25,7 @@ public class RocketProducerConfig {
         DefaultMQProducer producer;
         producer = new DefaultMQProducer(this.groupName);
         producer.setNamesrvAddr(this.namesrvAddr);
+        producer.setVipChannelEnabled(false);
         //如果需要同一个jvm中不同的producer往不同的mq集群发送消息，需要设置不同的instanceName
         if(this.maxMessageSize != null){
             producer.setMaxMessageSize(this.maxMessageSize);

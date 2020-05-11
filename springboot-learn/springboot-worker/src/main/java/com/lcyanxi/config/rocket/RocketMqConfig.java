@@ -38,6 +38,7 @@ public class RocketMqConfig {
         consumer.setConsumeThreadMin(consumeThreadMin);
         consumer.setConsumeThreadMax(consumeThreadMax);
         consumer.registerMessageListener(userLessonConsumer);
+        consumer.setVipChannelEnabled(false);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
         consumer.setConsumeMessageBatchMaxSize(consumeMessageBatchMaxSize);
         try {
