@@ -8,7 +8,7 @@ rocketmq:
     # 服务地址
     namesrvAddr: lcyanxi.com:9876
     # 接收该 Topic 下所有 Tag
-    topics: lcyanxi-test~*;
+    topics: springboot_manage_user_lesson_topic~*;
     consumeThreadMin: 20
     consumeThreadMax: 64
     # 设置一次消费消息的条数，默认为1条
