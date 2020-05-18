@@ -2,6 +2,7 @@ package com.lcyanxi.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
 import com.lcyanxi.model.TeacherInfoVO;
@@ -13,7 +14,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.xml.crypto.Data;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -115,10 +118,10 @@ public class UserController {
     public static void readFile() throws Exception{
         //简写如下
         BufferedReader br = new BufferedReader(new InputStreamReader(
-                new FileInputStream("/Users/koolearn/Desktop/teacherinfo.log"), "UTF-8"));
+                new FileInputStream("/Users/koolearn/Desktop/id.log"), "UTF-8"));
         String line="";
         String[] arrs=null;
-        Set<String > aa = Sets.newHashSet();
+        List<String > aa = Lists.newArrayList();
         while ((line=br.readLine())!=null) {
             arrs=line.split("TeacherInfoVO");
             if (arrs.length>1){
@@ -129,9 +132,11 @@ public class UserController {
         }
         br.close();
 
-        for (String bb : aa){
-            String[] as = bb.replace("(","").replace(")","").split(",");
-            System.out.println(as[0]+","+as[2]);
-        }
+
+        Map<String, List<String>> collect = aa.stream().collect(Collectors.groupingBy(item -> item));
+        collect.forEach((k,v)->{
+            String[] as = k.replace("(","").replace(")","").split(",");
+            System.out.println(as[0] + "," + as[2] + ",人数" + v.size());
+        });
     }
 }
