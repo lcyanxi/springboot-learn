@@ -3,6 +3,7 @@ package com.lcyanxi.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
 import com.lcyanxi.model.TeacherInfoVO;
@@ -84,9 +85,34 @@ public class UserController {
     }
 
 
+    @RequestMapping(value = "/orderly",method = RequestMethod.GET)
+    public String orderly(String orderNo){
+        try {
+            Map<Object,Object> map = Maps.newHashMap();
+            map.put("orderNo",orderNo);
+            map.put("ts",System.currentTimeMillis());
+            Message sendMsg = new Message(RocketTopicInfoEnum.ORDERLY_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
+            SendResult sendResult = defaultMQProducer.send(sendMsg);
+            if (sendResult.getSendStatus() == SendStatus.SEND_OK){
+                return  "下单成功";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "下单失败";
+    }
+
+
 
     public static void main(String[] args) throws Exception {
-        readFile();
+        List<Integer> indexList = Lists.newArrayList(1001,1003);
+        System.out.println(indexList);
+
+        String str = indexList.stream().map(String::valueOf).collect(Collectors.joining(","));
+        System.out.println(str);
+
+
+//        readFile();
     }
 
 
@@ -109,8 +135,6 @@ public class UserController {
                 System.out.println(value);
                 output.println(value);
             }
-            // 若没有try-with-resources结构则必须使用 close() 关闭文件，否则数据就不能正常地保存在文件中
-            // output.close();
         }
     }
 
@@ -118,22 +142,27 @@ public class UserController {
     public static void readFile() throws Exception{
         //简写如下
         BufferedReader br = new BufferedReader(new InputStreamReader(
-                new FileInputStream("/Users/koolearn/Desktop/id.log"), "UTF-8"));
+                new FileInputStream("/Users/koolearn/Desktop/data.log"), "UTF-8"));
         String line="";
         String[] arrs=null;
         List<String > aa = Lists.newArrayList();
+        int index = 0;
         while ((line=br.readLine())!=null) {
             arrs=line.split("TeacherInfoVO");
             if (arrs.length>1){
                 aa.add(arrs[1]);
             }else {
+                if (line.contains("BLACKLIST")){
+                    index = index +1 ;
+                }
                 System.out.println("error:"+line);
             }
         }
         br.close();
 
-
+        System.out.println("===============黑名单数量:" + index);
         Map<String, List<String>> collect = aa.stream().collect(Collectors.groupingBy(item -> item));
+        System.out.println("===============num:" + aa.size());
         collect.forEach((k,v)->{
             String[] as = k.replace("(","").replace(")","").split(",");
             System.out.println(as[0] + "," + as[2] + ",人数" + v.size());

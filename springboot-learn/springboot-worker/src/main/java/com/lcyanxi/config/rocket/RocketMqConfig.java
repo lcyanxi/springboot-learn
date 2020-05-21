@@ -1,6 +1,8 @@
 package com.lcyanxi.config.rocket;
 
+import com.lcyanxi.consumer.OrderlyConsumer;
 import com.lcyanxi.consumer.UserLessonConsumer;
+import com.lcyanxi.enums.RocketTopicInfoEnum;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
@@ -31,6 +33,14 @@ public class RocketMqConfig {
     @Resource
     private UserLessonConsumer userLessonConsumer;
 
+    @Resource
+    private OrderlyConsumer orderlyConsumer;
+
+    /**
+     * PushConsumer为了保证消息肯定消费成功，只有使用方明确表示消费成功，RocketMQ才会认为消息消费成功。
+     * 中途断电，抛出异常等都不会认为成功——即都会重新投递。
+     * @return DefaultMQPushConsumer
+     */
     @Bean
     public DefaultMQPushConsumer getRocketMQConsumer() {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName);
@@ -47,6 +57,25 @@ public class RocketMqConfig {
                 String[] topicTag = topicTags.split("~");
                 consumer.subscribe(topicTag[0], topicTag[1]);
             }
+            consumer.start();
+        } catch (MQClientException e) {
+            e.printStackTrace();
+        }
+        return consumer;
+    }
+
+    @Bean("orderlyRocketMQConsumer")
+    public DefaultMQPushConsumer getOrderlyRocketMQConsumer() {
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("lcyanxi-orderly");
+        consumer.setNamesrvAddr(namesrvAddr);
+        consumer.setConsumeThreadMin(consumeThreadMin);
+        consumer.setConsumeThreadMax(consumeThreadMax);
+        consumer.registerMessageListener(orderlyConsumer);
+        consumer.setVipChannelEnabled(false);
+        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
+        consumer.setConsumeMessageBatchMaxSize(consumeMessageBatchMaxSize);
+        try {
+            consumer.subscribe(RocketTopicInfoEnum.ORDERLY_TOPIC.getTopic(), "*");
             consumer.start();
         } catch (MQClientException e) {
             e.printStackTrace();

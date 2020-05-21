@@ -14,7 +14,11 @@ public enum RocketTopicInfoEnum {
      * 合班队列信息
      */
     USER_LESSON_TOPIC("user_lesson", "springboot_manage_user_lesson_topic",
-            "com.lcyanxi.consumer.UserLessonConsumer");
+            "com.lcyanxi.consumer.UserLessonConsumer"),
+    /**
+     * 顺序消费队列消息
+     */
+    ORDERLY_TOPIC("orderly", "orderly_topic", "com.lcyanxi.consumer.UserLessonConsumer");
 
 
     private String key;
