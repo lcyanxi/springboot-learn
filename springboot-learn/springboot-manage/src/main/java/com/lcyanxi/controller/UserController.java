@@ -16,9 +16,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.xml.crypto.Data;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
@@ -105,14 +107,14 @@ public class UserController {
 
 
     public static void main(String[] args) throws Exception {
-        List<Integer> indexList = Lists.newArrayList(1001,1003);
-        System.out.println(indexList);
-
-        String str = indexList.stream().map(String::valueOf).collect(Collectors.joining(","));
-        System.out.println(str);
-
+//        List<Integer> indexList = Lists.newArrayList(1001,1003);
+//        String str = indexList.stream().map(String::valueOf).collect(Collectors.joining(","));
+//        System.out.println(str);
+        UserController userController = new UserController();
+        userController.readFileLog();
 
 //        readFile();
+//        writeFile();
     }
 
 
@@ -124,18 +126,62 @@ public class UserController {
             System.exit(1); // 如果存在则退出程序
         }
         Date date = new Date();
-        String sql = "insert into pr_divide_class_letter  ( class_id, user_id,order_no, product_id,send_status,create_uid, create_username,create_time,update_username, update_uid, update_time,is_deleted ) values";
+        String sql = "insert into pr_user_class  ( class_id, parent_class_id, user_id,order_no, product_id,re_buy,join_status,status,create_uid, create_username,create_time,update_username, update_uid, update_time,is_deleted ) values";
 
+        List<Integer> subClassIds = Lists.newArrayList(130174,130175,130176);
+        List<Integer> userIds = Lists.newArrayList(73782521,73721148,74146775,73670601,74146774,74146773,74146769,73721150,73652233);
+
+        Random r = new Random(1);
         // 如果不存在则创建一个新文件
         try (PrintWriter output = new PrintWriter(file)) {
             output.println(sql);
-            for (int i = 0 ; i < 100000; i++){
-                String orderNo = "99320998"+i;
-                String value = "(122952,74142608,"+orderNo+",110859,0,'admin','admin',now(),'admin','admin',now(),0),";
-                System.out.println(value);
-                output.println(value);
+            for (Integer subClassId : subClassIds){
+                for (int i = 0 ; i < 599; i++){
+                    int ran1 = r.nextInt(userIds.size());
+                    String orderNo = "99320998"+i;
+                    String value = "("+subClassId+",130173,"+userIds.get(ran1)+","+orderNo+",112572,0,1,1,'admin','admin',now(),'admin','admin',now(),0),";
+                    System.out.println(value);
+                    output.println(value);
+                }
             }
         }
+    }
+
+    public  void readFileLog() throws Exception{
+        //简写如下
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                new FileInputStream("/Users/koolearn/Desktop/log.csv"), "UTF-8"));
+        String line = "";
+        String[] arrs = null;
+        List<String > aa = Lists.newArrayList();
+        List<Info> infos = Lists.newArrayList();
+        while ((line=br.readLine())!=null) {
+            arrs=line.split(",");
+            String orderNo = arrs[0];
+            Integer productId = Integer.parseInt(arrs[1]);
+            Info info = new Info();
+            info.setOrderNo(orderNo);
+            info.setProductId(productId);
+            infos.add(info);
+        }
+        br.close();
+
+        File file = new File("/Users/koolearn/Desktop/sql.txt");
+        // 如果不存在则创建一个新文件
+        try (PrintWriter output = new PrintWriter(file)) {
+            Map<Integer, List<Info>> collect = infos.stream().collect(Collectors.groupingBy(Info::getProductId));
+            collect.forEach((k,v)->{
+                String orderNos = v.stream().map(Info::getOrderNo).collect(Collectors.joining(","));
+                String sql = "update pr_divide_class_letter set send_status = 0 , is_deleted = 0  where product_id = " + k + " and order_no in (" + orderNos + ");";
+                output.println(sql);
+            });
+        }
+    }
+
+    @Data
+    class Info {
+        private String orderNo ;
+        private Integer productId;
     }
 
 
@@ -147,10 +193,15 @@ public class UserController {
         String[] arrs=null;
         List<String > aa = Lists.newArrayList();
         int index = 0;
+        Set<String> rootTeacherIds = Sets.newHashSet();
         while ((line=br.readLine())!=null) {
             arrs=line.split("TeacherInfoVO");
             if (arrs.length>1){
-                aa.add(arrs[1]);
+                if (line.contains("暖心伴学")){
+                    rootTeacherIds.add(line.split(",")[2]);
+                }else {
+                    aa.add(arrs[1]);
+                }
             }else {
                 if (line.contains("BLACKLIST")){
                     index = index +1 ;
@@ -162,10 +213,15 @@ public class UserController {
 
         System.out.println("===============黑名单数量:" + index);
         Map<String, List<String>> collect = aa.stream().collect(Collectors.groupingBy(item -> item));
-        System.out.println("===============num:" + aa.size());
+        System.out.println("===============:" + aa.size());
         collect.forEach((k,v)->{
-            String[] as = k.replace("(","").replace(")","").split(",");
-            System.out.println(as[0] + "," + as[2] + ",人数" + v.size());
+                String[] as = k.replace("(","").replace(")","").split(",");
+                System.out.println(as[0] + "," + as[2] + ",人数" + v.size());
         });
+
+        System.out.println("虚拟学管 = "+rootTeacherIds.size());
+        for(String  subClassId : rootTeacherIds){
+            System.out.print(subClassId.split(":")[1]+",");
+        }
     }
 }
