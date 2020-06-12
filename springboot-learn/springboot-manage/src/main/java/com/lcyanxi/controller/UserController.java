@@ -110,10 +110,10 @@ public class UserController {
 //        List<Integer> indexList = Lists.newArrayList(1001,1003);
 //        String str = indexList.stream().map(String::valueOf).collect(Collectors.joining(","));
 //        System.out.println(str);
-        UserController userController = new UserController();
-        userController.readFileLog();
+//        UserController userController = new UserController();
+//        userController.readFileLog();
 
-//        readFile();
+        readFile();
 //        writeFile();
     }
 
@@ -151,9 +151,8 @@ public class UserController {
         //简写如下
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream("/Users/koolearn/Desktop/log.csv"), "UTF-8"));
-        String line = "";
-        String[] arrs = null;
-        List<String > aa = Lists.newArrayList();
+        String line ;
+        String[] arrs ;
         List<Info> infos = Lists.newArrayList();
         while ((line=br.readLine())!=null) {
             arrs=line.split(",");
@@ -166,13 +165,13 @@ public class UserController {
         }
         br.close();
 
-        File file = new File("/Users/koolearn/Desktop/sql.txt");
+        File file = new File("/Users/koolearn/Desktop/sql-bak.txt");
         // 如果不存在则创建一个新文件
         try (PrintWriter output = new PrintWriter(file)) {
             Map<Integer, List<Info>> collect = infos.stream().collect(Collectors.groupingBy(Info::getProductId));
             collect.forEach((k,v)->{
                 String orderNos = v.stream().map(Info::getOrderNo).collect(Collectors.joining(","));
-                String sql = "update pr_divide_class_letter set send_status = 0 , is_deleted = 0  where product_id = " + k + " and order_no in (" + orderNos + ");";
+                String sql = "update pr_divide_class_letter set send_status = 1  where send_status = 0  and  product_id = " + k + " and order_no in (" + orderNos + ");";
                 output.println(sql);
             });
         }
@@ -188,13 +187,16 @@ public class UserController {
     public static void readFile() throws Exception{
         //简写如下
         BufferedReader br = new BufferedReader(new InputStreamReader(
-                new FileInputStream("/Users/koolearn/Desktop/data.log"), "UTF-8"));
+                new FileInputStream("/Users/koolearn/Desktop/provider.log"), "UTF-8"));
         String line="";
         String[] arrs=null;
         List<String > aa = Lists.newArrayList();
         int index = 0;
         Set<String> rootTeacherIds = Sets.newHashSet();
         while ((line=br.readLine())!=null) {
+            if (!line.contains("divideClassLetterHandle")){
+                continue;
+            }
             arrs=line.split("TeacherInfoVO");
             if (arrs.length>1){
                 if (line.contains("暖心伴学")){
