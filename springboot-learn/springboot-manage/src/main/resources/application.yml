@@ -17,3 +17,13 @@ rocketmq:
     # 发送消息失败重试次数，默认2
     retryTimesWhenSendFailed: 2
 
+spring:
+  application:
+    name: ware-elastic-search
+  data:
+    elasticsearch:
+      # 默认 elasticsearch
+      cluster-name: elasticsearch
+      # 9200作为Http协议，主要用于外部通讯
+      # 9300作为Tcp协议，jar之间就是通过tcp协议通讯
+      cluster-nodes: lcyanxi.com:9300

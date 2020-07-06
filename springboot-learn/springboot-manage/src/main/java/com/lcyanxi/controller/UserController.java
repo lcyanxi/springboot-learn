@@ -18,6 +18,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -110,10 +111,35 @@ public class UserController {
 //        List<Integer> indexList = Lists.newArrayList(1001,1003);
 //        String str = indexList.stream().map(String::valueOf).collect(Collectors.joining(","));
 //        System.out.println(str);
-//        UserController userController = new UserController();
-//        userController.readFileLog();
+        UserController userController = new UserController();
+        String logPath = "/Users/koolearn/Desktop/data.csv";
+        readFileData(logPath);
 
-        readFile();
+//        List<Info> targetDataList = userController.readDataUtil(logPath,false);
+//        System.out.println("num:"+targetDataList.size());
+//        String aNumberPath = "/Users/koolearn/Desktop/a.csv";
+//        String bPath = "/Users/koolearn/Desktop/b.csv";
+//
+//        List<Info> aDataList = userController.readDataUtil(aNumberPath,true);
+//        List<Info> bDataList = userController.readDataUtil(bPath,true);
+//        aDataList.addAll(bDataList);
+//
+//        List<Integer> ids = Lists.newArrayList();
+//
+//        targetDataList.forEach((info -> {
+//            for (Info aInfo : aDataList){
+//                if (aInfo.getProductId().equals(info.getProductId()) && info.getOrderNo().equals(aInfo.orderNo)){
+//                    ids.add(aInfo.getId());
+//                    break;
+//                }
+//            }
+//        }));
+//        System.out.println("bNum:"+ids.size());
+//        System.out.println(ids.stream().map(String::valueOf).collect(Collectors.joining(",")));
+
+
+
+//        readFile();
 //        writeFile();
     }
 
@@ -147,10 +173,38 @@ public class UserController {
         }
     }
 
-    public  void readFileLog() throws Exception{
+
+    public  static void readFileData(String path) throws Exception{
         //简写如下
         BufferedReader br = new BufferedReader(new InputStreamReader(
-                new FileInputStream("/Users/koolearn/Desktop/log.csv"), "UTF-8"));
+                new FileInputStream(path), "UTF-8"));
+        String line ;
+        String[] arrs ;
+        Set<String> orders = Sets.newHashSet();
+        Set<Integer> products = Sets.newHashSet();
+        while ((line = br.readLine()) != null) {
+            arrs=line.split(",");
+            String orderNo = arrs[0];
+            Integer productId = Integer.parseInt(arrs[1]);
+            orders.add(orderNo);
+            products.add(productId);
+        }
+
+        System.out.println("select order_no,product_id,status from pr_user_class where is_deleted = 0 and  order_no in("+
+                orders.stream().map(String::valueOf).collect(Collectors.joining(","))+") and product_id in ("+
+                products.stream().map(String::valueOf).collect(Collectors.joining(","))+")");
+
+
+        System.out.println("select order_no,product_id,status from tb_user_product where is_deleted = 0 and  order_no in("+
+                orders.stream().map(String::valueOf).collect(Collectors.joining(","))+") and product_id in ("+
+                products.stream().map(String::valueOf).collect(Collectors.joining(","))+")");
+        br.close();
+    }
+
+    public   Map<Boolean,List<String>> readFileLog(String path) throws Exception{
+        //简写如下
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                new FileInputStream(path), "UTF-8"));
         String line ;
         String[] arrs ;
         List<Info> infos = Lists.newArrayList();
@@ -165,20 +219,67 @@ public class UserController {
         }
         br.close();
 
+
+
         File file = new File("/Users/koolearn/Desktop/sql-bak.txt");
+        List<String> orders = Lists.newArrayList();
         // 如果不存在则创建一个新文件
         try (PrintWriter output = new PrintWriter(file)) {
             Map<Integer, List<Info>> collect = infos.stream().collect(Collectors.groupingBy(Info::getProductId));
             collect.forEach((k,v)->{
+                orders.addAll(v.stream().map(Info::getOrderNo).collect(Collectors.toList()));
                 String orderNos = v.stream().map(Info::getOrderNo).collect(Collectors.joining(","));
                 String sql = "update pr_divide_class_letter set send_status = 1  where send_status = 0  and  product_id = " + k + " and order_no in (" + orderNos + ");";
                 output.println(sql);
             });
         }
+       return orders.stream().collect(Collectors.groupingBy(this::isNumber));
+//        tempMap.get(false).forEach((order->{
+//            String temp = "\'"+order+"\',";
+//            System.out.print(temp);
+//        }));
+//        System.out.println();
+//        System.out.println(String.join(",", tempMap.get(true)));
+
+
+    }
+
+    public  boolean isNumber(Object o){
+        return  (Pattern.compile("[0-9]*")).matcher(String.valueOf(o)).matches();
+    }
+
+    private  List<Info> readDataUtil(String path,boolean type) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                new FileInputStream(path), "UTF-8"));
+        String line ;
+        String[] arrs ;
+        List<Info> infos = Lists.newArrayList();
+        while ((line = br.readLine()) != null) {
+            arrs=line.split(",");
+            Info info = new Info();
+
+            if (type){
+                Integer id = Integer.parseInt(arrs[0]);
+                Integer productId = Integer.parseInt(arrs[1]);
+                String orderNo = arrs[2];
+                info.setId(id);
+                info.setOrderNo(orderNo);
+                info.setProductId(productId);
+            }else {
+                String orderNo = arrs[0];
+                Integer productId = Integer.parseInt(arrs[1]);
+                info.setOrderNo(orderNo);
+                info.setProductId(productId);
+            }
+            infos.add(info);
+        }
+        br.close();
+        return infos;
     }
 
     @Data
     class Info {
+        private Integer id;
         private String orderNo ;
         private Integer productId;
     }
