@@ -52,6 +52,33 @@ public class UserController {
         return "hello world";
     }
 
+
+    @RequestMapping(value = "/addUserLesson",method = RequestMethod.GET)
+    public String addUserLesson(Integer productId,String userId){
+        List<UserLesson> lessons = new ArrayList<>();
+        String name = "admin";
+        for (int i = 0 ;i < 10 ;i++){
+            UserLesson userLesson=new UserLesson();
+            userLesson.setParentClassId(1);
+            userLesson.setBuyStatus(false);
+            userLesson.setOrderNo(System.currentTimeMillis()+"");
+            userLesson.setClassId(1);
+            userLesson.setBuyTime(new Date());
+            userLesson.setClassCourseId(11);
+            userLesson.setLessonId(11);
+            userLesson.setStatus(2);
+            userLesson.setCreateUid(name);
+            userLesson.setCreateUsername(name);
+            userLesson.setUpdateUid(name);
+            userLesson.setUpdateUsername(name);
+            userLesson.setProductId(productId);
+            userLesson.setUserId(Integer.parseInt(userId));
+            lessons.add(userLesson);
+        }
+        Boolean result = userLessonService.insertUserLesson(lessons);
+        return "添加课次结果:"+result;
+    }
+
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(Integer productId,String userId){
         List<UserLesson> lessons = new ArrayList<>();
@@ -88,22 +115,22 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/orderly",method = RequestMethod.GET)
-    public String orderly(String orderNo){
-        try {
-            Map<Object,Object> map = Maps.newHashMap();
-            map.put("orderNo",orderNo);
-            map.put("ts",System.currentTimeMillis());
-            Message sendMsg = new Message(RocketTopicInfoEnum.ORDERLY_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
-            SendResult sendResult = defaultMQProducer.send(sendMsg);
-            if (sendResult.getSendStatus() == SendStatus.SEND_OK){
-                return  "下单成功";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "下单失败";
-    }
+//    @RequestMapping(value = "/orderly",method = RequestMethod.GET)
+//    public String orderly(String orderNo){
+//        try {
+//            Map<Object,Object> map = Maps.newHashMap();
+//            map.put("orderNo",orderNo);
+//            map.put("ts",System.currentTimeMillis());
+//            Message sendMsg = new Message(RocketTopicInfoEnum.ORDERLY_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
+//            SendResult sendResult = defaultMQProducer.send(sendMsg);
+//            if (sendResult.getSendStatus() == SendStatus.SEND_OK){
+//                return  "下单成功";
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "下单失败";
+//    }
 
 
 
