@@ -83,6 +83,18 @@
         </dependency>
 
         <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.72</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>

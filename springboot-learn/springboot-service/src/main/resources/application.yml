@@ -14,8 +14,21 @@ dubbo:
     port: 20880
   version: 1.0.0
   provider:
-    filter:guavaDefaultLimitFlowFilter
+    filter:guavaDefaultLimitFlowFilter,guavaResourcesLimitFlowFilter,guavaTotalLimitFlowFilter
   scan:
     base-packages: com.lcyanxi.service.impl
 
+app:
+  id: lcyanxi-spring-service
+apollo:
+  meta: http://127.0.0.1:8080
+  bootstrap:
+    enabled: true
+    eagerLoad:
+      enabled: true
 
+logging:
+  level:
+    com:
+      gf:
+        controller: debug
