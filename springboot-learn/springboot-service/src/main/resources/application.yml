@@ -13,8 +13,7 @@ dubbo:
     name: dubbo
     port: 20880
   version: 1.0.0
-  provider:
-    filter:guavaDefaultLimitFlowFilter,guavaResourcesLimitFlowFilter,guavaTotalLimitFlowFilter
+
   scan:
     base-packages: com.lcyanxi.service.impl
 
