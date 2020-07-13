@@ -7,6 +7,7 @@ import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.RateLimiter;
 import com.lcyanxi.limit.constent.GuavaRateLimiterKeys;
 import static com.lcyanxi.limit.constent.GuavaRateLimiterKeys.INIT_PROJECT_DEFAULT_NAMESPACE;
+import com.lcyanxi.limit.dictionary.DictionaryManager;
 import com.lcyanxi.limit.util.JsonUtils;
 import com.lcyanxi.limit.util.LimitUtils;
 import com.lcyanxi.limit.dictionary.ApolloChangeEvent;
@@ -35,6 +36,9 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
 
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Autowired
+    private DictionaryManager dictionaryManager;
 
     /**
      * 特殊配置的的url限速器集合
@@ -93,7 +97,7 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
      * @param limiters
      */
     private void fixDefaultLimit(Map<String, GuavaRateLimiterFlowRuleDto> limiters) {
-        String guavaRateLimiterDefaultKey = get(GuavaRateLimiterKeys.JWYTH_GUAVA_RATE_LIMITER_DEFAULT_KEY);
+        String guavaRateLimiterDefaultKey = dictionaryManager.get(GuavaRateLimiterKeys.JWYTH_GUAVA_RATE_LIMITER_DEFAULT_KEY);
         if (StringUtils.isBlank(guavaRateLimiterDefaultKey)) {
             return;
         }
@@ -143,7 +147,7 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
      * 构造全局限流
      */
     private void fixTotalRateLimiter() {
-        String guavaRateLimiterTotal = get(GuavaRateLimiterKeys.JWYTH_GUAVA_RATE_LIMITER_TOTAL);
+        String guavaRateLimiterTotal = dictionaryManager.get(GuavaRateLimiterKeys.JWYTH_GUAVA_RATE_LIMITER_TOTAL);
         if (StringUtils.isBlank(guavaRateLimiterTotal)) {
             return;
         }
@@ -158,7 +162,7 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
      * 构造url限流
      */
     private Map<String, GuavaRateLimiterFlowRuleDto> fixUrlLimiterMap() {
-        String guavaRateLimiterRule = get(GuavaRateLimiterKeys.JWYTH_SYS_GUAVA_RATE_LIMITER_RULE);
+        String guavaRateLimiterRule = dictionaryManager.get(GuavaRateLimiterKeys.JWYTH_SYS_GUAVA_RATE_LIMITER_RULE);
         if (StringUtils.isBlank(guavaRateLimiterRule)) {
             return Maps.newHashMap();
         }
@@ -176,18 +180,6 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
             urlLimiterMap.put(url, RateLimiter.create(qps));
         });
         return limiters;
-    }
-
-    /**
-     * 获取配置，如果传入的是key是null或者""，直接返回null
-     *
-     * @param key
-     */
-    public String get(String key) {
-        if (StringUtils.isBlank(key)) {
-            return null;
-        }
-        return InitApolloLocalCacheBeanPostProcessor.get(key);
     }
 
 }
