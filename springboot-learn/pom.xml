@@ -24,7 +24,7 @@
         <!-- 在properties中统一控制依赖包的版本，更清晰-->
         <dubbo.version>2.5.3</dubbo.version>
         <zkclient.version>0.10</zkclient.version>
-        <dubbo.starter.version>0.2.0</dubbo.starter.version>
+        <dubbo.starter.version>0.2.1</dubbo.starter.version>
     </properties>
 
     <modules>

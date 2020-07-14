@@ -26,6 +26,7 @@ import org.springframework.util.CollectionUtils;
  * @date 2020/7/9
  */
 @Slf4j
+@Component
 public class InitApolloLocalCacheBeanPostProcessor implements ApplicationListener<ContextRefreshedEvent>, ApplicationContextAware {
 
     /**
