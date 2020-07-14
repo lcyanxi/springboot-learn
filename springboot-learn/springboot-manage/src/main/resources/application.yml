@@ -17,17 +17,20 @@ rocketmq:
     # 发送消息失败重试次数，默认2
     retryTimesWhenSendFailed: 2
 
-dubbo:
-  application:
-    name: springboo-dubbo-consumer
-    id: consumer
-  protocol:
-    name: dubbo
-    port: 20881
-    id: dubbo
-  registry:
-    protocol: zookeeper
-    address: lcyanxi.com:2181
+#dubbo:
+#  application:
+#    name: springboo-dubbo-consumer
+#    id: consumer
+#  protocol:
+#    name: dubbo
+#    port: 20881
+#    id: dubbo
+#
+#  scan:
+#    base-packages: com.lcyanxi
+#  registry:
+#    protocol: zookeeper
+#    address: lcyanxi.com:2181
 
 
 

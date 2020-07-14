@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo
+http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 应用配置，不要与提供方相同 -->
+    <dubbo:application name="springboot-manage-consumer"/>
+
+    <!-- 注册中心配置，使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry protocol="zookeeper" address="lcyanxi.com:2181,lcyanxi.com:2182,lcyanxi.com:2183" timeout="60000" />
+    <!--关闭服务消费方所有服务的启动检查。dubbo缺省会在启动时检查依赖的服务是否可用，不可用时会抛出异常，阻止Spring初始化完成。-->
+    <!--    <dubbo:consumer check="false" />-->
+    <dubbo:protocol name="dubbo" port="20880" />
+    <!-- 使用注解方式创建远程服务代理-->
+    <!--    <dubbo:annotation package="com.lcyanxi.controller"/>-->
+    <dubbo:reference id="userLessonService" interface="com.lcyanxi.service.IUserLessonService" timeout="5000"/>
+</beans>

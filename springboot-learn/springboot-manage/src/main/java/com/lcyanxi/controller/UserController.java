@@ -1,6 +1,5 @@
 package com.lcyanxi.controller;
 
-
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
@@ -23,6 +22,7 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +36,7 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    @Reference
+    @Resource
     private IUserLessonService userLessonService;
 
     @Resource
