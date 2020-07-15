@@ -135,13 +135,13 @@ public class UserController {
 //        String str = indexList.stream().map(String::valueOf).collect(Collectors.joining(","));
 //        System.out.println(str);
         UserController userController = new UserController();
-        String logPath = "/Users/koolearn/Desktop/data.csv";
+        String logPath = "/Users/lichang/Desktop/data.csv";
         readFileData(logPath);
 
 //        List<Info> targetDataList = userController.readDataUtil(logPath,false);
 //        System.out.println("num:"+targetDataList.size());
-//        String aNumberPath = "/Users/koolearn/Desktop/a.csv";
-//        String bPath = "/Users/koolearn/Desktop/b.csv";
+//        String aNumberPath = "/Users/lichang/Desktop/a.csv";
+//        String bPath = "/Users/lichang/Desktop/b.csv";
 //
 //        List<Info> aDataList = userController.readDataUtil(aNumberPath,true);
 //        List<Info> bDataList = userController.readDataUtil(bPath,true);
@@ -169,7 +169,7 @@ public class UserController {
 
 
     public static void writeFile() throws Exception{
-        File file = new File("/Users/koolearn/Desktop/sql.txt");
+        File file = new File("/Users/lichang/Desktop/sql.txt");
         if (file.exists()) { // 检查scores.txt是否存在
             System.out.println("File already exists");
             System.exit(1); // 如果存在则退出程序
@@ -244,7 +244,7 @@ public class UserController {
 
 
 
-        File file = new File("/Users/koolearn/Desktop/sql-bak.txt");
+        File file = new File("/Users/lichang/Desktop/sql-bak.txt");
         List<String> orders = Lists.newArrayList();
         // 如果不存在则创建一个新文件
         try (PrintWriter output = new PrintWriter(file)) {
@@ -311,7 +311,7 @@ public class UserController {
     public static void readFile() throws Exception{
         //简写如下
         BufferedReader br = new BufferedReader(new InputStreamReader(
-                new FileInputStream("/Users/koolearn/Desktop/provider.log"), "UTF-8"));
+                new FileInputStream("/Users/lichang/Desktop/provider.log"), "UTF-8"));
         String line="";
         String[] arrs=null;
         List<String > aa = Lists.newArrayList();
