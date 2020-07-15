@@ -24,7 +24,7 @@
         <!-- 在properties中统一控制依赖包的版本，更清晰-->
         <dubbo.version>2.5.3</dubbo.version>
         <zkclient.version>0.10</zkclient.version>
-        <dubbo.starter.version>0.2.0</dubbo.starter.version>
+        <dubbo.starter.version>2.7.7</dubbo.starter.version>
     </properties>
 
     <modules>
@@ -38,7 +38,7 @@
     <dependencyManagement>   <!--dependencyManagement用于管理依赖版本号-->
         <dependencies>
             <dependency>
-                <groupId>com.alibaba.boot</groupId>
+                <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo.starter.version}</version>
             </dependency>

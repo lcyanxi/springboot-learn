@@ -1,6 +1,5 @@
 package com.lcyanxi.limit.listener;
 
-import com.alibaba.dubbo.config.spring.ServiceBean;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -11,7 +10,6 @@ import com.lcyanxi.limit.dictionary.DictionaryManager;
 import com.lcyanxi.limit.util.JsonUtils;
 import com.lcyanxi.limit.util.LimitUtils;
 import com.lcyanxi.limit.dictionary.ApolloChangeEvent;
-import com.lcyanxi.limit.dictionary.InitApolloLocalCacheBeanPostProcessor;
 import com.lcyanxi.limit.dto.GuavaRateLimiterFlowRuleDto;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -21,6 +19,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.spring.ServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;

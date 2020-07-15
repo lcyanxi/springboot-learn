@@ -1,11 +1,11 @@
 package com.lcyanxi.service.impl;
 
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.lcyanxi.dto.UserLessonMapper;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUserLessonService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -13,7 +13,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 @Slf4j
-@Service(timeout = 6000)
+@Service
 @Component
 public class UserLessonServiceImpl implements IUserLessonService {
 
