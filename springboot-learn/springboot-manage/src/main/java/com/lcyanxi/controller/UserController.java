@@ -1,7 +1,9 @@
 package com.lcyanxi.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
 import com.lcyanxi.model.UserLesson;
@@ -17,12 +19,11 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.Data;
-import org.apache.dubbo.config.annotation.Reference;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @RestController
 public class UserController {
 
@@ -77,37 +79,25 @@ public class UserController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(Integer productId,String userId){
-        List<UserLesson> lessons = new ArrayList<>();
-        String name = "admin";
-        for (int i = 0 ;i < 10 ;i++){
-            UserLesson userLesson=new UserLesson();
-            userLesson.setParentClassId(1);
-            userLesson.setBuyStatus(false);
-            userLesson.setOrderNo(System.currentTimeMillis()+"");
-            userLesson.setClassId(1);
-            userLesson.setBuyTime(new Date());
-            userLesson.setClassCourseId(11);
-            userLesson.setLessonId(11);
-            userLesson.setStatus(2);
-            userLesson.setCreateUid(name);
-            userLesson.setCreateUsername(name);
-            userLesson.setUpdateUid(name);
-            userLesson.setUpdateUsername(name);
-            userLesson.setProductId(productId);
-            userLesson.setUserId(Integer.parseInt(userId));
-            lessons.add(userLesson);
-        }
+        String name = "kangkang";
+        Map<String,Object> map = Maps.newHashMap();
+        map.put("productId",productId);
+        map.put("userId",userId);
+        map.put("userName",name);
 
         try {
-            Message sendMsg = new Message(RocketTopicInfoEnum.USER_LESSON_TOPIC.getTopic(), JSONObject.toJSONBytes(lessons));
+            Message sendMsg = new Message(RocketTopicInfoEnum.USER_LESSON_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
+            // "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h"
+            sendMsg.setDelayTimeLevel(5);
             SendResult sendResult = defaultMQProducer.send(sendMsg);
+            log.info("login send is done data:{}",map);
             if (sendResult.getSendStatus() == SendStatus.SEND_OK){
-                return name+"登陆成功";
+                return name + "登陆成功";
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return name+"登陆失败";
+        return name + "登陆失败";
     }
 
 
