@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
-import com.lcyanxi.lock.ConcurrentLeaseLock;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUserLessonService;
 import java.io.BufferedReader;
@@ -25,7 +24,6 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,7 +52,6 @@ public class UserController {
 
 
     @RequestMapping(value = "/addUserLesson",method = RequestMethod.GET)
-    @ConcurrentLeaseLock(lockKey = "addUserLesson:lock")
     public String addUserLesson(Integer productId,String userId){
         List<UserLesson> lessons = new ArrayList<>();
         String name = "admin";

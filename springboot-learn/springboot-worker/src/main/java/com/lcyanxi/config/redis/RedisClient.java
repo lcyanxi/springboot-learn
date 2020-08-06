@@ -1,4 +1,4 @@
-package com.lcyanxi.util;
+package com.lcyanxi.config.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,12 +16,12 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Component
-public class RedisUtil {
+public class RedisClient {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    public RedisUtil(RedisTemplate<String, Object> redisTemplate) {
+    public RedisClient(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
