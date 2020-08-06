@@ -1,4 +1,4 @@
-package com.lcyanxi.lock;
+package com.lcyanxi.util.lock;
 
 import com.xxl.job.core.biz.model.ReturnT;
 import java.lang.reflect.Method;
@@ -6,10 +6,10 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,13 +18,15 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
 /**
  * @author lichang
- * @date 2020/6/16
+ * @date 2020/8/4
  */
-@Slf4j
 @Aspect
+@Slf4j
+@Component
 public class ConcurrentLeaseLockAnnotationParser implements InitializingBean {
 
     /**
@@ -44,44 +46,43 @@ public class ConcurrentLeaseLockAnnotationParser implements InitializingBean {
     private volatile boolean poolExecute = false;
 
 
-    /**
-     * 直接用的好处是各种命令都能用，但局限了codis，codis改了这个就要改
-     * 限制使用2.3.3以上的codis
-     */
-
     @Autowired
     private RedisTemplate<String, String> redisClient;
 
-
-    @Pointcut("@annotation(com.lcyanxi.lock.ConcurrentLeaseLock)")
-    public void cutPoint() {}
+    /**
+     * 定义一个切入点表达式,用来确定哪些类需要代理
+     */
+    @Pointcut("@annotation(com.lcyanxi.util.lock.ConcurrentLeaseLock)")
+    public void declareJoinPointerExpression() {}
 
     /**
-     * @param joinPoint joinPoint
-     * @return Object
+     * 环绕方法,可自定义目标方法执行的时机
+     * @return 此方法需要返回值,返回值视为目标方法的返回值
      */
-    @Around("cutPoint()")
-    public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("declareJoinPointerExpression()")
+    public Object aroundMethod(ProceedingJoinPoint pjd){
+        log.info("ConcurrentLeaseLockAnnotationParser aroundMethod is start...........");
+
         Object obj = null;
         boolean isJob = false;
         try {
             //获取方法
-            Method method = this.getMethod(joinPoint);
+            Method method = ((MethodSignature) pjd.getSignature()).getMethod();
             ConcurrentLeaseLock annotation = method.getAnnotation(ConcurrentLeaseLock.class);
             method = doCheck(method, annotation);
             if (null == method) {
                 // 执行目标方法
-                return joinPoint.proceed();
+                return pjd.proceed();
             }
 
             if (null == redisClient) {
                 if (log.isErrorEnabled()) {
                     log.error("ConcurrentLeaseLock fail !, KooJedisClient is necessary! " + "and it's version must >= 2.2.3 ");
                 }
-                return joinPoint.proceed();
+                return pjd.proceed();
             }
             if (tryAcquireLock(annotation.lockKey())) {
-                obj = joinPoint.proceed();
+                obj = pjd.proceed();
                 unlock(annotation.lockKey());
                 if (obj instanceof ReturnT) {
                     isJob = true;
@@ -101,17 +102,12 @@ public class ConcurrentLeaseLockAnnotationParser implements InitializingBean {
         return isJob ? new ReturnT<>("success") : obj;
     }
 
-
-    /**
-     * getMethod
-     * @param joinPoint joinPoint
-     * @return Method
-     * @throws Exception
-     */
-    private Method getMethod(JoinPoint joinPoint) throws Exception {
-        return ((MethodSignature) joinPoint.getSignature()).getMethod();
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        startTtlDaemon();
+        // 注册关闭钩子
+        Runtime.getRuntime().addShutdownHook(new Thread(this::stopTtlDaemon));
     }
-
 
     /**
      * 一些检查
@@ -135,9 +131,15 @@ public class ConcurrentLeaseLockAnnotationParser implements InitializingBean {
     }
 
 
+    /**
+     * 获取锁
+     * @param lockName key
+     * @return
+     */
     public boolean tryAcquireLock(String lockName) {
+
         Thread lockThread = Thread.currentThread();
-        boolean success;
+        boolean success = false;
         Object redisRandomValue = redisClient.opsForValue().get(lockName);
         // set的时候保证必须都有
         ThreadLockInfo threadLockInfo = THREAD_HOLD.get(lockThread);
@@ -148,15 +150,8 @@ public class ConcurrentLeaseLockAnnotationParser implements InitializingBean {
         } else {
             //尝试获取锁
             String seed = String.valueOf(ThreadLocalRandom.current().nextLong());
-            try {
-                redisClient.opsForList().set(lockName,TTL_TIME,seed);
-                success = true;
-            }catch (Exception e){
-                if (log.isErrorEnabled()) {
-                    log.error("ConcurrentLeaseLock set key is fail!, miss lockKey");
-                }
-                success = false;
-            }
+            Boolean ifAbsent = redisClient.opsForValue().setIfAbsent(lockName, seed, TTL_TIME, TimeUnit.MILLISECONDS);
+            success = ifAbsent == null ? false : ifAbsent;
             if (success){
                 // who lock, who release
                 threadLockInfo = ThreadLockInfo.builder().thread(lockThread).seed(seed).lockName(lockName).build();
@@ -165,6 +160,19 @@ public class ConcurrentLeaseLockAnnotationParser implements InitializingBean {
         }
         return success;
     }
+
+    /**
+     * 释放锁
+     * @param lockName key
+     */
+    public void unlock(String lockName) {
+        String redisRandomValue = redisClient.opsForValue().get(lockName);
+        if (StringUtils.isNotBlank(redisRandomValue)
+                && THREAD_HOLD.get(Thread.currentThread()).getSeed().equals(redisRandomValue)) {
+            redisClient.delete(lockName);
+        }
+    }
+
 
     public void startTtlDaemon() {
         log.info("ConcurrentLeaseLock TTL daemon thread start");
@@ -199,20 +207,7 @@ public class ConcurrentLeaseLockAnnotationParser implements InitializingBean {
             pool.shutdown();
         }
     }
-
-    public void unlock(String lockName) {
-        String redisRandomValue = redisClient.opsForValue().get(lockName);
-        if (StringUtils.isNotBlank(redisRandomValue)
-                && THREAD_HOLD.get(Thread.currentThread()).getSeed().equals(redisRandomValue)) {
-            redisClient.delete(lockName);
-        }
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        startTtlDaemon();
-        // 注册关闭钩子
-        Runtime.getRuntime().addShutdownHook(new Thread(this::stopTtlDaemon));
-    }
-
 }
+
+
+

@@ -1,4 +1,4 @@
-package com.lcyanxi.lock;
+package com.lcyanxi.util.lock;
 
 import lombok.Builder;
 import lombok.Data;
