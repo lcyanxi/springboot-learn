@@ -88,9 +88,9 @@ public class UserController {
         try {
             Message sendMsg = new Message(RocketTopicInfoEnum.USER_LESSON_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
             // "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h"
-            sendMsg.setDelayTimeLevel(5);
+//            sendMsg.setDelayTimeLevel(5);
             SendResult sendResult = defaultMQProducer.send(sendMsg);
-            log.info("login send is done data:{}",map);
+            log.info("login send is done data:{},sendResult:{}",map,sendResult);
             if (sendResult.getSendStatus() == SendStatus.SEND_OK){
                 return name + "登陆成功";
             }

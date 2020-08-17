@@ -51,6 +51,7 @@ public class RocketMqConfig {
         consumer.setVipChannelEnabled(false);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
         consumer.setConsumeMessageBatchMaxSize(consumeMessageBatchMaxSize);
+        consumer.setMaxReconsumeTimes(-1);
         try {
             String[] topicTagsArr = topics.split(";");
             for (String topicTags : topicTagsArr) {

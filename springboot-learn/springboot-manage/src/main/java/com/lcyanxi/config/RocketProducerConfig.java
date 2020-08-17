@@ -34,9 +34,9 @@ public class RocketProducerConfig {
             producer.setSendMsgTimeout(this.sendMsgTimeout);
         }
         //如果发送消息失败，设置重试次数，默认为2次
-        if(this.retryTimesWhenSendFailed != null){
-            producer.setRetryTimesWhenSendFailed(this.retryTimesWhenSendFailed);
-        }
+//        if(this.retryTimesWhenSendFailed != null){
+//            producer.setRetryTimesWhenSendFailed(this.retryTimesWhenSendFailed);
+//        }
         try {
             producer.start();
         } catch (MQClientException e) {
