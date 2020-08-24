@@ -15,7 +15,7 @@ rocketmq:
     # 发送消息超时时间,默认3000
     sendMsgTimeout: 3000
     # 发送消息失败重试次数，默认2
-    retryTimesWhenSendFailed: 5
+    retryTimesWhenSendFailed: 2
 
 dubbo:
   application:
@@ -28,7 +28,7 @@ dubbo:
   scan:
     base-packages: com.lcyanxi
   registry:
-    address: nacos://127.0.0.1:8848
+    address: nacos://lcyanxi.com:8848
   #    address: lcyanxi.com:2181
   consumer:
     timeout: 10000

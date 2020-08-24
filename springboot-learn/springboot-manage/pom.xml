@@ -80,6 +80,12 @@
             <version>1.3.1</version>
         </dependency>
 
+        <!--使用sentinel dashboard导入-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-simple-http</artifactId>
+            <version>1.7.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>

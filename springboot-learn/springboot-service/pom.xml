@@ -90,6 +90,12 @@
             <artifactId>sentinel-transport-simple-http</artifactId>
             <version>1.7.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-common</artifactId>
+            <version>1.7.0</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>com.lcyanxi</groupId>
