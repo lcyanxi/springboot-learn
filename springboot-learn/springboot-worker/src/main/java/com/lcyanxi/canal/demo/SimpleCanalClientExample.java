@@ -1,28 +1,40 @@
-package com.lcyanxi.canal;
+package com.lcyanxi.canal.demo;
 
 import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.client.CanalConnectors;
 import com.alibaba.otter.canal.common.utils.AddressUtils;
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.alibaba.otter.canal.protocol.Message;
+import com.lcyanxi.canal.demo.CanalDataHandler;
 import com.lcyanxi.model.UserLesson;
 import java.net.InetSocketAddress;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
 /**
+ * canal demo
  * @author lichang
  * @date 2020/8/25
  */
 @Slf4j
 public class SimpleCanalClientExample {
-    public static void main(String args[]) {
+
+    private final  static   String  IP = "127.0.0.1";
+
+    private final static Integer PORT = 11111;
+
+    private final static String DESTINATION = "example";
+
+    private final static String USERNAME = "";
+
+    private final static String PASS_WORd = "";
+
+
+    public static void main(String[] args) {
         // 创建链接
-        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(AddressUtils.getHostIp(),
-                11111), "example", "", "");
+        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(AddressUtils.getHostIp(), PORT), DESTINATION, USERNAME, PASS_WORd);
         int batchSize = 1000;
         int emptyCount = 0;
         try {
@@ -35,9 +47,8 @@ public class SimpleCanalClientExample {
                 int size = message.getEntries().size();
                 if (batchId == -1 || size == 0) {
                     emptyCount++;
-                    System.out.println("empty count : " + emptyCount);
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                     }
                 } else {
@@ -55,7 +66,7 @@ public class SimpleCanalClientExample {
         }
     }
 
-    private static void printEntry(List<CanalEntry.Entry> entrys) {
+    public static void printEntry(List<CanalEntry.Entry> entrys) {
         for (CanalEntry.Entry entry : entrys) {
             if (entry.getEntryType() == CanalEntry.EntryType.TRANSACTIONBEGIN || entry.getEntryType() == CanalEntry.EntryType.TRANSACTIONEND) {
                 continue;

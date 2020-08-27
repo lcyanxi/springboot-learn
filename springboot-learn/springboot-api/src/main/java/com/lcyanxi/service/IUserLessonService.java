@@ -12,4 +12,6 @@ public interface IUserLessonService {
      * @return
      */
     Boolean insertUserLesson(List<UserLesson> userLessonList);
+
+    Boolean updateByUserId(Integer userId,Integer classId);
 }

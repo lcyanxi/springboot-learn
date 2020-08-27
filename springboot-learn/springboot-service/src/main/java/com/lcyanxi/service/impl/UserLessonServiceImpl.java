@@ -27,4 +27,10 @@ public class UserLessonServiceImpl implements IUserLessonService {
         return userLessonMapper.insertBatch(userLessonList);
 //        return true;
     }
+
+    @Override
+    public Boolean updateByUserId(Integer userId, Integer classId) {
+        log.info("updateByUserId userId:{},classId:{}",userId,classId);
+        return userLessonMapper.updateByUserId(userId, classId);
+    }
 }

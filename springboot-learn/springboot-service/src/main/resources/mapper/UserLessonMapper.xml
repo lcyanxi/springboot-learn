@@ -46,4 +46,14 @@
     </foreach>
   </insert>
 
+
+    <update id="updateByUserId">
+      update pr_user_lesson
+      set update_time = now(),
+        class_id = #{classId},
+        is_deleted = 0
+      where
+        user_id = #{userId}
+    </update>
+
 </mapper>

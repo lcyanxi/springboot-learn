@@ -1,4 +1,4 @@
-package com.lcyanxi.canal;
+package com.lcyanxi.canal.demo;
 
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import java.lang.reflect.Field;
@@ -43,6 +43,9 @@ public class CanalDataHandler extends TypeConvertHandler {
                     Class<?> type = field.getType();
                     if(BEAN_FIELD_TYPE.containsKey(type)){
                         switch (BEAN_FIELD_TYPE.get(type)) {
+                            case "Boolean" :
+                                field.set(bean, parseToBoolean(columnValue));
+                                break;
                             case "Integer":
                                 field.set(bean, parseToInteger(columnValue));
                                 break;

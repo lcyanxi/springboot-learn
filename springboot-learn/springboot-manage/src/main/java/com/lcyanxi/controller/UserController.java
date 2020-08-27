@@ -77,6 +77,14 @@ public class UserController {
         return "添加课次结果:"+result;
     }
 
+    @RequestMapping(value = "/update",method = RequestMethod.GET)
+    public String update(Integer userId,Integer classId){
+        Boolean result = userLessonService.updateByUserId(userId, classId);
+        String message = result ? "成功" : "失败";
+        return   "登陆 :" + message;
+    }
+
+
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(Integer productId,String userId){
         String name = "kangkang";

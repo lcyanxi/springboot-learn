@@ -1,4 +1,4 @@
-package com.lcyanxi.canal;
+package com.lcyanxi.canal.demo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +15,8 @@ public class TypeConvertHandler {
     public static final Map<Class, String> BEAN_FIELD_TYPE;
 
     static {
-        BEAN_FIELD_TYPE = new HashMap<>(8);
+        BEAN_FIELD_TYPE = new HashMap<>(16);
+        BEAN_FIELD_TYPE.put(Boolean.class, "Boolean");
         BEAN_FIELD_TYPE.put(Integer.class, "Integer");
         BEAN_FIELD_TYPE.put(Long.class, "Long");
         BEAN_FIELD_TYPE.put(Double.class, "Double");
@@ -24,6 +25,13 @@ public class TypeConvertHandler {
         BEAN_FIELD_TYPE.put(java.sql.Date.class, "java.sql.Date");
         BEAN_FIELD_TYPE.put(java.sql.Timestamp.class, "java.sql.Timestamp");
         BEAN_FIELD_TYPE.put(java.sql.Time.class, "java.sql.Time");
+    }
+
+    protected static final Boolean parseToBoolean(String source) {
+        if (isSourceNull(source)) {
+            return null;
+        }
+        return Boolean.valueOf(source);
     }
 
     protected static final Integer parseToInteger(String source) {

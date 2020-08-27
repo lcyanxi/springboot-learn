@@ -1,6 +1,8 @@
 package com.lcyanxi.consumer;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.otter.canal.protocol.CanalEntry;
+import com.lcyanxi.canal.CanalListener;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.config.redis.RedisClient;
 import com.lcyanxi.util.lock.ConcurrentLeaseLock;
@@ -34,4 +36,5 @@ public class UserLessonConsumer implements MessageListenerConcurrently {
         // 消息消费成功
         return ConsumeConcurrentlyStatus.RECONSUME_LATER;
     }
+
 }

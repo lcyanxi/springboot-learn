@@ -26,3 +26,13 @@ spring:
         min-idle: 0
     lettuce:
       shutdown-timeout: 0
+
+com:
+  lcyanxi:
+     canal:
+        username: canal
+        password: canal
+        destination: example
+#        filter: ".*\..*"
+        hostname: 127.0.0.1
+        sleep-time: 10000
