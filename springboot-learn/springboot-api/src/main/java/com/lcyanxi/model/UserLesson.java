@@ -62,7 +62,7 @@ public class UserLesson implements Serializable, Cloneable {
     /**
      * 状态 ( 1: 生效， 0 失效 ) 后期有可能会删除学习路径节点
      */
-    private int status = 1;
+    private Integer status = 1;
     private Date createTime;
     /**
      * 创建人账号
