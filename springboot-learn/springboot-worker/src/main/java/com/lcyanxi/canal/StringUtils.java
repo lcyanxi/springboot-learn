@@ -11,7 +11,7 @@ public class StringUtils {
 
     /**
      * 判断字符串是不是空或者空串
-     * @param charSequence
+     * @param charSequence 参数
      * @return
      */
     public static boolean isBlank(CharSequence charSequence){
@@ -29,12 +29,12 @@ public class StringUtils {
 
     /**
      * 字符串是不是等于null
-     * @param charSequence
+     * @param charSequence 参数
      * @return
      */
-    public static boolean isEmpty(CharSequence charSequence){
+    public static boolean isEmpty(CharSequence charSequence) {
         int length;
-        if(charSequence==null||(length=charSequence.length())==0)return true;
+        if (charSequence == null || (length = charSequence.length()) == 0) return true;
         return false;
     }
 
@@ -69,7 +69,7 @@ public class StringUtils {
 
     /**
      * 下划线转驼峰
-     * @param param
+     * @param param 参数
      * @return
      */
     public static String underline2camel(String param) {

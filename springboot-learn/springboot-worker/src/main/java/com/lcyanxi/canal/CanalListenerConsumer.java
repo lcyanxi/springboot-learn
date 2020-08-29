@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
  */
 public class CanalListenerConsumer implements InvocationHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(CanalMessageListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(CanalListenerConsumer.class);
 
     private CanalListener canalListener;
     private Object bean;

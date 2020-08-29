@@ -23,25 +23,16 @@ public class DefaultRowDataHandler implements RowDataHandler {
     public String changeType(CanalEntry.RowData rowData, CanalEntry.EventType eventType) {
         Map<String, String> afterCanalMap = new HashMap<>();
         Map<String, String> beforeCanalMap = new HashMap<>();
-        List<CanalEntry.Column> rowdatatas = rowData.getAfterColumnsList();
+        List<CanalEntry.Column> rowDataLists = rowData.getAfterColumnsList();
         if (CanalEntry.EventType.DELETE == eventType) {
-            rowdatatas = rowData.getBeforeColumnsList();
+            rowDataLists = rowData.getBeforeColumnsList();
         }
 
-        rowdatatas.forEach(i -> {
-            String columnName = i.getName();
-            String s = StringUtils.underline2camel(columnName);
-            afterCanalMap.put(s, i.getValue());
-
-        });
+        dataTransform(rowDataLists,beforeCanalMap);
 
         if (CanalEntry.EventType.UPDATE == eventType) {
             List<CanalEntry.Column> beforeRowdatatas = rowData.getBeforeColumnsList();
-            beforeRowdatatas.forEach(i -> {
-                String columnName = i.getName();
-                String s = StringUtils.underline2camel(columnName);
-                beforeCanalMap.put(s, i.getValue());
-            });
+            dataTransform(beforeRowdatatas,beforeCanalMap);
             Map<String,Object> data = Maps.newHashMap();
             data.put("beforeData",beforeCanalMap);
             data.put("afterData",afterCanalMap);
@@ -50,5 +41,13 @@ public class DefaultRowDataHandler implements RowDataHandler {
         }
 
         return JSON.toJSONString(afterCanalMap);
+    }
+
+    private void dataTransform(List<CanalEntry.Column> rowDataLists,Map<String, String> canalMap) {
+        rowDataLists.forEach(i -> {
+            String columnName = i.getName();
+            String s = StringUtils.underline2camel(columnName);
+            canalMap.put(s, i.getValue());
+        });
     }
 }

@@ -4,6 +4,7 @@ import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.client.CanalConnectors;
 import com.google.common.collect.Lists;
 import java.net.InetSocketAddress;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Bean;
  * @author lichang
  * @date 2020/8/27
  */
+@Data
 public class CanalFactory implements DisposableBean {
 
     private static final Logger logger = LoggerFactory.getLogger(CanalFactory.class);
@@ -24,21 +26,6 @@ public class CanalFactory implements DisposableBean {
     @Autowired
     private CanalProperties canalProperties;
 
-    public void setCanalConnector(CanalConnector canalConnector) {
-        this.canalConnector = canalConnector;
-    }
-
-    public CanalProperties getCanalProperties() {
-        return canalProperties;
-    }
-
-    public void setCanalProperties(CanalProperties canalProperties) {
-        this.canalProperties = canalProperties;
-    }
-
-    public CanalConnector getCanalConnector() {
-        return canalConnector;
-    }
 
     @Bean
     @ConditionalOnMissingBean(CanalConnector.class)
