@@ -109,22 +109,22 @@ public class UserController {
     }
 
 
-//    @RequestMapping(value = "/orderly",method = RequestMethod.GET)
-//    public String orderly(String orderNo){
-//        try {
-//            Map<Object,Object> map = Maps.newHashMap();
-//            map.put("orderNo",orderNo);
-//            map.put("ts",System.currentTimeMillis());
-//            Message sendMsg = new Message(RocketTopicInfoEnum.ORDERLY_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
-//            SendResult sendResult = defaultMQProducer.send(sendMsg);
-//            if (sendResult.getSendStatus() == SendStatus.SEND_OK){
-//                return  "下单成功";
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "下单失败";
-//    }
+    @RequestMapping(value = "/orderly",method = RequestMethod.GET)
+    public String orderly(String orderNo){
+        try {
+            Map<Object,Object> map = Maps.newHashMap();
+            map.put("orderNo",orderNo);
+            map.put("ts",System.currentTimeMillis());
+            Message sendMsg = new Message(RocketTopicInfoEnum.ORDERLY_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
+            SendResult sendResult = defaultMQProducer.send(sendMsg);
+            if (sendResult.getSendStatus() == SendStatus.SEND_OK){
+                return  "下单成功";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "下单失败";
+    }
 
 
 
