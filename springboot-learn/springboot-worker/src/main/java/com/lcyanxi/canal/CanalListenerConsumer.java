@@ -65,8 +65,8 @@ public class CanalListenerConsumer implements InvocationHandler {
 
 
     private boolean checkNeedConsumer(CanalListener canalListener, String schemaName, String tableName) {
-        if(canalListener==null || StringUtils.isEmpty(schemaName) ||StringUtils.isEmpty(tableName)) return false;
-        if(canalListener.databaseName().equals(schemaName) && canalListener.tableName().equals(tableName))return true;
+        if (canalListener == null || StringUtils.isEmpty(schemaName) || StringUtils.isEmpty(tableName)) return false;
+        if (canalListener.databaseName().equals(schemaName) && canalListener.tableName().equals(tableName)) return true;
         return false;
     }
 

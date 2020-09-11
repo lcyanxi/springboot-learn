@@ -41,9 +41,9 @@ public class CanalService implements BeanPostProcessor, ApplicationListener<Cana
     public void process() {
         CanalConnector canalConnector = canalFactory.getCanalConnector();
 
-        new Thread(()->{
+        new Thread(() -> {
             int failCount = 0;
-            while(true){
+            while (true) {
                 int batchSize = canalFactory.getCanalProperties().getBatchSize();
                 Message message = canalConnector.getWithoutAck(batchSize); // 获取指定数量的数据
                 long batchId = message.getId();
@@ -53,29 +53,25 @@ public class CanalService implements BeanPostProcessor, ApplicationListener<Cana
                         //logger.info("当前线程：{}，进行休眠",Thread.currentThread().getName());
                         Thread.sleep(canalFactory.getCanalProperties().getSleepTime());
                     } catch (InterruptedException e) {
-                        logger.error("threadName={},sleep error",Thread.currentThread().getName());
+                        logger.error("threadName = {},sleep error", Thread.currentThread().getName());
                     }
                 } else {
                     try{
                         onMessage(message);
-                    }catch (Exception e){
-                        if(failCount<=3){
-                            logger.info("消费失败，回滚，batchId={}",message.getId());
+                    } catch (Exception e) {
+                        if (failCount <= 3) {
+                            logger.info("消费失败，回滚，batchId={}", message.getId());
                             failCount++;
                             canalConnector.rollback();
-                        }else{
+                        } else {
                             failCount = 0;
-                            logger.error("消费失败次数过多，停止消费，停止回滚，batchId={}",message.getId());
+                            logger.error("消费失败次数过多，停止消费，停止回滚，batchId={}", message.getId());
                         }
-
                     }
-
                     //consumer(message.getEntries());
                 }
                 canalConnector.ack(batchId); // 提交确认
             }
-
-
         }).start();
     }
 
@@ -127,7 +123,7 @@ public class CanalService implements BeanPostProcessor, ApplicationListener<Cana
             if (parameterTypes.length >= 2) {
                 //第二个方法参数必须是类型
                 if (CanalEntry.EventType.class != parameterTypes[1]) return;
-                logger.info("添加CanalListener监听器定义class={},method={}", bean.getClass().getName(), method.getName());
+                logger.info("添加CanalListener监听器定义class = {},method = {}", bean.getClass().getName(), method.getName());
                 CanalMessageListener canalMessageListener = CanalListenerConsumer.getObject(bean, method, canalListener);
                 canalMessageListenerMap.put(canalListener.databaseName() + canalListener.tableName(), canalMessageListener);
                 canalMessageListeners.add(canalMessageListener);
