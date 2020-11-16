@@ -20,7 +20,7 @@ public class ThreadPoolExecutorDemo {
     public static void main(String[] args) {
         // 构造一个线程池
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(5, 6, 3,
-                TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(3));
+                TimeUnit.SECONDS, new ArrayBlockingQueue<>(3));
 
         List<Future<String>> objects = Lists.newArrayList();
 
