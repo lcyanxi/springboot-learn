@@ -1,4 +1,4 @@
-package com.lcyanxi.util;
+package com.lcyanxi.java;
 
 /**
  * @author lichang 模拟volatile无法保证原子性

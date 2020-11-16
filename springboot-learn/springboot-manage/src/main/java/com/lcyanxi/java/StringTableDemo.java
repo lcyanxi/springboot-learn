@@ -1,10 +1,10 @@
-package com.lcyanxi.util;
+package com.lcyanxi.java;
 
 /**
  * @author lichang
  * @date 2020/11/8
  */
-public class StringTableTest {
+public class StringTableDemo {
     public static void main(String[] args) {
         String s = new String("1");  // 在常量池中已经有了
         s.intern(); // 将该对象放入到常量池。但是调用此方法没有太多的区别，因为已经存在了1

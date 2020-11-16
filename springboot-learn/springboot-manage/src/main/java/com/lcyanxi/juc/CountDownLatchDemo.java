@@ -1,4 +1,4 @@
-package com.lcyanxi.util;
+package com.lcyanxi.juc;
 
 import java.util.concurrent.CountDownLatch;
 
