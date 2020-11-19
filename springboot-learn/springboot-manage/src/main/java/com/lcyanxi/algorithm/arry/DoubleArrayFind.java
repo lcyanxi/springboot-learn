@@ -1,4 +1,4 @@
-package com.lcyanxi.algorithm;
+package com.lcyanxi.algorithm.arry;
 
 /**
  * 二维数组中的查找:

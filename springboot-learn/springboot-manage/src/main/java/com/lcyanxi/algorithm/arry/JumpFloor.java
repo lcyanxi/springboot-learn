@@ -1,4 +1,4 @@
-package com.lcyanxi.algorithm;
+package com.lcyanxi.algorithm.arry;
 
 /**
  * 青蛙跳台阶：

@@ -1,4 +1,4 @@
-package com.lcyanxi.algorithm;
+package com.lcyanxi.algorithm.arry;
 
 import java.util.Objects;
 import java.util.PriorityQueue;

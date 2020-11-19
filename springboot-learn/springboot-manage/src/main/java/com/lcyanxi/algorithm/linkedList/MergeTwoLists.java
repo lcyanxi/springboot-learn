@@ -1,7 +1,5 @@
-package com.lcyanxi.algorithm;
+package com.lcyanxi.algorithm.linkedList;
 
-
-import lombok.Data;
 
 /**
  * 合并两个排序的链表
@@ -15,33 +13,33 @@ import lombok.Data;
  */
 public class MergeTwoLists {
     public static void main(String[] args) {
-        ListNode listNode1 = new ListNode(1);
-        ListNode listNode2 = new ListNode(2);
-        ListNode listNode3 = new ListNode(4);
-        listNode2.next=listNode3;
-        listNode1.next=listNode2;
 
-        ListNode node1 = new ListNode(1);
-        ListNode node3 = new ListNode(3);
-        ListNode node5 = new ListNode(5);
-
-        node3.next = node5;
-        node1.next = node3;
-
-        ListNode node = mergeTwoLists(listNode1,node1);
+        Integer[] a1 = {1,2,4};
+        Integer[] b1 = {1,3,5};
+        ListNode listNode1 = getListNode(a1);
+        ListNode listNode2 = getListNode(b1);
+        ListNode node = mergeTwoLists(listNode1,listNode2);
         while (node != null){
             System.out.println(node.val);
             node = node.next;
         }
-
-        Integer[] a1 = {1,2,4};
-        Integer[] b1 = {1,3,5};
         Integer[] ab = mergeTwoArray(a1,b1);
         for (Integer integer : ab){
             System.out.print(integer);
         }
         System.out.println();
     }
+
+    private static ListNode getListNode(Integer [] arr){
+        ListNode listNode1 = null;
+        for (Integer integer : arr){
+            ListNode temp = new ListNode(integer);
+            temp.next = listNode1;
+            listNode1 = temp;
+        }
+        return listNode1;
+    }
+
     private static ListNode mergeTwoLists(ListNode listNode1,ListNode listNode2){
         ListNode head = new ListNode(-1);
         ListNode current = head;
