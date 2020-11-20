@@ -81,7 +81,7 @@ public class ShardingDataSourceConfig {
 - 注意shardingJdbc 1.x版本不支持批量insert
 
 
-- **lettcode**
+- **lettcode**： [lettcode](http://gitcafe.com)
 
 #####  1.反转字符串
 **描述**：
