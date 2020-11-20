@@ -1,4 +1,4 @@
-package com.lcyanxi.algorithm;
+package com.lcyanxi.algorithm.string;
 
 import java.util.Collection;
 import java.util.Collections;

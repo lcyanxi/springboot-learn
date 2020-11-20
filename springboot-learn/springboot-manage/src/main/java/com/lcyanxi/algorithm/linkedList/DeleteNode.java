@@ -1,6 +1,5 @@
 package com.lcyanxi.algorithm.linkedList;
 
-import javax.xml.soap.Node;
 
 /**
  * 删除链表的节点
