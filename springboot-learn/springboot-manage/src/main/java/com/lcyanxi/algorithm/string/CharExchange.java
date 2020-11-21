@@ -4,6 +4,8 @@ package com.lcyanxi.algorithm.string;
  * 字符交换
  * 描述： 把一个0-1（只包含0和1的串）进行排序，你可以交换任意两个位置，问最少交换多少次？
  * eg ： 输入 ： str = "00101110101100101" 输出：
+ *
+ * 那如果每次只能相邻两个数交换  最少多少次呢
  * @author lichang
  * @date 2020/11/21
  */
@@ -11,6 +13,7 @@ public class CharExchange {
     public static void main(String[] args) {
         String string = "00101110101100101";
         System.out.println(charExchange(string));
+        System.out.println(charMinExchange(string));
         int [] arr = {3,2,5,7,4,1,8};
 
         quickSort(arr,0,arr.length - 1);
@@ -38,6 +41,29 @@ public class CharExchange {
             index ++;
         }
         return index;
+    }
+
+
+    private static int charMinExchange(String string){
+        int num = charExchange2(string, '0');
+        int num2 = charExchange2(string,'1');
+        System.out.println("0 交换次数" + num + ", 1 交换次数" + num2);
+        return Math.min(num, num2);
+    }
+
+    private static int charExchange2(String str,char charStr){
+        char[] chars = str.toCharArray();
+        int left = 0;
+        int index = 0;
+        int num = 0;
+        while (left < chars.length){
+            if (chars[left] == charStr){
+                num = num + (left - index);
+                index ++;
+            }
+            left ++;
+        }
+        return num;
     }
 
     private static void quickSort(int arr[],int left, int right){
