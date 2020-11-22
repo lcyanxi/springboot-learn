@@ -13,6 +13,7 @@ public class CharLeftSizeExchange {
         String str = "abdesfc";
         System.out.println(charLeftSizeExchange1(str,3));
         System.out.println(charLeftSizeExchange2(str,3));
+        System.out.println(charLeftSizeExchange3(str,3));
     }
 
     // 整体循环移动 缺点时间复杂度O(N^2)
@@ -27,11 +28,7 @@ public class CharLeftSizeExchange {
             chars[0] = temp;
             leftSize --;
         }
-        StringBuilder builder = new StringBuilder();
-        for (char e : chars){
-            builder.append(e);
-        }
-        return builder.toString();
+        return String.valueOf(chars);
     }
 
     // 思路左边的交换，右边的交换  再整体交换
@@ -40,11 +37,7 @@ public class CharLeftSizeExchange {
         exchange(chars,0,leftSize - 1);
         exchange(chars,leftSize,chars.length - 1);
         exchange(chars,0,chars.length - 1);
-        StringBuilder builder = new StringBuilder();
-        for (char e : chars){
-            builder.append(e);
-        }
-        return builder.toString();
+        return String.valueOf(chars);
     }
     private static void exchange(char [] chars,int left, int right){
         char tmp;
@@ -54,6 +47,40 @@ public class CharLeftSizeExchange {
             chars[right] = tmp;
             left ++;
             right --;
+        }
+    }
+
+    private static String charLeftSizeExchange3(String string,int leftSize){
+        char[] chars = string.toCharArray();
+        int left = 0;
+        int right = chars.length - 1;
+        int leftPart = leftSize;
+        int rightPart = right - leftSize;
+        int same = Math.min(leftPart,rightPart);
+        exchangeUtil(chars,left,right,same);
+        int diff = leftPart - rightPart;
+        while (diff != 0){
+            if (diff > 0){ // 左侧大
+                left += same;
+                leftPart = diff;
+            }else {  // 右侧大
+                right -= same;
+                rightPart = -diff;
+            }
+            diff = leftPart - rightPart;
+            same = Math.min(leftPart,rightPart);
+            exchangeUtil(chars,left,right,same);
+        }
+        return String.valueOf(chars);
+    }
+    private static void exchangeUtil(char[] chars,int left,int right,int same){
+        char tmp ;
+        while (same > 0){
+            tmp = chars[left];
+            chars[left] = chars[right - same];
+            chars[right - same] = tmp;
+            left ++ ;
+            same --;
         }
     }
 }
