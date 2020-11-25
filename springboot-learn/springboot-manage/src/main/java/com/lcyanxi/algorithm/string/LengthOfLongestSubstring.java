@@ -16,6 +16,7 @@ public class LengthOfLongestSubstring {
     public static void main(String[] args) {
         String str = "abcabcbb";
         System.out.println(lengthOfLongestSubstring(str));
+        System.out.println(lengthOfLongestSubstring2(str));
     }
     private static int lengthOfLongestSubstring(String string){
         char[] chars = string.toCharArray();
@@ -23,15 +24,17 @@ public class LengthOfLongestSubstring {
         Map<Character,Integer> map = Maps.newHashMap();
         for (int i = 0; i < chars.length; i ++){
             char temp = chars[i];
-            int index = 1;
-
+            map.put(temp,1);
             for (int j = i + 1; j < chars.length; j++){
-
-                index ++;
+                if(temp == chars[j] || map.containsKey(chars[j])){
+                    break;
+                }
+                map.put(chars[j],1);
             }
-            System.out.println(index);
-            if (index > length){
-                length = index;
+            int size = map.size();
+            map.clear();
+            if (size > length){
+                length = size;
             }
         }
         return length;
