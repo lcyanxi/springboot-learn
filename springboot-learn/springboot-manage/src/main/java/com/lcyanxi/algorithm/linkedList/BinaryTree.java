@@ -1,15 +1,24 @@
 package com.lcyanxi.algorithm.linkedList;
 
 import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import javax.xml.soap.Node;
+import java.util.Queue;
 
 /**
  * 二叉树遍历
- * 先序遍历：根左右
- * 中序遍历：左根右
- * 后序遍历：左右根
+ * eg:
+ *       39
+ *     /   \
+ *   24     64
+ *  / \     /
+ * 23  30  53
+ *           \
+ *           60
+ * 先序遍历：根左右 : 39 24 23 30 64 53 60
+ * 中序遍历：左根右 : 23 24 30 39 53 60 64
+ * 后序遍历：左右根 : 23 30 24 60 53 64 39
  * @author lichang
  * @date 2020/11/25
  */
@@ -40,6 +49,8 @@ public class BinaryTree {
         for (Integer integer : list3){
             System.out.print(integer + " ");
         }
+        System.out.println();
+        System.out.println("层次遍历：" + levelOrderRecusive(root));
     }
 
     /**
@@ -103,6 +114,30 @@ public class BinaryTree {
         latOrderRecusive(node.left,list);
         latOrderRecusive(node.right,list);
         list.add(node.val);
+    }
+
+    // 层次遍历
+    private static List<Integer> levelOrderRecusive(TreeNode node){
+        List<Integer> result = Lists.newArrayList();
+        Queue<TreeNode> queue = Lists.newLinkedList();
+        if (node == null){
+            return result;
+        }
+        queue.add(node);
+        while (true){
+            int size = queue.size();
+            if (size == 0){
+                return result;
+            }
+            TreeNode treeNode = queue.poll();
+            result.add(treeNode.val);
+            if (treeNode.left != null){
+                queue.add(treeNode.left);
+            }
+            if (treeNode.right != null){
+                queue.add(treeNode.right);
+            }
+        }
     }
 
 }
