@@ -6,6 +6,7 @@ import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUserLessonService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
@@ -20,7 +21,8 @@ public class UserLessonServiceImpl implements IUserLessonService {
 
     @Override
     public Boolean insertUserLesson(List<UserLesson> userLessonList) {
-        if (CollectionUtils.isEmpty(userLessonList)){
+        String application = RpcContext.getContext().getAttachment("application");
+        if (!application.contains("springboot-service") || CollectionUtils.isEmpty(userLessonList)) {
             return false;
         }
         log.info("insertUserLesson userLessonList:{}",userLessonList.toString());
