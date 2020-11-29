@@ -53,5 +53,22 @@ public class RotateMatrix {
         }
         return newArr;
     }
+    private static void rotateMatrix2(int[][] arr){
+        int left = 0;
+        int top = 0;
+        int right = arr[0].length;
+        int bottom = arr.length;
+        int index = 2;
+        while (index > 0){
+            while (top <= bottom && left <= right){
+                int temp = 0;
+                for (int i = left ;i < right; i ++){
+                    temp = arr[top][left];
+                    arr[top][left] = 0;
+                }
+            }
+            index --;
+        }
+    }
 
 }

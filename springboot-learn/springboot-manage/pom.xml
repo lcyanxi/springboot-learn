@@ -110,6 +110,13 @@
             <version>2.2.0</version>
         </dependency>
 
+        <!--引入jwt-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.10.3</version>
+        </dependency>
+
         <dependency>
             <groupId>com.lcyanxi</groupId>
             <artifactId>springboot-api</artifactId>

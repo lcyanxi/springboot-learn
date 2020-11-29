@@ -5,34 +5,39 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
+import com.lcyanxi.jwt.JWTUtils;
+import com.lcyanxi.model.User;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUserLessonService;
+import com.lcyanxi.service.IUserService;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import javax.annotation.Resource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
+
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Reference;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -41,6 +46,9 @@ public class UserController {
     @Reference
     private IUserLessonService userLessonService;
 
+    @org.apache.dubbo.config.annotation.Reference(version = "1.0.0",group = "dubbo")
+    private IUserService userService;
+
     @Resource
     private DefaultMQProducer defaultMQProducer;
 
@@ -48,6 +56,34 @@ public class UserController {
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(){
         return "hello world";
+    }
+
+    @GetMapping("/user/login")
+    public Map<String, Object> login(User user) {
+        log.info("用户名：{}", user.getUserName());
+        log.info("password: {}", user.getPassword());
+
+        Map<String, Object> map = new HashMap<>();
+
+        try {
+            User userDB = userService.findUserByUserNamePassword(user.getUserName(),user.getPassword());
+
+            Map<String, String> payload = new HashMap<>();
+            payload.put("userName", userDB.getUserName());
+            payload.put("password", userDB.getPassword());
+            String token = JWTUtils.getToken(payload);
+
+            map.put("state", true);
+            map.put("msg", "登录成功");
+            map.put("token", token);
+            return map;
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("state", false);
+            map.put("msg", e.getMessage());
+            map.put("token", "");
+        }
+        return map;
     }
 
 
