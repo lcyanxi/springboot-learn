@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author lichang
  * @date 2020/11/28
  */
-@Service(version = "1.0.0",group = "dubbo")
+@Service
 public class UserServiceImpl implements IUserService {
     @Autowired
     private UserMapper userMapper;
