@@ -24,6 +24,7 @@ import javax.annotation.Resource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.rpc.RpcContext;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
@@ -48,12 +49,12 @@ public class UserController {
     private DefaultMQProducer defaultMQProducer;
 
 
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/index",method = RequestMethod.GET)
     public String index(){
         return "hello world";
     }
 
-    @GetMapping("/user/login")
+    @GetMapping("/login")
     public Map<String, Object> login(User user) {
         log.info("用户名：{}", user.getUserName());
         log.info("password: {}", user.getPassword());
@@ -82,7 +83,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/addUserLesson",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/addUserLesson",method = RequestMethod.GET)
     public String addUserLesson(Integer productId,String userId){
         List<UserLesson> lessons = new ArrayList<>();
         String name = "admin";
@@ -104,6 +105,7 @@ public class UserController {
             userLesson.setUserId(Integer.parseInt(userId));
             lessons.add(userLesson);
         }
+        RpcContext.getContext().setAttachment("application", "springboot-service");
         Boolean result = userLessonService.insertUserLesson(lessons);
         return "添加课次结果:"+result;
     }
@@ -116,7 +118,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/sendMq",method = RequestMethod.GET)
     public String login(Integer productId,String userId){
         String name = "kangkang";
         Map<String,Object> map = Maps.newHashMap();

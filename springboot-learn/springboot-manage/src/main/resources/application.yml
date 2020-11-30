@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: springboo-dubbo-consumer
+    name: springboo-manage
 
 
 rocketmq:
@@ -24,6 +24,8 @@ rocketmq:
 
 
 dubbo:
+  application:
+    name: springboot-manage
   registry:
     address: nacos://lcyanxi.com:8848
 

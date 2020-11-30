@@ -3,9 +3,11 @@ server:
 
 spring:
   application:
-    name: springboot-dubbo-server
+    name: springboot-service
 
 dubbo:
+  application:
+    name: springboot-service
   registry:
 #    address: lcyanxi.com:2181,lcyanxi.com:2182,lcyanxi.com:2183
     address: nacos://lcyanxi.com:8848
