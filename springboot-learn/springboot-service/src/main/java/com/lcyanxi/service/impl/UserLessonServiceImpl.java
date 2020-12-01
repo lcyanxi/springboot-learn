@@ -5,6 +5,7 @@ import com.lcyanxi.dto.UserLessonMapper;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUserLessonService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 @Slf4j
-@Service
+@DubboService
 public class UserLessonServiceImpl implements IUserLessonService {
 
     @Autowired

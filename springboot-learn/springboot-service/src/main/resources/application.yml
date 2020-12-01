@@ -18,7 +18,7 @@ dubbo:
     base-packages: com.lcyanxi.service.impl
 
 app:
-  id: lcyanxi-spring-service
+  id: springboot-service
 apollo:
   meta: http://localhost:8080
   bootstrap:

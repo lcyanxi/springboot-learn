@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.rpc.RpcContext;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -39,10 +39,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-    @Reference
+    @DubboReference
     private IUserLessonService userLessonService;
 
-    @Reference
+    @DubboReference
     private IUserService userService;
 
     @Resource
