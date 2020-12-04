@@ -2,7 +2,7 @@ package com.lcyanxi.algorithm.arry;
 
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * 二维数据消除0
@@ -27,7 +27,8 @@ public class MatrixReplaceZero {
                 {7 ,0 ,1 ,4 ,6},
                 {6 ,5 ,3 ,2 ,1},
                 {4 ,2 ,1 ,0 ,3},
-                {8 ,2 ,1 ,2 ,9}
+                {8 ,2 ,1 ,2 ,9},
+                {0 ,3 ,6 ,4 ,8}
         };
         matrixReplaceZero(arr);
         for (int i = 0 ;i< arr.length ; i++){
@@ -41,7 +42,8 @@ public class MatrixReplaceZero {
                 {7 ,0 ,1 ,4 ,6},
                 {6 ,5 ,3 ,2 ,1},
                 {4 ,2 ,1 ,0 ,3},
-                {8 ,2 ,1 ,2 ,9}
+                {8 ,2 ,1 ,2 ,9},
+                {0 ,3 ,6 ,4 ,8}
         };
         System.out.println("=================");
         matrixReplaceZero2(arr2);
@@ -86,9 +88,9 @@ public class MatrixReplaceZero {
     }
 
     private static void matrixReplaceZero2(int[][] arr){
+        // 用于表示第一行和第一列是否有原生的0
         boolean col_x = false;
         boolean col_y = false;
-
         for (int i = 0; i < arr.length; i++){
             for (int j = 0; j< arr[0].length; j++){
                 if (arr[i][j] == 0){
@@ -112,9 +114,18 @@ public class MatrixReplaceZero {
                 }
             }
             if (arr[0][i] == 0){
-                for (int j = 1; j< arr[0].length ; j++){
-                    arr[i][j] = 0;
+                for (int j = 1; j< arr.length ; j++){
+                    arr[j][i] = 0;
                 }
+            }
+        }
+        // 单独处理第一行和第一列
+        if (col_x){
+            Arrays.fill(arr[0], 0);
+        }
+        if (col_y){
+            for (int i = 0; i < arr.length; i++){
+                arr[i][0] = 0;
             }
         }
 
