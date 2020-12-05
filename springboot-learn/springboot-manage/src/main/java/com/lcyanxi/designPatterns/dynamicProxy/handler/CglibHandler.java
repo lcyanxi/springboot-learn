@@ -1,6 +1,5 @@
 package com.lcyanxi.designPatterns.dynamicProxy.handler;
 
-import com.lcyanxi.designPatterns.dynamicProxy.DynamicProxyPerformanceTest;
 import com.lcyanxi.service.ICountService;
 import java.lang.reflect.Method;
 import net.sf.cglib.proxy.Enhancer;

@@ -39,7 +39,7 @@ public class JavaAssistHandler implements MethodHandler {
 
     public static ICountService createJavassistBytecodeDynamicProxy(ICountService delegate) throws Exception {
         ClassPool mPool = new ClassPool(true);
-        CtClass mCtc = mPool.makeClass(ICountService.class.getName() + "JavaassistProxy");
+        CtClass mCtc = mPool.makeClass(ICountService.class.getName() + "JavassistProxy");
         mCtc.addInterface(mPool.get(ICountService.class.getName()));
         mCtc.addConstructor(CtNewConstructor.defaultConstructor(mCtc));
         mCtc.addField(CtField.make("public " + ICountService.class.getName() + " delegate;", mCtc));

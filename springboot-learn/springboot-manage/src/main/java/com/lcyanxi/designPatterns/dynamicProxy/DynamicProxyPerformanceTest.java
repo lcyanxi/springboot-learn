@@ -3,7 +3,7 @@ package com.lcyanxi.designPatterns.dynamicProxy;
 import static com.lcyanxi.designPatterns.dynamicProxy.handler.AsmBytecodeHandler.createAsmBytecodeDynamicProxy;
 import com.lcyanxi.designPatterns.dynamicProxy.handler.CglibHandler;
 import com.lcyanxi.designPatterns.dynamicProxy.handler.JavaAssistHandler;
-import com.lcyanxi.designPatterns.dynamicProxy.handler.JdkHandler;
+import com.lcyanxi.designPatterns.dynamicProxy.handler.JdkProxyHandler;
 import com.lcyanxi.service.ICountService;
 import com.lcyanxi.serviceImpl.CountServiceImpl;
 import java.text.DecimalFormat;
@@ -18,7 +18,7 @@ public class DynamicProxyPerformanceTest {
         ICountService delegate = new CountServiceImpl();
 
         long time = System.currentTimeMillis();
-        ICountService jdkProxy = JdkHandler.createJdkDynamicProxy(delegate);
+        ICountService jdkProxy = JdkProxyHandler.createProxy(delegate);
         time = System.currentTimeMillis() - time;
         System.out.println("Create JDK Proxy: " + time + " ms");
 
@@ -30,12 +30,12 @@ public class DynamicProxyPerformanceTest {
         time = System.currentTimeMillis();
         ICountService javassistProxy = JavaAssistHandler.createJavassistDynamicProxy(delegate);
         time = System.currentTimeMillis() - time;
-        System.out.println("Create JAVAASSIST Proxy: " + time + " ms");
+        System.out.println("Create Javassist Proxy: " + time + " ms");
 
         time = System.currentTimeMillis();
         ICountService javassistBytecodeProxy = JavaAssistHandler.createJavassistBytecodeDynamicProxy(delegate);
         time = System.currentTimeMillis() - time;
-        System.out.println("Create JAVAASSIST Bytecode Proxy: " + time + " ms");
+        System.out.println("Create Javassist Bytecode Proxy: " + time + " ms");
 
         time = System.currentTimeMillis();
         ICountService asmBytecodeProxy = createAsmBytecodeDynamicProxy(delegate,ICountService.class);
@@ -46,8 +46,8 @@ public class DynamicProxyPerformanceTest {
         for (int i = 0; i < 3; i++) {
             test(jdkProxy, "Run JDK Proxy: ");
             test(cglibProxy, "Run CGLIB Proxy: ");
-            test(javassistProxy, "Run JAVAASSIST Proxy: ");
-            test(javassistBytecodeProxy, "Run JAVAASSIST Bytecode Proxy: ");
+            test(javassistProxy, "Run Javassist Proxy: ");
+            test(javassistBytecodeProxy, "Run Javassist Bytecode Proxy: ");
             test(asmBytecodeProxy, "Run ASM Bytecode Proxy: ");
             System.out.println("----------------");
         }
