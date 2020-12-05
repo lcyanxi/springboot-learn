@@ -1,6 +1,6 @@
 package com.lcyanxi.service;
 
-public interface TestProxyService {
+public interface ITestProxyService {
 
     String testProxy(String s);
 }

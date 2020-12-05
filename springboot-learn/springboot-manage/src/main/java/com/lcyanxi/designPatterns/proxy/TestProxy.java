@@ -1,6 +1,6 @@
 package com.lcyanxi.designPatterns.proxy;
 
-import com.lcyanxi.service.TestProxyService;
+import com.lcyanxi.service.ITestProxyService;
 
 /**
  * @author lichang
@@ -12,25 +12,25 @@ public class TestProxy {
         //Create JDK Proxy
         InvokeHandler handler = new InvokeHandler();
         long time = System.currentTimeMillis();
-        TestProxyService test1 =ProxyEnum.JDK_PROXY.newProxyInstance(TestProxyService.class,handler);
+        ITestProxyService test1 =ProxyEnum.JDK_PROXY.newProxyInstance(ITestProxyService.class,handler);
         time = System.currentTimeMillis() - time;
         System.out.println("Create JDK Proxy: " + time + " ms");
 
         //Create byteBuddy Proxy
         time = System.currentTimeMillis();
-        TestProxyService test2 =ProxyEnum.BYTE_BUDDY_PROXY.newProxyInstance(TestProxyService.class,handler);
+        ITestProxyService test2 =ProxyEnum.BYTE_BUDDY_PROXY.newProxyInstance(ITestProxyService.class,handler);
         time = System.currentTimeMillis() - time;
         System.out.println("Create byteBuddy Proxy: " + time + " ms");
 
         // Create CGLIB Proxy
         time = System.currentTimeMillis();
-        TestProxyService test3 =ProxyEnum.CGLIB_PROXY.newProxyInstance(TestProxyService.class,handler);
+        ITestProxyService test3 =ProxyEnum.CGLIB_PROXY.newProxyInstance(ITestProxyService.class,handler);
         time = System.currentTimeMillis() - time;
         System.out.println("Create CGLIB Proxy: " + time + " ms");
 
         // Create JAVASSIST Proxy
         time = System.currentTimeMillis();
-        TestProxyService test5 =ProxyEnum.JAVASSIST_DYNAMIC_PROXY.newProxyInstance(TestProxyService.class,handler);
+        ITestProxyService test5 =ProxyEnum.JAVASSIST_DYNAMIC_PROXY.newProxyInstance(ITestProxyService.class,handler);
         time = System.currentTimeMillis() - time;
         System.out.println("Create JAVASSIST Proxy: " + time + " ms");
 
@@ -45,7 +45,7 @@ public class TestProxy {
         }
 
     }
-    private static void test(TestProxyService service, String label,String s) {
+    private static void test(ITestProxyService service, String label, String s) {
         service.testProxy(s); // warm up
         int count = 100000000;
         long time = System.currentTimeMillis();
