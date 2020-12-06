@@ -81,7 +81,15 @@ public class ShardingDataSourceConfig {
 - 注意shardingJdbc 1.x版本不支持批量insert
 
 
-# lettcode： [lettcode算法](https://github.com/lcyanxi/springboot-learn/blob/master/leetcode%E7%AE%97%E6%B3%95/leetcode%E7%AE%97%E6%B3%95.md)
+# 大厂常见算法： 
+
+[大厂常见算法](https://github.com/lcyanxi/springboot-learn/blob/master/leetcode%E7%AE%97%E6%B3%95/leetcode%E7%AE%97%E6%B3%95.md)
+
+
+# 分布式RPC框架： 
+- [RPC实战与核心原理-基础篇](https://github.com/lcyanxi/springboot-learn/blob/master/leetcode%E7%AE%97%E6%B3%95/leetcode%E7%AE%97%E6%B3%95.md)
+- [RPC实战与核心原理-进阶篇](https://github.com/lcyanxi/springboot-learn/blob/master/leetcode%E7%AE%97%E6%B3%95/leetcode%E7%AE%97%E6%B3%95.md)
+- [RPC实战与核心原理-高级篇](https://github.com/lcyanxi/springboot-learn/blob/master/leetcode%E7%AE%97%E6%B3%95/leetcode%E7%AE%97%E6%B3%95.md)
 
 
 
