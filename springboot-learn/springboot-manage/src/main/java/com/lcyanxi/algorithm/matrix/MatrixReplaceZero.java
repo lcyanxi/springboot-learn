@@ -1,4 +1,4 @@
-package com.lcyanxi.algorithm.arry;
+package com.lcyanxi.algorithm.matrix;
 
 import com.google.common.collect.Lists;
 import java.util.ArrayList;

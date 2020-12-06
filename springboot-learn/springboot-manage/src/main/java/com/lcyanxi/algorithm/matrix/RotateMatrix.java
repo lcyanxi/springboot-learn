@@ -1,4 +1,4 @@
-package com.lcyanxi.algorithm.arry;
+package com.lcyanxi.algorithm.matrix;
 
 /**
  * 旋转矩阵:

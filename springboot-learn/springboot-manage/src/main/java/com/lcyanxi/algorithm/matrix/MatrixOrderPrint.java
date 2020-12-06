@@ -1,4 +1,4 @@
-package com.lcyanxi.algorithm.arry;
+package com.lcyanxi.algorithm.matrix;
 
 /**
  *  顺时针打印矩阵
@@ -10,11 +10,11 @@ package com.lcyanxi.algorithm.arry;
  *                  [7, 8, 9]
  *                  ]
  *  输出：[1,2,3,6,9,8,7,4,5]
- *
+ * 思路：定义top、left、right、bottom四个子针
  * @author lichang
  * @date 2020/11/24
  */
-public class SpiralOrder {
+public class MatrixOrderPrint {
     public static void main(String[] args) {
         int[][] matrix =  { {1,2,3},
                             {4,5,6},

@@ -1,4 +1,4 @@
-package com.lcyanxi.algorithm.arry;
+package com.lcyanxi.algorithm.matrix;
 
 /**
  * 二维数组中的查找:
@@ -15,7 +15,7 @@ package com.lcyanxi.algorithm.arry;
  * @author lichang
  * @date 2020/11/17
  */
-public class DoubleArrayFind {
+public class MatrixFind {
     public static void main(String[] args) {
 
         Integer[][] arr = {
