@@ -17,6 +17,8 @@
 *.ipr
 target/
 .DS_Store/
+.gitignore
+.
 
 
 # Package Files #
