@@ -1,5 +1,5 @@
 # springboot-learn
-springboot学习
+_站在巨人的肩膀上，仰望星空，脚踏实地_
 
 **基于当当网的shardingJdbc进行分库分表**
 - pom依赖
