@@ -17,6 +17,9 @@ public class Test01 {
         } catch (Exception e) {
             System.out.println("333333");
         }
+
+        String str1 = "12  ";
+        System.out.println(str1.trim());
     }
 
 }
