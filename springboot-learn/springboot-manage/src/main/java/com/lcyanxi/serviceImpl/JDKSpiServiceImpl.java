@@ -1,6 +1,6 @@
 package com.lcyanxi.serviceImpl;
 
-import com.lcyanxi.service.ITestSpiService;
+import com.lcyanxi.service.IJDKSpiService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020/12/10
  */
 @Slf4j
-public class TestSpiServiceImpl implements ITestSpiService {
+public class JDKSpiServiceImpl implements IJDKSpiService {
     @Override
     public void spiRegisterName() {
         log.info("testSpiServiceImpl is implements method start");

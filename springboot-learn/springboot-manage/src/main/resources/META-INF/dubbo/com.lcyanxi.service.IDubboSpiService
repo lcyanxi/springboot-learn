@@ -1,0 +1,2 @@
+dubboSpiOtherServiceImpl = com.lcyanxi.serviceImpl.DubboSpiOtherServiceImpl
+dubboSpiServiceImpl = com.lcyanxi.serviceImpl.DubboSpiServiceImpl

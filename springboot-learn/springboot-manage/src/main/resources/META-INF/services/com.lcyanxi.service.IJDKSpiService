@@ -1,2 +1,2 @@
-com.lcyanxi.serviceImpl.TestSpiOtherServiceImpl
-com.lcyanxi.serviceImpl.TestSpiServiceImpl
+com.lcyanxi.serviceImpl.JDKSpiOtherServiceImpl
+com.lcyanxi.serviceImpl.JDKSpiServiceImpl

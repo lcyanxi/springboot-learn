@@ -1,6 +1,6 @@
 package com.lcyanxi.service;
 
-public interface ITestSpiService {
+public interface IJDKSpiService {
 
     void spiRegisterName();
 }
