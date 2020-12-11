@@ -28,7 +28,7 @@
 
 
 # 分库分表： 
-- [基于当当网的shardingJdbc进行分库分表demo](https://github.com/lcyanxi/springboot-learn/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%20%E9%87%8D%E4%BC%A0%E3%80%81%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E3%80%81%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E3%80%81%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6.md)
+- [基于当当网的shardingJdbc进行分库分表demo](https://github.com/lcyanxi/springboot-learn/blob/master/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/%E5%9F%BA%E4%BA%8E%E5%BD%93%E5%BD%93%E7%BD%91%E7%9A%84shardingJdbc%E8%BF%9B%E8%A1%8C%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8.md)
 
 
 
