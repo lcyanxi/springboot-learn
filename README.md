@@ -86,8 +86,8 @@ public class ShardingDataSourceConfig {
 [大厂常见算法](https://github.com/lcyanxi/springboot-learn/blob/master/leetcode%E7%AE%97%E6%B3%95/leetcode%E7%AE%97%E6%B3%95.md)
 
 # Java并发：
-- [深入分析ThreadLocal原理](https://github.com/lcyanxi/springboot-learn/blob/master/Java%E5%B9%B6%E5%8F%91/ReentrantLock%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md)
-- [ReentrantLock原理分析](https://github.com/lcyanxi/springboot-learn/blob/master/Java%E5%B9%B6%E5%8F%91/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90ThreadLocal%E5%8E%9F%E7%90%86.md)
+- [深入分析ThreadLocal原理](https://github.com/lcyanxi/springboot-learn/blob/master/Java%E5%B9%B6%E5%8F%91/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90ThreadLocal%E5%8E%9F%E7%90%86.md)
+- [ReentrantLock原理分析](https://github.com/lcyanxi/springboot-learn/blob/master/Java%E5%B9%B6%E5%8F%91/ReentrantLock%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md)
 
 
 # 分布式RPC框架： 
