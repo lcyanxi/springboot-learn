@@ -6,5 +6,7 @@ package com.lcyanxi.constant;
  */
 public interface DubboSpiDefault {
 
-    String NAME = "dubboSpiServiceImpl";
+    String NAME = "dubboSpiService";
+
+    String DUBBO_NAME = "dubboSpiOtherService";
 }

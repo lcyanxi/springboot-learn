@@ -1,6 +1,8 @@
 package com.lcyanxi.designPatterns.spi;
 
+import com.lcyanxi.constant.DubboSpiDefault;
 import com.lcyanxi.service.IDubboSpiService;
+import com.lcyanxi.serviceImpl.AdaptiveDubboSpiServiceImpl;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.extension.ExtensionLoader;
@@ -26,8 +28,13 @@ public class DubboSpiDemo {
 
         log.info("dubboSpi find by  extension name");
         // 获取指定实现
-        IDubboSpiService otherServiceImpl = extensionLoader.getExtension("dubboSpiOtherServiceImpl");
+        IDubboSpiService otherServiceImpl = extensionLoader.getExtension("dubboSpiOtherService");
         otherServiceImpl.dubboSpiRegisterName();
+
+        log.info("dubboSpi adaptive  extension name");
+        AdaptiveDubboSpiServiceImpl.setDefaultService(DubboSpiDefault.DUBBO_NAME);
+        IDubboSpiService adaptiveExtension = extensionLoader.getAdaptiveExtension();
+        adaptiveExtension.dubboSpiRegisterName();
 
     }
 }
