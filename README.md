@@ -18,6 +18,8 @@
 - [关于RPC dubbo超时原理](https://github.com/lcyanxi/springboot-learn/blob/master/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6/%E5%85%B3%E4%BA%8ERPC%20dubbo%E8%B6%85%E6%97%B6%E5%8E%9F%E7%90%86.md)
 - [动态代理在RPC框架中的性能对比](https://github.com/lcyanxi/springboot-learn/blob/master/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%9C%A8RPC%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94.md)
 - [Dubbo SPI与JDK SPI 实现原理分析](https://github.com/lcyanxi/springboot-learn/blob/master/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6/Dubbo%20SPI%E4%B8%8EJDK%20SPI%20%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md)
+- [Dubbo最小活跃调用策略是如何实现的？](https://github.com/lcyanxi/springboot-learn/blob/master/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6/Dubbo%20SPI%E4%B8%8EJDK%20SPI%20%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md)
+- [Dubbo服务暴露过程](https://github.com/lcyanxi/springboot-learn/blob/master/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6/Dubbo%20SPI%E4%B8%8EJDK%20SPI%20%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md)
 
 
 # 计算机网络： 
@@ -25,6 +27,9 @@
 - [TCP 重传、滑动窗口、流量控制、拥塞控制机制？](https://github.com/lcyanxi/springboot-learn/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%20%E9%87%8D%E4%BC%A0%E3%80%81%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E3%80%81%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E3%80%81%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6.md)
 
 # 数据库原理： 
+- [一条查询/更新SQL语句是如何执行的？](https://github.com/lcyanxi/springboot-learn/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP%20%E9%87%8D%E4%BC%A0%E3%80%81%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E3%80%81%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E3%80%81%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6.md)
+
+
 
 
 # 分库分表： 
