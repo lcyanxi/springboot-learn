@@ -12,10 +12,22 @@
   </sql>
 
 
+  <insert id="insert" parameterType="com.lcyanxi.model.User" useGeneratedKeys="true" keyProperty="id" >
+    insert into pe_user (user_id, user_name, password)
+    values (#{userId},#{userName},#{password})
+  </insert>
+
   <select id="findUserByUserNamePassword"  resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from pe_user where user_name =#{userName} and password=#{password}
+  </select>
+
+
+  <select id="selectByPrimaryKey"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from pe_user where id = #{id}
   </select>
 
 </mapper>

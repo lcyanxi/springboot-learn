@@ -14,4 +14,12 @@ public interface IUserLessonService {
     Boolean insertUserLesson(List<UserLesson> userLessonList);
 
     Boolean updateByUserId(Integer userId,Integer classId);
+
+
+    void transactionExceptionRequired(Integer userId,String userName);
+
+    void transactionExceptionRequiredException(Integer userId,String userName);
+
+    void transactionExceptionRequiredExceptionTry(Integer userId,String userName);
+
 }
