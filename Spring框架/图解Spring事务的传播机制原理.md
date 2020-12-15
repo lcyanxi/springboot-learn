@@ -213,3 +213,101 @@ commit/rollbackTx();
 方法一的事务完成了，由于它里面没有暂存其它事务，所以没有事务了，因此最后只剩一个空线程。
 
 **说明**：这只是传播特性的实现原理解说，所以比较简单，实际代码实现要考虑很多事情，因此会复杂很多。
+
+
+### @Transactional失效场景
+
+##### @Transactional注解可以作用于哪些地方？
+- **作用于类**：当把@Transactional 注解放在类上时，表示所有该类的public方法都配置相同的事务属性信息。
+- **作用于方法**：当类配置了@Transactional，方法也配置了@Transactional，方法的事务会覆盖类的事务配置信息。
+- **作用于接口**：不推荐这种使用方法，因为一旦标注在Interface上**并且配置了Spring AOP 使用CGLib动态代理**（**cglib是通过实现类生成子类代理来实现的**），将会导致@Transactional注解失效
+
+##### 1、@Transactional 应用在非 public 修饰的方法上
+
+如果Transactional注解应用在非public 修饰的方法上，Transactional将会失效。
+
+![image](https://user-gold-cdn.xitu.io/2020/3/19/170f0e025a51a1b4?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+之所以会失效是因为在Spring AOP 代理时，如上图所示 TransactionInterceptor （事务拦截器）在目标方法执行前后进行拦截，DynamicAdvisedInterceptor（CglibAopProxy 的内部类）的 intercept 方法或 JdkDynamicAopProxy 的 invoke 方法会间接调用computeTransactionAttribute 方法，**获取Transactional 注解的事务配置信息**。而此方法会检查目标方法的修饰符是否为public，不是public则不会获取@Transactional 的属性配置信息。
+
+```
+protected TransactionAttribute computeTransactionAttribute(Method method,Class<?> targetClass) {
+    if (allowPublicMethodsOnly() && !Modifier.isPublic(method.getModifiers())) {
+        return null;
+    }
+}
+```
+> 注意：protected、private 修饰的方法上使用 @Transactional 注解，虽然事务无效，但不会有任何报错，这是我们很容犯错的一点。
+
+##### 2、同一个类中方法调用，导致@Transactional失效
+
+开发中避免不了会对同一个类里面的方法调用，比如有一个类UserServiceImpl，它的一个方法A，A再调用本类的方法B（不论方法B是用public还是private修饰），但方法A没有声明注解事务，而B方法有。则外部调用方法A之后，方法B的事务是不会起作用的。这也是经常犯错误的一个地方。
+
+```
+@Override
+@Transactional(propagation = Propagation.REQUIRED)
+public int insertException(User record) {
+    userMapper.insert(record);
+    throw new RuntimeException();
+}
+
+@Override
+public int insertExceptionWithCall(User record) {
+    return insertException(record);
+}
+```
+**insertException方法不会回滚**
+
+
+**那为啥会出现这种情况**?
+
+其实这还是由于使用**Spring AOP**代理造成的，因为只有当事务方法被当前类以外的代码调用时，才会由Spring生成的代理对象来管理。
+
+##### 3、数据库引擎不支持事务
+
+这种情况出现的概率并不高，事务能否生效数据库引擎是否支持事务是关键。常用的MySQL数据库默认使用**支持事务的innodb引擎**。一旦数据库引擎切换成**不支持事务的myisam**，那事务就从根本上失效了。
+
+##### 4、异常被你的 catch“吃了”导致@Transactional失效
+
+
+```
+@Override
+@Transactional(propagation = Propagation.REQUIRED)
+public void transactionExceptionRequiredExceptionTry(Integer userId, String userName) {
+
+    User1 user1 = new User1();
+    user1.setName(userName);
+    user1Service.insert(user1);
+
+    User user = new User();
+    user.setPassword("222");
+    user.setUserId(userId);
+    user.setUserName(userName);
+    try {
+        userService.insertException(user) ;
+    }catch (Exception e){
+        log.error("transactionExceptionRequiredExceptionTry userService exception",e);
+    }
+}
+
+@Override
+@Transactional(propagation = Propagation.REQUIRED)
+public int insertException(User record) {
+    userMapper.insert(record);
+    throw new RuntimeException();
+}
+```
+如果userService方法内部抛了异常，而transactionExceptionRequiredExceptionTry方法此时try catch了B方法的异常，user1Service能插入成功吗？ 那这个事务还能正常回滚吗？
+
+答案：不能成功，也不能正常回滚，会抛出异常：
+
+```
+Transaction rolled back because it has been marked as rollback-only
+
+```
+因为当**userService**中抛出了一个异常以后，**userService**标识当前事务需要rollback。但是**userService**中由于你手动的捕获这个异常并进行处理，**transactionExceptionRequiredExceptionTry**认为当前事务应该正常commit。此时就出现了前后不一致，也就是因为这样，抛出了前面的UnexpectedRollbackException异常。
+
+**spring的事务**是在调用业务方法之前开始的，业务方法执行完毕之后才执行commit or rollback，事务是否执行取决于是否抛出runtime异常。如果抛出runtime exception
+并在你的业务方法中没有catch到的话，事务会回滚。
+
+在业务方法中一般不需要catch异常，如果非要catch一定要抛出throw new RuntimeException()，或者注解中指定抛异常类型@Transactional(rollbackFor=Exception.class)，否则会导致事务失效，数据commit造成数据不一致，所以有些时候try catch反倒会画蛇添足。

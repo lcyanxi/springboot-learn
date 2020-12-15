@@ -11,5 +11,9 @@ public interface IUserService {
 
     int insertException(User record);
 
+
+    int insertExceptionWithCall(User record);
+
+
     User selectByPrimaryKey(Integer id);
 }

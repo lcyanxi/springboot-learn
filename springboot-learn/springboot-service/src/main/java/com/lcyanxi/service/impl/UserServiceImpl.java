@@ -41,4 +41,9 @@ public class UserServiceImpl implements IUserService {
         userMapper.insert(record);
         throw new RuntimeException();
     }
+
+    @Override
+    public int insertExceptionWithCall(User record) {
+        return insertException(record);
+    }
 }

@@ -54,6 +54,7 @@ public class UserLessonServiceImpl implements IUserLessonService {
 
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void transactionExceptionRequired(Integer userId, String userName) {
         User user = new User();
         user.setPassword("123");
@@ -65,7 +66,7 @@ public class UserLessonServiceImpl implements IUserLessonService {
         user1.setName(userName);
         user1Service.insert(user1);
 
-        throw  new RuntimeException();
+//        throw  new RuntimeException();
     }
 
 
@@ -86,8 +87,13 @@ public class UserLessonServiceImpl implements IUserLessonService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void transactionExceptionRequiredExceptionTry(Integer userId, String userName) {
+
+        User1 user1 = new User1();
+        user1.setName(userName);
+        user1Service.insert(user1);
+
         User user = new User();
-        user.setPassword("123");
+        user.setPassword("222");
         user.setUserId(userId);
         user.setUserName(userName);
         try {
@@ -95,9 +101,5 @@ public class UserLessonServiceImpl implements IUserLessonService {
         }catch (Exception e){
             log.error("transactionExceptionRequiredExceptionTry userService exception",e);
         }
-
-        User1 user1 = new User1();
-        user1.setName(userName);
-        user1Service.insert(user1);
     }
 }
