@@ -1,4 +1,4 @@
-package com.lcyanxi.java;
+package com.lcyanxi.juc;
 
 /**
  * @author lichang

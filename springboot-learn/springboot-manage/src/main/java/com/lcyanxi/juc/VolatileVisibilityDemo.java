@@ -1,4 +1,4 @@
-package com.lcyanxi.java;
+package com.lcyanxi.juc;
 
 /**
  * @author lichang 模拟测试JMM模型  理解volatile的可见性
