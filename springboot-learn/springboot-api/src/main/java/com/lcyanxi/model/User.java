@@ -13,4 +13,17 @@ public class User implements Serializable,Cloneable {
     private String userName;
     private Integer userId;
     private String password;
+
+    private User() {
+    }
+
+    private User(String id, String userName) {
+        this.id = id;
+        this.userName = userName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{}";
+    }
 }

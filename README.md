@@ -5,7 +5,10 @@
 [大厂常见算法](大厂常见算法/leetcode算法.md)
 
 # Java并发：
+- [反射实现原理](Java并发/反射实现原理.md)
+  【class创建对象和constructor创建对象有什么区别？】
 - [深入分析ThreadLocal原理](Java并发/深入分析ThreadLocal原理.md)
+   【什么是Java内存模型(JMM)?】
 - [Volatile原理](Java并发/Volatile原理.md)
 - [ReentrantLock原理分析](Java并发/ReentrantLock原理分析.md)
   【AQS同步队列为什么要使用双链表，单链表不行吗？】
@@ -13,7 +16,8 @@
 - [CyclicBarrier原理](Java并发/CyclicBarrier原理.md)
 
 - [关于HashMap那些问题](Java并发/关于HashMap那些问题.md)
-  【HashMap7处理死循环问题外还有那些线程不安全的地方？HashMap8呢？】
+  【HashMap7除了死循环问题外还有那些线程不安全的地方？HashMap8呢？】
+  
 
 
 # Java虚拟机：
@@ -58,7 +62,7 @@
 - [动态代理在RPC框架中的性能对比](分布式RPC框架/动态代理在RPC框架中的性能对比.md)
 - [Dubbo SPI与JDK SPI 实现原理分析](Dubbo%20SPI与JDK%20SPI%20实现原理分析.md)
 
-  【1.Dubbo SPI仅仅只是解决JDK SPI无法按需加载问题吗？2.如果根据请求的参数来动态加载实现类？】
+  【1.Dubbo SPI仅仅只是解决JDK SPI无法按需加载问题吗？2.如何根据请求的参数来动态加载实现类？】
     
 - [Dubbo最小活跃调用策略是如何实现的？](分布式RPC框架/Dubbo最小活跃调用策略是如何实现的.md)
 - [Dubbo服务暴露过程](分布式RPC框架/Dubbo服务暴露过程.md)
