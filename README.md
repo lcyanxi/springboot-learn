@@ -8,8 +8,9 @@
 - [反射实现原理](Java并发/反射实现原理.md)
   【class创建对象和constructor创建对象有什么区别？】
 - [深入分析ThreadLocal原理](Java并发/深入分析ThreadLocal原理.md)
-   【什么是Java内存模型(JMM)?】
+   【如何避免ThradLocal带来的内存泄露问题？】
 - [Volatile原理](Java并发/Volatile原理.md)
+  【什么是Java内存模型(JMM)?】
 - [ReentrantLock原理分析](Java并发/ReentrantLock原理分析.md)
   【AQS同步队列为什么要使用双链表，单链表不行吗？】
 - [CountDownLatch原理分析](Java并发/CountDownLatch原理分析.md)
