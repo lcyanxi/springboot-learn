@@ -5,8 +5,8 @@
 [大厂常见算法](大厂常见算法/leetcode算法.md)
 
 # Java并发：
-- [反射实现原理](Java并发/反射实现原理.md)
-  【class创建对象和constructor创建对象有什么区别？】
+- [反射实现原理](Java并发/反射获取class对象的方式.md)
+  【1.单例模式真的就安全吗？2.为什么jdbc要用class.forName加载类?】
 - [深入分析ThreadLocal原理](Java并发/深入分析ThreadLocal原理.md)
    【如何避免ThradLocal带来的内存泄露问题？】
 - [Volatile原理](Java并发/Volatile原理.md)

@@ -9,7 +9,15 @@ import java.lang.reflect.InvocationTargetException;
  * @date 2020/12/17
  */
 public class ReflectDemo {
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, ClassNotFoundException {
+        System.out.println("class forName start");
+        Class<?> forName = Class.forName("com.lcyanxi.model.User");
+        System.out.println("classLoader  loadClass start");
+        Object newInstance = forName.newInstance();
+        System.out.println(newInstance);
+
+        Class<?> aClass = ClassLoader.getSystemClassLoader().loadClass("com.lcyanxi.model.User");
+
         Class<User> clazz = User.class;
         try{
             User instance = clazz.newInstance();

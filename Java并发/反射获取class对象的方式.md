@@ -106,6 +106,85 @@ User{}
 
 在JDBC连接数据库中，一般包括加载驱动，获得数据库连接等步骤。而加载驱动，就是引入相关Jar包后，**通过Class.forName()即反射技术**，加载数据库的驱动程序
 
+>  **加载一个类可以使用Class.forName也可以使用ClassLoader，有什么区别吗**
+
+在java中Class.forName()和ClassLoader都可以对类进行加载。**ClassLoader就是遵循双亲委派模型**最终调用启动类加载器的类加载器，实现的功能是“**通过一个类的全限定名来获取描述此类的二进制字节流**”，获取到二进制流后放到JVM中。Class.forName()方法实际上也是调用的CLassLoader来实现的。
+
+
+**Class.forName(String className)源码：**
+
+```
+@CallerSensitive
+public static Class<?> forName(String className)
+            throws ClassNotFoundException {
+    Class<?> caller = Reflection.getCallerClass();
+    return forName0(className, true, ClassLoader.getClassLoader(caller), caller);
+}
+```
+最后调用的方法是forName0这个方法，**在这个forName0方法中的第二个参数被默认设置为了true，这个参数代表是否对加载的类进行初始化，设置为true时会类进行初始化**，代表会执行类中的静态代码块，以及对静态变量的赋值等操作。
+
+
+也可以调用Class.forName(String name, boolean initialize,ClassLoader loader)方法来**手动选择在加载类的时候是否要对类进行初始化**源码如下：
+
+```
+@CallerSensitive
+public static Class<?> forName(String name, boolean initialize,ClassLoader loader){
+    Class<?> caller = null;
+    SecurityManager sm = System.getSecurityManager();
+    if (sm != null) {
+        caller = Reflection.getCallerClass();
+        if (sun.misc.VM.isSystemDomainLoader(loader)) {
+            ClassLoader ccl = ClassLoader.getClassLoader(caller);
+            if (!sun.misc.VM.isSystemDomainLoader(ccl)) {
+            sm.checkPermission(SecurityConstants.GET_CLASSLOADER_PERMISSION);
+            }
+        }
+    }
+    return forName0(name, initialize, loader, caller);
+}
+```
+测试：
+
+```
+System.out.println("class forName start");
+Class<?> forName = Class.forName("com.lcyanxi.model.User");
+System.out.println("classLoader  loadClass start）;
+
+Class<?> aClass = ClassLoader.getSystemClassLoader().loadClass("com.lcyanxi.model.User");
+```
+**结果**
+
+```
+class forName start
+User static start
+classLoader  loadClass start
+```
+**根据运行结果得出Class.forName加载类时将类进了初始化，而ClassLoader的loadClass并没有对类进行初始化，只是把类加载到了虚拟机中**
+
+> 为什么jdbc会选择Class.forName加载类而不是classLoader呢？
+
+而在我们使用JDBC时通常是使用Class.forName()方法来加载数据库连接驱动。这是**因为在JDBC规范中明确要求Driver(数据库驱动)类必须向DriverManager注册自己**。
+
+以MySQL的驱动为例解释
+
+
+```
+public class Driver extends NonRegisteringDriver implements java.sql.Driver {  
+    static {  
+        try {  
+            java.sql.DriverManager.registerDriver(new Driver());  
+        } catch (SQLException E) {  
+            throw new RuntimeException("Can't register driver!");  
+        }  
+    }  
+  
+    public Driver() throws SQLException {  
+        // Required for Class.forName().newInstance()  
+    }  
+}
+```
+**我们看到Driver注册到DriverManager中的操作写在了静态代码块中，这就是为什么在写JDBC时使用Class.forName()的原因了。**
+
 **Spring 框架的使用**
 
 Spring 通过 XML配置模式装载Bean，也是反射的一个典型例子。

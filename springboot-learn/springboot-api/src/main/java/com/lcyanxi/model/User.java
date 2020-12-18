@@ -14,7 +14,11 @@ public class User implements Serializable,Cloneable {
     private Integer userId;
     private String password;
 
-    private User() {
+    static {
+        System.out.println("User static start");
+    }
+
+    public User() {
     }
 
     private User(String id, String userName) {
