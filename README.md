@@ -13,6 +13,8 @@
   【什么是Java内存模型(JMM)?】
 - [ReentrantLock原理分析](Java并发/ReentrantLock原理分析.md)
   【AQS同步队列为什么要使用双链表，单链表不行吗？】
+- [Condition原理](Java并发/Condition原理.md)
+   【如何手动实现一个生产者/消费者模型】
 - [CountDownLatch原理分析](Java并发/CountDownLatch原理分析.md)
 - [CyclicBarrier原理](Java并发/CyclicBarrier原理.md)
 
