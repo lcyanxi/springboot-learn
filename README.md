@@ -53,7 +53,7 @@
 
 
 # Spring框架：
-- [Spring Bean生命周期](Spring框架/Spring Bean生命周期.md) 
+- [Spring Bean生命周期](Spring框架/Spring%20Bean生命周期) 
 - [Spring容器初始化完成后将Apollo的配置缓存到本地](Spring框架/Spring容器初始化完成后将Apollo的配置缓存到本地.md) 
 - [Spring中的循环依赖](Spring框架/Spring中的循环依赖.md) 
    【三级缓存为什么要使用工厂而不是直接使用引用？】
