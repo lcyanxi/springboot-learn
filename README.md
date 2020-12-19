@@ -52,7 +52,9 @@
   【InnoDB又是怎么解决幻读问题的？】
 
 
-# Spring框架： 
+# Spring框架：
+- [Spring中的循环依赖](Spring框架/Spring中的循环依赖.md) 
+   【三级缓存为什么要使用工厂而不是直接使用引用？】
 - [图解Spring事务的传播机制原理](Spring框架/图解Spring事务的传播机制原理.md)
   【@transactional注解在什么情况下会失效，为什么？】
 
