@@ -68,9 +68,7 @@ public class ABADemo {
 
             // 暂停t4 3秒钟，保证t3线程也进行一次ABA问题
             try {
-                Object o = new Object();
-                o.wait(100);
-                TimeUnit.SECONDS.sleep(10);
+                TimeUnit.SECONDS.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
