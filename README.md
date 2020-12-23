@@ -5,7 +5,7 @@
 [大厂常见算法](大厂常见算法/leetcode算法.md)
 
 # Java并发：
-- [Object notify()会立刻释放锁么?](Java并发/Object notify()会立刻释放锁么.md)
+- [Object notify()会立刻释放锁么?](Java并发/Object%20notify()会立刻释放锁么.md)
   【wait会放弃cpu资源吗】
 - [反射实现原理](Java并发/反射获取class对象的方式.md)
   【1.单例模式真的就安全吗？2.为什么jdbc要用class.forName加载类?】
