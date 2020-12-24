@@ -14,6 +14,8 @@
    【如何避免ThradLocal带来的内存泄露问题？】
 - [Volatile原理](Java并发/Volatile原理.md)
   【什么是Java内存模型(JMM)?】
+- [LockSupport阻塞和唤醒线程](Java并发/LockSupport阻塞和唤醒线程.md)
+  【waitStatus的作用是什么？】
 - [ReentrantLock原理分析](Java并发/ReentrantLock原理分析.md)
   【AQS同步队列为什么要使用双链表，单链表不行吗？】
 - [Condition原理](Java并发/Condition原理.md)
