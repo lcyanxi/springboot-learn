@@ -76,7 +76,8 @@
 - [RPC实战与核心原理-进阶篇](分布式RPC框架/RPC实战与核心原理-进阶篇.md)
 - [RPC实战与核心原理-高级篇](分布式RPC框架/RPC实战与核心原理-高级篇.md)
   【分布式环境下如何快速定位问题？】
-
+- [TraceId如何在RPC中传递](分布式RPC框架/TraceId如何在RPC中传递.md)
+  【InternalThreadLocal性能如何提升的？】
 
 - [关于RPC dubbo超时原理](分布式RPC框架/关于RPC%20dubbo超时原理.md)
   【接口的幂等性如何解决？】
