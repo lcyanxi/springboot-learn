@@ -83,9 +83,6 @@ public class UserController {
     }
 
 
-
-
-
     @RequestMapping(value = "/user/addUserLesson",method = RequestMethod.GET)
     public String addUserLesson(Integer productId,String userId){
         List<UserLesson> lessons = new ArrayList<>();
@@ -108,7 +105,6 @@ public class UserController {
             userLesson.setUserId(Integer.parseInt(userId));
             lessons.add(userLesson);
         }
-        RpcContext.getContext().setAttachment("application", "springboot-service");
         Boolean result = userLessonService.insertUserLesson(lessons);
         return "添加课次结果:"+result;
     }

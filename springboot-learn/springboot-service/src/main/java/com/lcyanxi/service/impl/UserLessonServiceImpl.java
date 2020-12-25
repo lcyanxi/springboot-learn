@@ -2,6 +2,7 @@ package com.lcyanxi.service.impl;
 
 
 import com.google.common.collect.Lists;
+import com.lcyanxi.constant.Constants;
 import com.lcyanxi.dto.UserLessonMapper;
 import com.lcyanxi.model.User;
 import com.lcyanxi.model.User1;
@@ -37,7 +38,7 @@ public class UserLessonServiceImpl implements IUserLessonService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public Boolean insertUserLesson(List<UserLesson> userLessonList) {
-        String application = RpcContext.getContext().getAttachment("application");
+        String application = RpcContext.getContext().getAttachment(Constants.APPLICATION);
         if (!application.contains("springboot-service") || CollectionUtils.isEmpty(userLessonList)) {
             return false;
         }

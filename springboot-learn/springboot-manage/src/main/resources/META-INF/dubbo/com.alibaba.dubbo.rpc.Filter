@@ -1,0 +1,1 @@
+logTraceConsumerFilter=com.lcyanxi.dubboFilter.LogTraceConsumerFilter

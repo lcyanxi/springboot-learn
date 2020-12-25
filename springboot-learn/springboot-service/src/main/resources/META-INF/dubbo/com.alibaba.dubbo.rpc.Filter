@@ -1,4 +1,5 @@
 guavaDefaultLimitFlowFilter=com.lcyanxi.limit.filter.GuavaDefaultLimitFlowFilter
 guavaResourcesLimitFlowFilter=com.lcyanxi.limit.filter.GuavaResourcesLimitFlowFilter
 guavaTotalLimitFlowFilter=com.lcyanxi.limit.filter.GuavaTotalLimitFlowFilter
+logTraceProviderFilter=com.lcyanxi.dubboFilter.LogTraceProviderFilter
 
