@@ -32,7 +32,10 @@
 - [类加载器机制](Java虚拟机/类加载器.md)
   【1.int[]的类加载器是谁？ 2.SPI机制是如何打破双亲委派模型的？】
 - [自定义类加载器实现热加载](Java虚拟机/自定义类加载器实现热加载.md)
+- [JVM内存模型-方法区](Java虚拟机/JVM内存模型-方法区.md)
+  【方法区的演进细节】
 - [垃圾回收算法](Java虚拟机/垃圾回收算法.md)
+- [强、软、弱、虚引用使用场景](Java虚拟机/强、软、弱、虚引用使用场景.md)
 - [7种垃圾回收器横向纵向对比](Java虚拟机/7种垃圾回收器横向纵向对比.md)
 
 # 计算机网络： 
@@ -68,6 +71,8 @@
 
 
 # Spring框架：
+- [自定义注解Autowired实现](Spring框架/自定义注解Autowired实现.md) 
+   【IOC实现原理： 工厂 + 反射】
 - [Spring Bean生命周期](Spring框架/Spring%20Bean生命周期) 
 - [Spring容器初始化完成后将Apollo的配置缓存到本地](Spring框架/Spring容器初始化完成后将Apollo的配置缓存到本地.md) 
 - [Spring中的循环依赖](Spring框架/Spring中的循环依赖.md) 
@@ -100,7 +105,7 @@
 - [基于当当网的shardingJdbc进行分库分表demo](分库分表/基于当当网的shardingJdbc进行分库分表.md)
 
 # 消息队列： 
-### RocketMQ
+##### RocketMQ
 - [RocketMQ高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
 - [构建基于RocketMQ的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
 

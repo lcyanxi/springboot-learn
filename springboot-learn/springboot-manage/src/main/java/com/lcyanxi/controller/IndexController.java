@@ -2,6 +2,7 @@ package com.lcyanxi.controller;
 
 import com.lcyanxi.annotation.MyAutowired;
 
+import com.lcyanxi.service.IMyAutowiredService;
 import com.lcyanxi.service.MyAutowiredService;
 
 /**
@@ -10,10 +11,12 @@ import com.lcyanxi.service.MyAutowiredService;
  */
 public class IndexController {
 
+//    @MyAutowired
+//    private MyAutowiredService myAutowiredService;
     @MyAutowired
-    private MyAutowiredService myAutowiredService;
+    private IMyAutowiredService myAutowiredService;
 
-    public MyAutowiredService getCountServiceIntense(){
+    public IMyAutowiredService getCountServiceIntense(){
         return myAutowiredService;
     }
 }
