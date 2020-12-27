@@ -5,26 +5,17 @@
 [大厂常见算法](大厂常见算法/leetcode算法.md)
 
 # Java并发：
-- [Object notify()会立刻释放锁么?](Java并发/Object%20notify()会立刻释放锁么.md)
-  【wait会放弃cpu资源吗】
-- [反射实现原理](Java并发/反射获取class对象的方式.md)
-  【1.单例模式真的就安全吗？2.为什么jdbc要用class.forName加载类?】
- - [Java8如何优化CAS性能](Java并发/Java8如何优化CAS性能.md) 
-- [深入分析ThreadLocal原理](Java并发/深入分析ThreadLocal原理.md)
-   【如何避免ThradLocal带来的内存泄露问题？】
-- [Volatile原理](Java并发/Volatile原理.md)
-  【什么是Java内存模型(JMM)?】
-- [LockSupport阻塞和唤醒线程](Java并发/LockSupport阻塞和唤醒线程.md)
-  【waitStatus的作用是什么？】
-- [ReentrantLock原理分析](Java并发/ReentrantLock原理分析.md)
-  【AQS同步队列为什么要使用双链表，单链表不行吗？】
-- [Condition原理](Java并发/Condition原理.md)
-   【如何手动实现一个生产者/消费者模型】
+- [Object notify()会立刻释放锁么?](Java并发/Object%20notify()会立刻释放锁么.md)【wait会放弃cpu资源吗】
+- [反射实现原理](Java并发/反射获取class对象的方式.md)【1.单例模式真的就安全吗？2.为什么jdbc要用class.forName加载类?】
+- [Java8如何优化CAS性能](Java并发/Java8如何优化CAS性能.md) 
+- [深入分析ThreadLocal原理](Java并发/深入分析ThreadLocal原理.md)【如何避免ThradLocal带来的内存泄露问题？】
+- [Volatile原理](Java并发/Volatile原理.md)【什么是Java内存模型(JMM)?】
+- [LockSupport阻塞和唤醒线程](Java并发/LockSupport阻塞和唤醒线程.md)【waitStatus的作用是什么？】
+- [ReentrantLock原理分析](Java并发/ReentrantLock原理分析.md)【AQS同步队列为什么要使用双链表，单链表不行吗？】
+- [Condition原理](Java并发/Condition原理.md)【如何手动实现一个生产者/消费者模型】
 - [CountDownLatch原理分析](Java并发/CountDownLatch原理分析.md)
 - [CyclicBarrier原理](Java并发/CyclicBarrier原理.md)
-
-- [关于HashMap那些问题](Java并发/关于HashMap那些问题.md)
-  【HashMap7除了死循环问题外还有那些线程不安全的地方？HashMap8呢？】
+- [关于HashMap那些问题](Java并发/关于HashMap那些问题.md)【HashMap7除了死循环问题外还有那些线程不安全的地方？HashMap8呢？】
   
 
 
@@ -39,6 +30,7 @@
   【方法内的局部变量是线程安全的吗？】
 - [JVM内存模型-程序计数器](Java虚拟机/JVM内存模型-程序计数器.md)
    【程序计数器作用是什么？】
+- [JVM内存模型-本地方法栈](Java虚拟机/JVM内存模型-本地方法栈.md)
 - [StringTable](Java虚拟机/StringTable.md)
    【JDK9对String数据结构做了怎么调整？为什么？】
 - [垃圾回收算法](Java虚拟机/垃圾回收算法.md)
