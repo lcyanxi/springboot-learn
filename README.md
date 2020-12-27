@@ -87,6 +87,8 @@
 ##### RocketMQ
 - [RocketMQ高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
 - [构建基于RocketMQ的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
+- [RocketMQ消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)
+
 
 
 
