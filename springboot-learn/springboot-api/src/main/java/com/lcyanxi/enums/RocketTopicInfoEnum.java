@@ -15,6 +15,13 @@ public enum RocketTopicInfoEnum {
      */
     USER_LESSON_TOPIC("user_lesson", "springboot_manage_user_lesson_topic",
             "com.lcyanxi.consumer.UserLessonConsumer"),
+
+    /**
+     * 合班队列信息
+     */
+    SEND_DEDUP_TOPIC("dedup", "springboot_manage_dedup_topic",
+            "com.lcyanxi.consumer.DedupDemoConsumer"),
+
     /**
      * 顺序消费队列消息
      */
