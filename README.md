@@ -84,10 +84,12 @@
 - [基于当当网的shardingJdbc进行分库分表demo](分库分表/基于当当网的shardingJdbc进行分库分表.md)
 
 # 消息队列： 
+- [消息队列高手课-基础篇](消息队列/消息队列高手课-基础篇.md)
+- [消息队列高手课-进阶篇](消息队列/消息队列高手课-进阶篇.md)
 ##### RocketMQ
 - [RocketMQ高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
 - [构建基于RocketMQ的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
-- [RocketMQ消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)
+- [RocketMQ消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)【要么基于mysql要么基于redis】
 
 
 
