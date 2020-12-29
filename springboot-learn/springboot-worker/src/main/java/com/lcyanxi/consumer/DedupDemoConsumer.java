@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
+ * 支持消息幂等
  * @author lichang
  * @date 2020/12/28
  */

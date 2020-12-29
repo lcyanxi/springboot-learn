@@ -9,10 +9,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.types.Expiration;
 
 /**
- * Created by linjunjie1103@gmail.com
+ * Created by lichang
  */
 
 public class RedisPersist implements IPersist {
+
     private final StringRedisTemplate redisTemplate;
 
     public RedisPersist(StringRedisTemplate redisTemplate) {
@@ -29,7 +30,9 @@ public class RedisPersist implements IPersist {
         String dedupKey = buildDedupMessageRedisKey(dedupElement.getApplication(), dedupElement.getTopic(), dedupElement.getTag(), dedupElement.getMsgUniqKey());
 
         //setnx, 成功就可以消费
-        Boolean execute = redisTemplate.execute((RedisCallback<Boolean>) redisConnection -> redisConnection.set(dedupKey.getBytes(), (CONSUME_STATUS_CONSUMING).getBytes(), Expiration.milliseconds(dedupProcessingExpireMilliSeconds), RedisStringCommands.SetOption.SET_IF_ABSENT));
+        Boolean execute = redisTemplate.execute((RedisCallback<Boolean>) redisConnection -> redisConnection.set(dedupKey.getBytes(),
+                (CONSUME_STATUS_CONSUMING).getBytes(), Expiration.milliseconds(dedupProcessingExpireMilliSeconds),
+                RedisStringCommands.SetOption.SET_IF_ABSENT));
 
         if (execute == null) {
             return false;
@@ -48,9 +51,7 @@ public class RedisPersist implements IPersist {
     @Override
     public void markConsumed(DedupElement dedupElement, long dedupRecordReserveMinutes) {
         String dedupKey = buildDedupMessageRedisKey(dedupElement.getApplication(), dedupElement.getTopic(), dedupElement.getTag(), dedupElement.getMsgUniqKey());
-
         redisTemplate.opsForValue().set(dedupKey, CONSUME_STATUS_CONSUMED, dedupRecordReserveMinutes, TimeUnit.MINUTES);
-
     }
 
     @Override

@@ -16,7 +16,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 
 
 /**
- * Created by linjunjie1103@gmail.com
+ * Created by lichang
  * 带去重逻辑的通用消费者，实现者需要实现doHandleMsg
  * 支持消息幂等的策略
  */
@@ -26,23 +26,12 @@ public abstract class DedupConcurrentListener implements MessageListenerConcurre
     // 默认不去重
     private DedupConfig dedupConfig = DedupConfig.disableDupConsumeConfig("NOT-SET-CONSUMER-GROUP");
 
-
     /**
      * 默认不去重
      */
     public DedupConcurrentListener(){
         log.info("Construct QBConcurrentRMQListener with default {}", dedupConfig);
     }
-
-    /**
-     * 设置去重策略
-     * @param dedupConfig
-     */
-    public DedupConcurrentListener(DedupConfig dedupConfig) {
-        this.dedupConfig = dedupConfig;
-        log.info("Construct QBConcurrentRMQListener with dedupConfig {}", dedupConfig);
-    }
-
 
     @Override
     public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {

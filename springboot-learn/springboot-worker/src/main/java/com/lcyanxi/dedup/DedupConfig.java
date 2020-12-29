@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.ToString;
 import org.apache.rocketmq.common.message.MessageClientIDSetter;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -26,18 +28,21 @@ public class DedupConfig {
     public static final int DEDUP_STRATEGY_CONSUME_LATER = 1;
 //  public static final int DEDUP_STRATEGY_DROP = 2; //直接当重复处理
 
-
-    private String applicationName;//用以标记去重的时候是哪个应用消费的，同一个应用才需要去重
+    /**
+     * 用以标记去重的时候是哪个应用消费的，同一个应用才需要去重
+     */
+    private String applicationName;
 
     private IPersist persist;
 
-
-    //去重策略，默认不去重
+    /**
+     * 去重策略，默认不去重
+     */
     private int dedupStrategy = DEDUP_STRATEGY_DISABLE;
 
-
     /**
-     * 对于消费中的消息，多少毫秒内认为重复，默认一分钟，即一分钟内的重复消息都会串行处理（等待前一个消息消费成功/失败），超过这个时间如果消息还在消费就不认为重复了（为了防止消息丢失）
+     * 对于消费中的消息，多少毫秒内认为重复，默认一分钟，即一分钟内的重复消息都会串行处理（等待前一个消息消费成功/失败），
+     * 超过这个时间如果消息还在消费就不认为重复了（为了防止消息丢失）
      */
     private long dedupProcessingExpireMilliSeconds = 60 * 1000;
 
@@ -50,17 +55,11 @@ public class DedupConfig {
     //默认拿uniqkey 作为去重的标识
     public static Function<MessageExt, String> defaultDedupMessageKeyFunction = messageExt -> {
         String uniqID = MessageClientIDSetter.getUniqID(messageExt);
-        if (uniqID == null) {
-            return messageExt.getMsgId();
-        } else {
-            return uniqID;
-        }
+        return uniqID == null ? messageExt.getMsgId() : uniqID;
     };
 
-
-
     private DedupConfig(String applicationName, int dedupStrategy, StringRedisTemplate redisTemplate) {
-        if (redisTemplate !=null) {
+        if (redisTemplate != null) {
             this.persist = new RedisPersist(redisTemplate);
         }
         this.dedupStrategy = dedupStrategy;
@@ -68,7 +67,7 @@ public class DedupConfig {
     }
 
     private DedupConfig(String applicationName, int dedupStrategy, JdbcTemplate jdbcTemplate) {
-        if (jdbcTemplate !=null) {
+        if (jdbcTemplate != null) {
             this.persist = new JDBCPersit(jdbcTemplate);
         }
         this.dedupStrategy = dedupStrategy;
@@ -83,8 +82,8 @@ public class DedupConfig {
 
     /**
      * 利用redis去重
-     * @param applicationName
-     * @param redisTemplate
+     * @param applicationName 应用名称
+     * @param redisTemplate redis连接
      * @return
      */
     public static DedupConfig enableDedupConsumeConfig(String applicationName, StringRedisTemplate redisTemplate) {
@@ -93,8 +92,8 @@ public class DedupConfig {
 
     /**
      * 利用mysql去重
-     * @param applicationName
-     * @param jdbcTemplate
+     * @param applicationName 应用名称
+     * @param jdbcTemplate 数据库连接
      * @return
      */
     public static DedupConfig enableDedupConsumeConfig(String applicationName, JdbcTemplate jdbcTemplate) {
@@ -104,16 +103,5 @@ public class DedupConfig {
     public static DedupConfig disableDupConsumeConfig(String applicationName) {
         return new DedupConfig(applicationName);
     }
-
-
-
-    public void setDedupProcessingExpireMilliSeconds(long dedupProcessingExpireMilliSeconds) {
-        this.dedupProcessingExpireMilliSeconds = dedupProcessingExpireMilliSeconds;
-    }
-
-    public void setDedupRecordReserveMinutes(long dedupRecordReserveMinutes) {
-        this.dedupRecordReserveMinutes = dedupRecordReserveMinutes;
-    }
-
 
 }
