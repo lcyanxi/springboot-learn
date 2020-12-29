@@ -116,31 +116,6 @@ public class UserController {
         return   "登陆 :" + message;
     }
 
-
-    @RequestMapping(value = "/sendMq",method = RequestMethod.GET)
-    public String login(Integer productId,String userId){
-        String name = "kangkang";
-        Map<String,Object> map = Maps.newHashMap();
-        map.put("productId",productId);
-        map.put("userId",userId);
-        map.put("userName",name);
-
-        try {
-            Message sendMsg = new Message(RocketTopicInfoEnum.USER_LESSON_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
-            // "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h"
-//            sendMsg.setDelayTimeLevel(5);
-            SendResult sendResult = defaultMQProducer.send(sendMsg);
-            log.info("login send is done data:{},sendResult:{}",map,sendResult);
-            if (sendResult.getSendStatus() == SendStatus.SEND_OK){
-                return name + "登陆成功";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return name + "登陆失败";
-    }
-
-
     @RequestMapping(value = "/orderly",method = RequestMethod.GET)
     public String orderly(String orderNo){
         try {

@@ -11,9 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "rocketmq")
 public class RocketMQProperties {
     private String namesrvAddr = "lcyanxi.com:9876";
-    private String groupName = "lcyanxi-worker-consumer";
-    private int producerMaxMessageSize = 1024;
-    private int producerSendMsgTimeout = 2000;
+    private String groupName = "lcyanxi-test";
     private int producerRetryTimesWhenSendFailed = 2;
     private int consumerConsumeThreadMin = 5;
     private int consumerConsumeThreadMax = 30;

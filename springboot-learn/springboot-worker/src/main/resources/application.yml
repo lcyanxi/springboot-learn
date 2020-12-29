@@ -1,19 +1,4 @@
 
-#rocketmq:
-#  # 消费者配置
-#  consumer:
-#    isOnOff: on
-#    # 官方建议：确保同一组中的每个消费者订阅相同的主题。
-#    groupName: lcyanxi-test
-#    # 服务地址
-#    namesrvAddr: lcyanxi.com:9876
-#    # 接收该 Topic 下所有 Tag
-#    topics: springboot_manage_user_lesson_topic~*;
-#    consumeThreadMin: 20
-#    consumeThreadMax: 64
-#    # 设置一次消费消息的条数，默认为1条
-#    consumeMessageBatchMaxSize: 1
-
 spring:
   redis:
     host: 127.0.0.1

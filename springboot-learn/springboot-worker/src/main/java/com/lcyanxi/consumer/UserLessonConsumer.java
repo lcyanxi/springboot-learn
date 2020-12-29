@@ -27,10 +27,7 @@ public class UserLessonConsumer implements MessageListenerConcurrently {
 //    @ConcurrentLeaseLock(lockKey = "consumeMessage::lock")
     public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
         MessageExt messageExt = list.get(0);
-        UserLesson userLesson = JSON.parseObject(messageExt.getBody(), UserLesson.class);
-        log.info("topic:{} 接受到的消息为：{}",messageExt.getTopic(),userLesson);
-        int a  = 0;
-        int b = 2/a;
+        log.info("topic:[{}] 接受到的消息为:[{}]",messageExt.getTopic(),messageExt);
 //        log.info("接受到的消息为22：{}",userLesson);
 //        redisClient.set("consume", userLesson.getUserId());
         // 消息消费成功

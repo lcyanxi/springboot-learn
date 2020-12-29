@@ -5,24 +5,6 @@ spring:
   application:
     name: springboo-manage
 
-
-#rocketmq:
-#  # 生产者配置
-#  producer:
-#    isOnOff: on
-#    # 发送同一类消息的设置为同一个group，保证唯一
-#    groupName: lcyanxi-test
-#    # 服务地址
-#    namesrvAddr: lcyanxi.com:9876
-#    # 消息最大长度 默认1024*4(4M)
-#    maxMessageSize: 4096
-#    # 发送消息超时时间,默认3000
-#    sendMsgTimeout: 3000
-#    # 发送消息失败重试次数，默认2
-#    retryTimesWhenSendFailed: 2
-
-
-
 dubbo:
   application:
     name: springboot-manage

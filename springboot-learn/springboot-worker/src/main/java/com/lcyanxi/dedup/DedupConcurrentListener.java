@@ -6,6 +6,7 @@ import com.lcyanxi.dedup.strategy.DedupConsumeStrategy;
 import com.lcyanxi.dedup.strategy.NormalConsumeStrategy;
 import java.util.List;
 import java.util.function.Function;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
@@ -20,6 +21,7 @@ import org.apache.rocketmq.common.message.MessageExt;
  * 支持消息幂等的策略
  */
 @Slf4j
+@Data
 public abstract class DedupConcurrentListener implements MessageListenerConcurrently {
     // 默认不去重
     private DedupConfig dedupConfig = DedupConfig.disableDupConsumeConfig("NOT-SET-CONSUMER-GROUP");
