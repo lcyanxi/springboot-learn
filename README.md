@@ -6,6 +6,7 @@
 
 # Java并发：
 - [Object notify()会立刻释放锁么?](Java并发/Object%20notify()会立刻释放锁么.md)【wait会放弃cpu资源吗】
+- [Synchronized锁机制](Java并发/Synchronized锁机制.md)【对象在内存中的存储布局,一个对象最小占多少字节？】
 - [反射实现原理](Java并发/反射获取class对象的方式.md)【1.单例模式真的就安全吗？2.为什么jdbc要用class.forName加载类?】
 - [Java8如何优化CAS性能](Java并发/Java8如何优化CAS性能.md) 
 - [深入分析ThreadLocal原理](Java并发/深入分析ThreadLocal原理.md)【如何避免ThradLocal带来的内存泄露问题？】
@@ -27,7 +28,7 @@
 - [类加载器机制](Java虚拟机/类加载器.md)【1.int[]的类加载器是谁？ 2.SPI机制是如何打破双亲委派模型的？】
 - [自定义类加载器实现热加载](Java虚拟机/自定义类加载器实现热加载.md)
 - [JVM内存模型-方法区](Java虚拟机/JVM内存模型-方法区.md)【方法区的演进细节】
-- [JVM内存模型-堆区](Java虚拟机/JVM内存模型-堆区.md)
+- [JVM内存模型-堆区](Java虚拟机/JVM内存模型-堆区.md)【堆中一定都是线程共享吗,什么是TLAB？】
 - [JVM内存模型-虚拟机栈](Java虚拟机/JVM内存模型-虚拟机栈.md)【方法内的局部变量是线程安全的吗？】
 - [JVM内存模型-程序计数器](Java虚拟机/JVM内存模型-程序计数器.md)【程序计数器作用是什么？】
 - [JVM内存模型-本地方法栈](Java虚拟机/JVM内存模型-本地方法栈.md)
