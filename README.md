@@ -4,6 +4,10 @@
 
 [大厂常见算法](大厂常见算法/leetcode算法.md)
 
+# 设计模式：
+- [策略模式](设计模式/策略模式.md)
+
+
 # Java并发：
 - [Object notify()会立刻释放锁么?](Java并发/Object%20notify()会立刻释放锁么.md)【wait会放弃cpu资源吗】
 - [Synchronized锁机制](Java并发/Synchronized锁机制.md)【对象在内存中的存储布局,一个对象最小占多少字节？】
