@@ -1,7 +1,6 @@
-package com.lcyanxi.designPatterns.observer.springEvent;
+package com.lcyanxi.designPatterns.observer.guavaEvent;
 
 import com.google.common.eventbus.AsyncEventBus;
-import com.google.common.eventbus.EventBus;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;

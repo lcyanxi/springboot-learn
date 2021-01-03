@@ -1,4 +1,4 @@
-package com.lcyanxi.designPatterns.observer.springEvent;
+package com.lcyanxi.designPatterns.observer.guavaEvent;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;

@@ -1,14 +1,13 @@
 package com.lcyanxi.controller;
 
 import com.google.common.eventbus.AsyncEventBus;
-import com.lcyanxi.designPatterns.observer.spring.EventPublisher;
-import com.lcyanxi.designPatterns.observer.spring.OrderEvent;
-import com.lcyanxi.designPatterns.observer.springEvent.OrderInfoEvent;
+import com.lcyanxi.designPatterns.observer.springEvent.EventPublisher;
+import com.lcyanxi.designPatterns.observer.springEvent.OrderEvent;
+import com.lcyanxi.designPatterns.observer.guavaEvent.OrderInfoEvent;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,7 +37,7 @@ public class EventPublishController {
     }
 
 
-    @PostMapping("/spring/createOrder")
+    @GetMapping("/spring/createOrder")
     public String createOrder(Integer productId, Integer userId) {
         OrderInfoEvent event = new OrderInfoEvent();
         event.setId(1);

@@ -1,4 +1,4 @@
-package com.lcyanxi.designPatterns.observer.spring;
+package com.lcyanxi.designPatterns.observer.springEvent;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.lcyanxi.designPatterns.observer.springEvent;
+package com.lcyanxi.designPatterns.observer.guavaEvent;
 
 import lombok.Data;
 
