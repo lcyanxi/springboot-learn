@@ -17,10 +17,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class EventConfig {
-
-    /**
-     * @return EventBus
-     */
     @Bean
     @Qualifier("orderSendMsgHandleEventBus")
     public AsyncEventBus orderSendMsgHandleEventBus() {
@@ -34,5 +30,4 @@ public class EventConfig {
         asyncEventBus.register(new OrderSendMsgListener());
         return asyncEventBus;
     }
-
 }

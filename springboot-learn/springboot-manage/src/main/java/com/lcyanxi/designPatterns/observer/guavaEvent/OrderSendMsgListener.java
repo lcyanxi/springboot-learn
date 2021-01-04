@@ -14,7 +14,7 @@ public class OrderSendMsgListener {
     @Subscribe
     public void orderSendMsg(OrderInfoEvent event) {
         try {
-            log.info("监听到了【班级库存变化】 event: [{}]", JSON.toJSONString(event));
+            log.info("监听到了【订单支付成功消息】 event: [{}]", JSON.toJSONString(event));
             Preconditions.checkArgument(event.getUserId() > 0);
         } catch (Exception e) {
             log.error("event信息错误 ",e);
