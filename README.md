@@ -100,6 +100,9 @@
 - [构建基于RocketMQ的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
 - [RocketMQ消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)【要么基于mysql要么基于redis】
 - [RocketMQ消息ACK机制及消费进度管理](消息队列/RocketMQ消息ACK机制及消费进度管理.md)
+- [RocketMQ消息文件过期原理](消息队列/RocketMQ消息文件过期原理.md) 【72小时 + 凌晨4点】
+- [RocketMQ消息高可靠](消息队列/RocketMQ消息高可靠.md)【同步策略 + 刷盘策略 + ACK】
+
 
 
 
