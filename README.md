@@ -80,6 +80,7 @@
 - [RPC实战与核心原理-进阶篇](分布式RPC框架/RPC实战与核心原理-进阶篇.md)
 - [RPC实战与核心原理-高级篇](分布式RPC框架/RPC实战与核心原理-高级篇.md)【分布式环境下如何快速定位问题？】
 - [TraceId如何在RPC中传递](分布式RPC框架/TraceId如何在RPC中传递.md)【InternalThreadLocal性能如何提升的？】
+- [分布式追踪系统原理-SkyWalking](分布式RPC框架/分布式追踪系统原理-SkyWalking.md)【traceId 如何保证全局唯一?】
 - [关于RPC dubbo超时原理](分布式RPC框架/关于RPC%20dubbo超时原理.md)【接口的幂等性如何解决？】
 - [动态代理在RPC框架中的性能对比](分布式RPC框架/动态代理在RPC框架中的性能对比.md)
 - [Dubbo SPI与JDK SPI 实现原理分析](Dubbo%20SPI与JDK%20SPI%20实现原理分析.md)
