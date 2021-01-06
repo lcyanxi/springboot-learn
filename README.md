@@ -64,6 +64,8 @@
 - [幻读是什么,幻读有什么问题?](数据库原理/幻读是什么,幻读有什么问题.md)【InnoDB又是怎么解决幻读问题的？】
 - [Explain执行计划详解](数据库原理/Explain执行计划详解.md)【主要关注type、key、rows、filtered、Extra】
 - [Limit Offset优化方案](数据库原理/Limit%20Offset优化方案.md)【基于游标分页】
+- [Mysql并行复制原理](数据库原理/Mysql并行复制原理.md)【主从延迟的原因有那些？】
+
 
 
 
