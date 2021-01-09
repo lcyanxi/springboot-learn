@@ -101,6 +101,7 @@
 ##### RocketMQ
 - [RocketMQ高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
 - [RocketMQ消息存储原理](消息队列/RocketMQ消息存储原理.md)【零拷贝与PageChe来提高吞吐量】
+- [零拷贝原理](消息队列/零拷贝原理.md)【为什么rocket采取mmap而不是sendfile方式呢？】
 - [构建基于RocketMQ的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
 - [RocketMQ消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)【要么基于mysql要么基于redis】
 - [RocketMQ消息ACK机制及消费进度管理](消息队列/RocketMQ消息ACK机制及消费进度管理.md)
