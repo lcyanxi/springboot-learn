@@ -15,4 +15,8 @@ public interface Constants {
      * 应用名称
      */
     String APPLICATION = "application";
+
+    String HOST = "localhost";
+
+    Integer PORT = 8088;
 }
