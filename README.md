@@ -8,6 +8,10 @@
 - [策略模式](设计模式/策略模式.md)
 - [观察者模式](设计模式/观察者模式.md) 【Spring Event && Guava Event】
 
+# Java基础：
+- [BIO/NIO/AIO网络模型](Java基础/IO网络模型.md)
+- [零拷贝原理](消息队列/零拷贝原理.md)【为什么rocket采取mmap而不是sendfile方式呢？】
+- [堆外内存原理](Java基础/堆外内存原理.md)
 
 
 # Java并发：
