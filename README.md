@@ -111,6 +111,7 @@
 - [RocketMQ消息ACK机制及消费进度管理](消息队列/RocketMQ消息ACK机制及消费进度管理.md)
 - [RocketMQ消息文件过期原理](消息队列/RocketMQ消息文件过期原理.md) 【72小时 + 凌晨4点】
 - [RocketMQ消息高可靠](消息队列/RocketMQ消息高可靠.md)【同步策略 + 刷盘策略 + ACK】
+- [RocketMQ长轮询机制](消息队列/RocketMQ长轮询机制.md)【pull && push的优缺点】
 - [RocketMQ消息重试原理](消息队列/RocketMQ消息重试原理.md)【默认重试次数是16次那为什么延迟消息级别是18个？】
 
 
