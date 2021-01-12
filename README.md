@@ -95,6 +95,10 @@
 - [Dubbo服务暴露过程](分布式RPC框架/Dubbo服务暴露过程.md)
 - [Dubbo服务调用流程](分布式RPC框架/Dubbo服务调用流程.md)【一个request请求何如跟一个response对应上的？】
 
+# zookeeper： 
+- [ZooKeeper分布式锁实现原理](zookeeper/ZooKeeper分布式锁实现原理.md)【零时有序节点 + Watcher机制】
+
+
 
 # 分库分表： 
 - [基于当当网的shardingJdbc进行分库分表demo](分库分表/基于当当网的shardingJdbc进行分库分表.md)
