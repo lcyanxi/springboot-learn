@@ -139,18 +139,15 @@ public class JsonUtils {
     public static <T> List<T> toList(String jsonArrayStr, Class<T> clazz) {
         List<T> result = new ArrayList<T>();
         try {
-            List<Map<String, Object>> list = objectMapper.readValue(jsonArrayStr, new TypeReference<List<T>>() {
-            });
+            List<Map<String, Object>> list = objectMapper.readValue(jsonArrayStr, new TypeReference<List<T>>() {});
 
             for (Map<String, Object> map : list) {
                 result.add(toObject(map, clazz));
             }
-
             return result;
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return result;
     }
 }
