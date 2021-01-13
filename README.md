@@ -108,7 +108,7 @@
 - [消息队列高手课-进阶篇](消息队列/消息队列高手课-进阶篇.md)
 ##### RocketMQ
 - [RocketMQ高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
-- [RocketMQ消息存储原理](消息队列/RocketMQ消息存储原理.md)【零拷贝与PageChe来提高吞吐量】
+- [RocketMQ消息存储原理](消息队列/RocketMQ消息存储原理.md)【零拷贝(mmap) + PageChe + 顺序写来提高吞吐量】
 - [零拷贝原理](消息队列/零拷贝原理.md)【为什么rocket采取mmap而不是sendfile方式呢？】
 - [构建基于RocketMQ的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
 - [RocketMQ消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)【要么基于mysql要么基于redis】
@@ -117,6 +117,8 @@
 - [RocketMQ消息高可靠](消息队列/RocketMQ消息高可靠.md)【同步策略 + 刷盘策略 + ACK】
 - [RocketMQ长轮询机制](消息队列/RocketMQ长轮询机制.md)【pull && push的优缺点】
 - [RocketMQ消息重试原理](消息队列/RocketMQ消息重试原理.md)【默认重试次数是16次那为什么延迟消息级别是18个？】
+##### kafka
+- [Kafka如何实现每秒几十万的高并发写入](消息队列/Kafka如何实现每秒几十万的高并发写入.md)【零拷贝(sendfile) + pageChe + 顺序写】
 
 
 
