@@ -12,6 +12,7 @@
 - [BIO/NIO/AIO网络模型](Java基础/IO网络模型.md)
 - [零拷贝原理](消息队列/零拷贝原理.md)【为什么rocket采取mmap而不是sendfile方式呢？】
 - [堆外内存原理](Java基础/堆外内存原理.md)
+- [Java自定义注解-Annotation](Java基础/Java自定义注解-Annotation.md)【元注解都有那些？有什么作用】
 
 
 # Java并发：
