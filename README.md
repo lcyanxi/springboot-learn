@@ -28,7 +28,7 @@
 - [CountDownLatch原理分析](Java并发/CountDownLatch原理分析.md)
 - [CyclicBarrier原理](Java并发/CyclicBarrier原理.md)
 - [Semaphore原理](Java并发/Semaphore原理.md)【如果要拿到每个线程的返回值会有什么问题？completionService考虑一下】
-- [线程池工作原理](Java并发/线程池工作原理.md) 【ExecutorService的submit返回的Future有什么性能上的问题吗？】
+- [Java线程池实现原理](Java并发/Java线程池实现原理.md) 【ExecutorService的submit返回的Future有什么性能上的问题吗？】
 - [CompletionService解决获取返回值阻塞问题](Java并发/CompletionService解决获取返回值阻塞问题.md)
   【如何手动实现一个线程池？】
 - [关于HashMap那些问题](Java并发/关于HashMap那些问题.md)【HashMap7除了死循环问题外还有那些线程不安全的地方？HashMap8呢？】
