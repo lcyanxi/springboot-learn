@@ -1,6 +1,8 @@
 package com.lcyanxi.springbootshardingsphere;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lcyanxi.model.Course;
+import java.util.List;
 import javax.annotation.Resource;
 import mapper.CourseMapper;
 import org.junit.Test;
@@ -29,37 +31,46 @@ public class ShardingJDBCTest {
             courseMapper.insert(c);
         }
     }
-//
-//    @Test
-//    public void queryCourse(){
-//        //select * from course
-//        QueryWrapper<Course> wrapper = new QueryWrapper<>();
-//        wrapper.orderByDesc("cid");
-//        wrapper.eq("cid",553684818806706177L);
-////        wrapper.in()
-//        List<Course> courses = courseMapper.selectList(wrapper);
-//        courses.forEach(course -> System.out.println(course));
-//    }
-//
-//    @Test
-//    public void queryOrderRange(){
-//        //select * from course
-//        QueryWrapper<Course> wrapper = new QueryWrapper<>();
-//        wrapper.between("cid",553684818806706177L,553684819184193537L);
-////        wrapper.in()
-//        List<Course> courses = courseMapper.selectList(wrapper);
-//        courses.forEach(course -> System.out.println(course));
-//    }
-//
-//    @Test
-//    public void queryCourseComplex(){
-//        QueryWrapper<Course> wrapper = new QueryWrapper<>();
-//        wrapper.between("cid",553684818806706177L,553684819184193537L);
-//        wrapper.eq("user_id",1009L);
-////        wrapper.in()
-//        List<Course> courses = courseMapper.selectList(wrapper);
-//        courses.forEach(course -> System.out.println(course));
-//    }
+
+    @Test
+    public void queryCourse(){
+        //select * from course where cid = ''
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("cid");
+        wrapper.eq("cid",558419671351562240L);
+//        wrapper.in()
+        List<Course> courses = courseMapper.selectList(wrapper);
+        courses.forEach(System.out::println);
+    }
+
+    @Test
+    public void queryOrderRange(){
+        //select * from course where cid in ()
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        wrapper.in("cid",558419671984902145L,558419673041866753L);
+        List<Course> courses = courseMapper.selectList(wrapper);
+        courses.forEach(course -> System.out.println(course));
+    }
+
+
+    @Test
+    public void queryOrderBetween(){
+        //select * from course where cid between '' and  '' order by cid desc
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        wrapper.between("cid",558419672463052800L,558419673041866753L);
+        wrapper.orderByDesc("user_id");
+        List<Course> courses = courseMapper.selectList(wrapper);
+        courses.forEach(System.out::println);
+    }
+
+    @Test
+    public void queryCourseComplex(){
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        wrapper.between("cid",558419671984902145L,558419673041866753L);
+        wrapper.eq("user_id",1001);
+        List<Course> courses = courseMapper.selectList(wrapper);
+        courses.forEach(System.out::println);
+    }
 //
 //    @Test
 //    public void queryCourseByHint(){
