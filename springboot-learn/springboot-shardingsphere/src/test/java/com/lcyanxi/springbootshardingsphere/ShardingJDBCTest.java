@@ -67,7 +67,7 @@ public class ShardingJDBCTest {
     public void queryCourseComplex(){
         QueryWrapper<Course> wrapper = new QueryWrapper<>();
         wrapper.between("cid",558419671984902145L,558419673041866753L);
-        wrapper.eq("user_id",1001);
+        wrapper.eq("user_id",1001L);
         List<Course> courses = courseMapper.selectList(wrapper);
         courses.forEach(System.out::println);
     }
