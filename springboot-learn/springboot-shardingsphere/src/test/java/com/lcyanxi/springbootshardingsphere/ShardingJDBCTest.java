@@ -22,9 +22,10 @@ public class ShardingJDBCTest {
 
     @Test
     public void addCourse(){
-        for(int i = 10 ; i < 20 ; i ++){
+        for(int i = 20 ; i < 30 ; i ++){
             Course c = new Course();
-//            c.setCid(Long.valueOf(i));
+            // 有主键ID就不会自动生成了
+            c.setCid((long) i);
             c.setCname("shardingsphere");
             c.setUserId(Long.valueOf(""+(1000+i)));
             c.setCstatus("1");
