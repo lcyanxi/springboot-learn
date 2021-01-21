@@ -22,7 +22,7 @@ public class ShardingJDBCTest {
 
     @Test
     public void addCourse(){
-        for(int i = 0 ; i < 10 ; i ++){
+        for(int i = 10 ; i < 20 ; i ++){
             Course c = new Course();
 //            c.setCid(Long.valueOf(i));
             c.setCname("shardingsphere");
