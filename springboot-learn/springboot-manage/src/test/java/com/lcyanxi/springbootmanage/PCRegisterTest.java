@@ -1,8 +1,10 @@
 package com.lcyanxi.springbootmanage;
 
 import com.alibaba.fastjson.JSON;
+import com.lcyanxi.util.DateUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -16,12 +18,15 @@ import org.springframework.util.CollectionUtils;
 public class PCRegisterTest {
     private static Pattern pattern = Pattern.compile("[0-9]*");
     public static void main(String[] args) {
-        String aa = "3264882,3264880,3264888,3264886";
+//        String aa = "3264882,3264880,3264888,3264886";
+//
+//        System.out.println(aa);
+//        System.out.println(JSON.toJSONString(aa));
+//        List<Integer> list = str2ArrayBySplit(JSON.toJSONString(aa));
+//        System.out.println(list);
 
-        System.out.println(aa);
-        System.out.println(JSON.toJSONString(aa));
-        List<Integer> list = str2ArrayBySplit(JSON.toJSONString(aa));
-        System.out.println(list);
+        Date date = DateUtils.getNextHours(-3);
+        System.out.println(date);
 
     }
 
