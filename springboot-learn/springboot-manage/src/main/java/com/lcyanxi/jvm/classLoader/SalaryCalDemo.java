@@ -27,10 +27,8 @@ public class SalaryCalDemo {
         Double salary = 15000.00;
         Double money ;
         while(true) {
-            SalaryCaler salaryCaler = new SalaryCaler();
-            System.out.println("原本的Money:" + salaryCaler.cal(salary));
-            money = calSalary(salary);
-            System.out.println("实际到手Money:" + money);
+            System.out.println("原本的Money:" + calSalary(salary, localClassPath));
+            System.out.println("实际到手Money:" + calSalary(salary,classPath));
             Thread.sleep(5000);
         }
 
@@ -63,7 +61,7 @@ public class SalaryCalDemo {
         /*
          *  运行时加载jar包中的class文件。实现热加载。
          */
-        SalaryJARLoader classloader = new SalaryJARLoader(localClassPath);
+        SalaryJARLoader classloader = new SalaryJARLoader(classPath);
         Class<?> objClass = classloader.loadClass(className);
         Object obj = objClass.newInstance();
         return (Double) objClass.getMethod(classMethod, Double.class).invoke(obj, salary);
@@ -71,17 +69,33 @@ public class SalaryCalDemo {
 
 
     // 多版本共存
-    private static Double calSalary(Double salary) throws Exception {
+    private static Double calSalary3(Double salary) throws Exception {
         /*
          *  运行时加载jar包中的class文件。实现热加载。
          */
-        SalaryJARLoader classloader = new SalaryJARLoader(localClassPath);
+        SalaryJARLoader classloader = new SalaryJARLoader(classPath);
         Class<?> objClass = classloader.loadClass(className);
         /**
          * com.lcyanxi.service.SalaryCaler cannot be cast to com.lcyanxi.service.SalaryCaler 报错
          */
-        SalaryCaler obj = (SalaryCaler) objClass.newInstance();
-        return obj.cal(salary);
+        //SalaryCaler obj = (SalaryCaler) objClass.newInstance();
+        Object obj = objClass.newInstance();
+        return (Double) objClass.getMethod(classMethod, Double.class).invoke(obj, salary);
+    }
+
+    // 多版本共存
+    private static Double calSalary(Double salary,String classPath) throws Exception {
+        /*
+         *  运行时加载jar包中的class文件。实现热加载。
+         */
+        SalaryJARLoader classloader = new SalaryJARLoader(classPath);
+        Class<?> objClass = classloader.loadClass(className);
+        /**
+         * com.lcyanxi.service.SalaryCaler cannot be cast to com.lcyanxi.service.SalaryCaler 报错
+         */
+        //SalaryCaler obj = (SalaryCaler) objClass.newInstance();
+        Object obj = objClass.newInstance();
+        return (Double) objClass.getMethod(classMethod, Double.class).invoke(obj, salary);
     }
 
     // 添加SPI实现两套机制
