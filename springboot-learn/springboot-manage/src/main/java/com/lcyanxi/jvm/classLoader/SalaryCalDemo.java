@@ -27,9 +27,21 @@ public class SalaryCalDemo {
         Double salary = 15000.00;
         Double money ;
         while(true) {
-            System.out.println("原本的Money:" + calSalary(salary, localClassPath));
-            System.out.println("实际到手Money:" + calSalary(salary,classPath));
+//            System.out.println("原本的Money:" + calSalary(salary, localClassPath));
+//            System.out.println("原本的Money:" + new SalaryCaler().cal(salary));
+//            System.out.println("实际到手Money:" + calSalary(salary,classPath));
+
+            // SPI机制
+            SalaryJARLoader myclassloader = new SalaryJARLoader(localClassPath);
+            Iterator<ISalaryCalService> iter = ServiceLoader.load(ISalaryCalService.class, myclassloader).iterator();
+            if (iter.hasNext()) {
+                // 只要一个子类
+                ISalaryCalService service = iter.next();
+            System.out.println("实际到手Money:" + service.cal(salary));
+            }
+
             Thread.sleep(5000);
+
         }
 
     }
@@ -102,30 +114,30 @@ public class SalaryCalDemo {
     private static ISalaryCalService getOriginalService(String jarPath) throws Exception {
         // 这里一定要new一个classLoader来，不可以重复使用。
         // 因为同一个classloader不可以多次去重新加载service实现类，会报错的。
-        SalaryJARLoader myclassloader = new SalaryJARLoader(jarPath);
-        Iterator<ISalaryCalService> iter = ServiceLoader.load(ISalaryCalService.class, myclassloader).iterator();
-        if (iter.hasNext()) {
-            // 只要一个子类
-            return iter.next();
-        } else {
-            throw new ClassNotFoundException("缺少SPI的实现类");
-        }
+//        SalaryJARLoader myclassloader = new SalaryJARLoader(jarPath);
+//        Iterator<ISalaryCalService> iter = ServiceLoader.load(ISalaryCalService.class, myclassloader).iterator();
+//        if (iter.hasNext()) {
+//            // 只要一个子类
+//            return iter.next();
+//        } else {
+//            throw new ClassNotFoundException("缺少SPI的实现类");
+//        }
 
 
         //上面是比较简单的用法，常用的是下面这种方法，减少上下文的切换。
-//		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-//		try {
-//			Thread.currentThread().setContextClassLoader(classloader);
-//			Iterator<SalaryCalService> iter = ServiceLoader.load(SalaryCalService.class).iterator();
-//			if(iter.hasNext()) {
-//				//只要一个子类
-//				return iter.next();
-//			}else {
-//				throw new ClassNotFoundException("缺少SPI的实现类");
-//			}
-//		}finally {
-//			Thread.currentThread().setContextClassLoader(classloader);
-//		}
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		try {
+			Thread.currentThread().setContextClassLoader(classloader);
+			Iterator<ISalaryCalService> iter = ServiceLoader.load(ISalaryCalService.class).iterator();
+			if(iter.hasNext()) {
+				//只要一个子类
+				return iter.next();
+			}else {
+				throw new ClassNotFoundException("缺少SPI的实现类");
+			}
+		}finally {
+			Thread.currentThread().setContextClassLoader(classloader);
+		}
 
     }
 }

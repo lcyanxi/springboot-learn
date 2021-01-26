@@ -10,7 +10,7 @@ public class SalaryCalServiceImpl implements ISalaryCalService {
 
     @Override
     public Double cal(Double money) {
-        System.out.println("Original Service");
-        return money;
+        System.out.println("discount Service");
+        return money ;
     }
 }

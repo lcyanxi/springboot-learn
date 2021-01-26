@@ -1,11 +1,15 @@
 package com.lcyanxi.springbootmanage;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+import com.lcyanxi.model.ClassInfo;
 import com.lcyanxi.util.DateUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
@@ -18,15 +22,20 @@ import org.springframework.util.CollectionUtils;
 public class PCRegisterTest {
     private static Pattern pattern = Pattern.compile("[0-9]*");
     public static void main(String[] args) {
-//        String aa = "3264882,3264880,3264888,3264886";
-//
-//        System.out.println(aa);
-//        System.out.println(JSON.toJSONString(aa));
-//        List<Integer> list = str2ArrayBySplit(JSON.toJSONString(aa));
-//        System.out.println(list);
-
-        Date date = DateUtils.getNextHours(-3);
-        System.out.println(date);
+        List<ClassInfo> classInfos = Lists.newArrayList();
+        for (int j=0 ; j< 2; j++){
+            for (int i = 1; i<5; i++){
+                ClassInfo info = new ClassInfo();
+                info.setClassId(i);
+                info.setParentClassId(i);
+                info.setStock(ThreadLocalRandom.current().nextInt(0, 10));
+                classInfos.add(info);
+            }
+        }
+        System.out.println(classInfos);
+        Map<Integer, Integer> listMap = classInfos.stream().collect(Collectors.groupingBy(ClassInfo::getParentClassId,
+                Collectors.summingInt(ClassInfo::getStock)));
+        System.out.println(listMap);
 
     }
 
