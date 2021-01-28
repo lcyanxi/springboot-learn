@@ -25,7 +25,7 @@ public class GuavaTotalLimitFlowFilter implements Filter {
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         try {
             RateLimiter totalRateLimiter = GuavaDefaultRateLimiterListener.totalRateLimiter;
-            log.info("GuavaTotalLimitFlowFilter totalRateLimiter:{}",totalRateLimiter);
+            log.info("guavaTotalLimitFlowFilter totalRateLimiter:{}",totalRateLimiter);
             if (Objects.nonNull(totalRateLimiter) && !totalRateLimiter.tryAcquire()) {
                 log.error("The request is total limited, please control the call frequency limitMapKey is {}", totalRateLimiter);
                 return AsyncRpcResult.newDefaultAsyncResult(new RpcException("The request is total limited, please control the call frequency"), invocation);

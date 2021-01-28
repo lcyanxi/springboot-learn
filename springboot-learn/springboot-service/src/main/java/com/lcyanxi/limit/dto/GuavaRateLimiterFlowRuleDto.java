@@ -18,7 +18,7 @@ public class GuavaRateLimiterFlowRuleDto implements Serializable {
     /**
      * 限制qps
      */
-    private Integer qps;
+    private Long qps;
 
     /**
      * 是否启用

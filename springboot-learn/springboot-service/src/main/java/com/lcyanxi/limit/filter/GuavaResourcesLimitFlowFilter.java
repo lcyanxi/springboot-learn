@@ -27,7 +27,7 @@ public class GuavaResourcesLimitFlowFilter implements Filter {
 
         try {
             Map<String, RateLimiter> urlLimiterMap = GuavaDefaultRateLimiterListener.urlLimiterMap;
-            log.info("GuavaResourcesLimitFlowFilter urlLimiterMap:{}",urlLimiterMap);
+            log.info("guavaResourcesLimitFlowFilter urlLimiterMap:{}",urlLimiterMap);
             String invokerName = LimitUtils.getInvokerName();
             String serviceMethodName = DubboUtils.structureSentinelResourcesName();
             String limitMapKey = LimitUtils.getLimitMapKey(serviceMethodName, invokerName);

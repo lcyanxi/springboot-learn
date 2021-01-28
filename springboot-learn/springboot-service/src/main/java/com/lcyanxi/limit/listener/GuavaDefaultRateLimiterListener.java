@@ -70,6 +70,7 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
             boolean totalHasChange = event.isChanged(GuavaRateLimiterKeys.JWYTH_GUAVA_RATE_LIMITER_TOTAL);
             boolean defaultHasChange = event.isChanged(GuavaRateLimiterKeys.JWYTH_GUAVA_RATE_LIMITER_DEFAULT_KEY);
             if ((!hasChange) && (!totalHasChange) && (!defaultHasChange)) {
+                log.info("onApplicationEvent is update no change event:[{}]",event);
                 return;
             }
             updateRateLimiter();
@@ -102,12 +103,13 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
         }
         defaultLimiterMap.clear();
         if (StringUtils.isNumeric(guavaRateLimiterDefaultKey.trim())) {
-            Integer qps = Integer.valueOf(guavaRateLimiterDefaultKey.trim());
+            Long qps = Long.valueOf(guavaRateLimiterDefaultKey.trim());
             Map<String, ServiceBean> map = applicationContext.getBeansOfType(ServiceBean.class);
             List<ServiceBean> serviceBeanList = Lists.newArrayList();
             map.keySet().stream().forEach(s -> serviceBeanList.add(map.get(s)));
             serviceBeanList.stream().forEach(serviceBean -> buildDefaultFlowRules(serviceBean, qps, limiters));
         }
+        log.error("fixDefaultLimit defaultLimiterMap:[{}]",defaultLimiterMap);
     }
 
     /**
@@ -117,7 +119,7 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
      * @param qps
      * @param limiters
      */
-    private void buildDefaultFlowRules(ServiceBean serviceBean, Integer qps, Map<String, GuavaRateLimiterFlowRuleDto> limiters) {
+    private void buildDefaultFlowRules(ServiceBean serviceBean, Long qps, Map<String, GuavaRateLimiterFlowRuleDto> limiters) {
         Arrays.stream(serviceBean.getInterfaceClass().getMethods()).forEach(method -> {
             String resourceName = buildResourceName(serviceBean, method);
             String urlLimitDefaultKey = LimitUtils.getLimitMapKey(resourceName, LimitUtils.DEFAULT_RESOURCE_NAME);
@@ -128,6 +130,7 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
             }
         });
 
+        log.error("buildDefaultFlowRules defaultLimiterMap:[{}]",defaultLimiterMap);
     }
 
     /**
@@ -147,15 +150,15 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
      */
     private void fixTotalRateLimiter() {
         String guavaRateLimiterTotal = dictionaryManager.get(GuavaRateLimiterKeys.JWYTH_GUAVA_RATE_LIMITER_TOTAL);
-        log.info("fixTotalRateLimiter change guavaRateLimiterTotal:[{}]",guavaRateLimiterTotal);
         if (StringUtils.isBlank(guavaRateLimiterTotal)) {
             return;
         }
         String trim = guavaRateLimiterTotal.trim();
         if (StringUtils.isNumeric(trim)) {
-            RateLimiter rateLimiter = RateLimiter.create(Integer.parseInt(trim));
+            RateLimiter rateLimiter = RateLimiter.create(Long.valueOf(trim));
             totalRateLimiter = rateLimiter;
         }
+        log.error("fixTotalRateLimiter guavaRateLimiterTotal:[{}]",guavaRateLimiterTotal);
     }
 
     /**
@@ -176,9 +179,10 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
         urlLimiterMap.clear();
         limiters.keySet().stream().forEach(url -> {
             GuavaRateLimiterFlowRuleDto guavaRateLimiterFlowRuleDto = limiters.get(url);
-            Integer qps = guavaRateLimiterFlowRuleDto.getQps();
+            Long qps = guavaRateLimiterFlowRuleDto.getQps();
             urlLimiterMap.put(url, RateLimiter.create(qps));
         });
+        log.error("fixUrlLimiterMap urlLimiterMap:[{}]",urlLimiterMap);
         return limiters;
     }
 

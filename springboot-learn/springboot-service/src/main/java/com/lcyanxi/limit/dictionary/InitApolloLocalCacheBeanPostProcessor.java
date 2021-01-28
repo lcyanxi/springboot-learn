@@ -38,7 +38,6 @@ public class InitApolloLocalCacheBeanPostProcessor implements ApplicationListene
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        log.info("================================");
         try {
             if (event.getApplicationContext().getParent() != null) {
                 return;
@@ -61,7 +60,9 @@ public class InitApolloLocalCacheBeanPostProcessor implements ApplicationListene
                 changedKeys.forEach(key -> {
                     ConfigChange change = changeEvent.getChange(key);
                     String newValue = change.getNewValue();
+                    String oldVale = LOCAL_CACHE_MAP.get(key);
                     LOCAL_CACHE_MAP.put(key, newValue);
+                    log.info("initApolloLocalCache namespace is application listener key:[{}],oldValue:[{}],newValue:[{}]",key,oldVale,newValue);
                 });
                 applicationContext.publishEvent(new ApolloChangeEvent(changeEvent));
             });
@@ -71,12 +72,12 @@ public class InitApolloLocalCacheBeanPostProcessor implements ApplicationListene
             log.info("#					                            #");
             keySet.forEach(s -> {
                 String value = LOCAL_CACHE_MAP.get(s);
-                log.info("#	 sysDictConfService init key:{} -> value:{}   #", s, value);
+                log.info("#	 sysDictConfService namespace is application init key:{} -> value:{}   #", s, value);
             });
             log.info("#					                            #");
             log.info("###############################################");
         } catch (Exception e) {
-            log.error("dictConfService apollo is error,e ", e);
+            log.error("dictConfService namespace is application apollo is error,e ", e);
         }
     }
 

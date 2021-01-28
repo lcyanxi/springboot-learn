@@ -56,7 +56,7 @@ public class InitApolloLocalCache implements ApplicationListener<ContextRefreshe
                     ConfigChange change = changeEvent.getChange(key);
                     String newValue = change.getNewValue();
                     String oldVale = LOCAL_CACHE_MAP.get(key);
-                    log.info("initApolloLocalCache listener key:[{}],oldValue:[{}],newValue:[{}]",key,oldVale,newValue);
+                    log.info("initApolloLocalCache namespace is commonConfig listener key:[{}],oldValue:[{}],newValue:[{}]",key,oldVale,newValue);
                     LOCAL_CACHE_MAP.put(key, newValue);
                 });
             });
@@ -67,13 +67,13 @@ public class InitApolloLocalCache implements ApplicationListener<ContextRefreshe
             log.info("#					                            #");
             keySet.forEach(s -> {
                 String value = LOCAL_CACHE_MAP.get(s);
-                log.info("#	 initApolloLocalCache init key:[{}] -> value:[{}]   #", s, value);
+                log.info("#	 initApolloLocalCache namespace is commonConfig init key:[{}] -> value:[{}]   #", s, value);
             });
             log.info("#					                            #");
             log.info("###############################################");
 
         }catch (Exception e){
-            log.error("initApolloLocalCache apollo is error,e ", e);
+            log.error("initApolloLocalCache namespace is commonConfig apollo is error,e ", e);
         }
     }
 
