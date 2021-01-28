@@ -1,6 +1,8 @@
 package com.lcyanxi.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
@@ -18,17 +20,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
+import static org.apache.dubbo.monitor.MonitorService.SUCCESS;
 import org.apache.dubbo.rpc.RpcContext;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +47,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-
+    ThreadPoolExecutor threadPool = new ThreadPoolExecutor(10, 10, 3,
+            TimeUnit.SECONDS, new ArrayBlockingQueue<>(3));
     @DubboReference
     private IUserLessonService userLessonService;
 
@@ -80,6 +90,12 @@ public class UserController {
             map.put("token", "");
         }
         return map;
+    }
+
+    @GetMapping("/find")
+    public String findAllData(){
+       log.info("findAllData times:[{}]",System.currentTimeMillis());
+        return "获得" + userLessonService.findAll().size() +"条数据";
     }
 
 

@@ -11,7 +11,7 @@ dubbo:
   registry:
     address: nacos://lcyanxi.com:8848
   consumer:
-    timeout: 3000
+    timeout: 30000
 # log config
 logging:
   config: classpath:log4j2.xml

@@ -103,4 +103,9 @@ public class UserLessonServiceImpl implements IUserLessonService {
             log.error("transactionExceptionRequiredExceptionTry userService exception",e);
         }
     }
+
+    @Override
+    public List<UserLesson> findAll() {
+        return userLessonMapper.findAll();
+    }
 }

@@ -22,4 +22,6 @@ public interface IUserLessonService {
 
     void transactionExceptionRequiredExceptionTry(Integer userId,String userName);
 
+    List<UserLesson> findAll();
+
 }

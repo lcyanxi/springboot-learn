@@ -12,4 +12,6 @@ public interface UserLessonMapper {
     boolean  insertBatch(@Param("userLessons") List<UserLesson> userLessons);
 
     boolean  updateByUserId(@Param("userId") Integer userId,@Param("classId") Integer classId);
+
+    List<UserLesson> findAll();
 }

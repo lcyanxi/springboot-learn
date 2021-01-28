@@ -147,6 +147,7 @@ public class GuavaDefaultRateLimiterListener implements ApplicationListener<Apol
      */
     private void fixTotalRateLimiter() {
         String guavaRateLimiterTotal = dictionaryManager.get(GuavaRateLimiterKeys.JWYTH_GUAVA_RATE_LIMITER_TOTAL);
+        log.info("fixTotalRateLimiter change guavaRateLimiterTotal:[{}]",guavaRateLimiterTotal);
         if (StringUtils.isBlank(guavaRateLimiterTotal)) {
             return;
         }

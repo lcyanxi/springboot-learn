@@ -32,8 +32,6 @@ public class GuavaDefaultLimitFlowFilter implements Filter {
             // 获取核心限流缓存
             Map<String, RateLimiter> urlLimiterMap = GuavaDefaultRateLimiterListener.urlLimiterMap;
 
-            log.info("GuavaDefaultLimitFlowFilter defaultLimiterMap:{}",defaultLimiterMap);
-            log.info("GuavaDefaultLimitFlowFilter urlLimiterMap:{}",urlLimiterMap);
             String invokerName = LimitUtils.getInvokerName();
             String serviceMethodName = DubboUtils.structureSentinelResourcesName();
             String limitMapKey = LimitUtils.getLimitMapKey(serviceMethodName, invokerName);

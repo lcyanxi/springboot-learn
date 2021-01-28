@@ -56,4 +56,11 @@
         user_id = #{userId}
     </update>
 
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from pr_user_lesson
+    limit 1000
+  </select>
+
 </mapper>
