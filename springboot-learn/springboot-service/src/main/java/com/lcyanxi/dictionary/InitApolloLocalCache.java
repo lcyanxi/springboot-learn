@@ -32,7 +32,6 @@ public class InitApolloLocalCache implements ApplicationListener<ContextRefreshe
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        log.info("===========initApolloLocalCache onApplicationEvent start=====================");
         try{
             if (event.getApplicationContext().getParent() != null) {
                 return;
