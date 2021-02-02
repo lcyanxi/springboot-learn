@@ -3,14 +3,19 @@ package com.lcyanxi.dictionary;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.model.ConfigChange;
+import com.lcyanxi.constant.Constants;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadPoolExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -25,6 +30,11 @@ public class InitApolloLocalCache implements ApplicationListener<ContextRefreshe
     // ContextRefreshedEvent 事件会在Spring容器初始化完成会触发该事件
     // namespace
     static final String LOAD_NAMESPACE = "commonConfig";
+
+    @Autowired
+    @Qualifier("businessThreadPoolExecutor")
+    private ThreadPoolExecutor threadPoolExecutor;
+
     /**
      * local cache
      */
@@ -57,6 +67,11 @@ public class InitApolloLocalCache implements ApplicationListener<ContextRefreshe
                     String oldVale = LOCAL_CACHE_MAP.get(key);
                     log.info("initApolloLocalCache namespace is commonConfig listener key:[{}],oldValue:[{}],newValue:[{}]",key,oldVale,newValue);
                     LOCAL_CACHE_MAP.put(key, newValue);
+                    if (Constants.corePoolSize.equals(key.trim())){
+                        threadPoolExecutor.setCorePoolSize(Integer.parseInt(newValue));
+                    }else if (Constants.maxPoolSize.equals(key.trim())){
+                        threadPoolExecutor.setMaximumPoolSize(Integer.parseInt(newValue));
+                    }
                 });
             });
 

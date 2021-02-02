@@ -11,11 +11,15 @@ import com.lcyanxi.service.IUser1Service;
 import com.lcyanxi.service.IUserLessonService;
 import com.lcyanxi.service.IUserService;
 import java.util.Date;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -34,6 +38,10 @@ public class UserLessonServiceImpl implements IUserLessonService {
 
     @Autowired
     private IUser1Service user1Service;
+
+    @Autowired
+    @Qualifier("businessThreadPoolExecutor")
+    private ThreadPoolExecutor threadPoolExecutor;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -106,6 +114,26 @@ public class UserLessonServiceImpl implements IUserLessonService {
 
     @Override
     public List<UserLesson> findAll() {
+        printThreadPoolStatus(threadPoolExecutor);
         return userLessonMapper.findAll();
+    }
+
+    private static void printThreadPoolStatus(ThreadPoolExecutor threadPoolExecutor){
+        LinkedBlockingQueue queue = (LinkedBlockingQueue) threadPoolExecutor.getQueue();
+        System.out.println(
+                Thread.currentThread().getName() + "_" + ":" +
+                        "核心线程数:" + threadPoolExecutor.getCorePoolSize() +
+                        "活动线程数:" + threadPoolExecutor.getActiveCount() +
+                        "最大线程数:" + threadPoolExecutor.getMaximumPoolSize() +
+                        "线程池活跃度:" + divide(threadPoolExecutor.getActiveCount(),threadPoolExecutor.getMaximumPoolSize()) +
+                        "任务完成数:" + threadPoolExecutor.getCompletedTaskCount() +
+                        "队列大小:" + (queue.size() + queue.remainingCapacity()) +
+                        "当前线程排队线程数:" + queue.size() +
+                        "队列剩余大小:" + queue.remainingCapacity() +
+                        "队列使用度:" + divide(queue.size(),queue.size() + queue.remainingCapacity()));
+
+    }
+    private static String divide(int num1, int num2){
+        return String.format("%1.2f%%",Double.parseDouble(num1 + "")/Double.parseDouble(num2 + "")*100);
     }
 }
