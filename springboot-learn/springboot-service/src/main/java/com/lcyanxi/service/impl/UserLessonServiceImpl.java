@@ -11,6 +11,8 @@ import com.lcyanxi.service.IUser1Service;
 import com.lcyanxi.service.IUserLessonService;
 import com.lcyanxi.service.IUserService;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import lombok.extern.slf4j.Slf4j;
@@ -113,9 +115,16 @@ public class UserLessonServiceImpl implements IUserLessonService {
     }
 
     @Override
-    public List<UserLesson> findAll() {
-        printThreadPoolStatus(threadPoolExecutor);
-        return userLessonMapper.findAll();
+    public List<UserLesson> findAll(){
+        try {
+            Future<List<UserLesson>> submit = threadPoolExecutor.submit(() -> {
+                printThreadPoolStatus(threadPoolExecutor);
+                return userLessonMapper.findAll();});
+            return submit.get();
+        }catch (Exception e){
+            log.error("userLessonServiceImpl findAll is error",e);
+        }
+        return Lists.newArrayList();
     }
 
     private static void printThreadPoolStatus(ThreadPoolExecutor threadPoolExecutor){

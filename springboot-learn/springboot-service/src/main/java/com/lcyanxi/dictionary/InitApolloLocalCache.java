@@ -58,6 +58,11 @@ public class InitApolloLocalCache implements ApplicationListener<ContextRefreshe
             propertyNames.forEach(propertyName -> {
                 String value = config.getProperty(propertyName, "");
                 LOCAL_CACHE_MAP.put(propertyName, value);
+                if (Constants.corePoolSize.equals(propertyName.trim())){
+                    threadPoolExecutor.setCorePoolSize(Integer.parseInt(value));
+                }else if (Constants.maxPoolSize.equals(propertyName.trim())){
+                    threadPoolExecutor.setMaximumPoolSize(Integer.parseInt(value));
+                }
             });
             config.addChangeListener(changeEvent -> {
                 Set<String> changedKeys = changeEvent.changedKeys();
