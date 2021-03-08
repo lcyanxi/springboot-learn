@@ -153,7 +153,7 @@ public class UserController {
 
     @GetMapping(value = "/thread-pool-info")
     public String threadPoolTest(){
-        return "coreSize:"+threadPoolExecutor.getCorePoolSize()+",maxSize:"+threadPoolExecutor.getMaximumPoolSize() +"poolSize" + threadPoolExecutor.getPoolSize();
+        return "coreSize: " + threadPoolExecutor.getCorePoolSize() + ", maxSize: " + threadPoolExecutor.getMaximumPoolSize() + ", poolSize: " + threadPoolExecutor.getPoolSize();
     }
 
 
