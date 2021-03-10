@@ -7,12 +7,12 @@ package com.lcyanxi.bytebuddy;
  */
 public class MyService {
 
-    @MyAnnotation
+    @MyAnnotation(key = "queryDatabase")
     public void queryDatabase() {
         System.out.println("query db:");
     }
 
-    @MyAnnotation
+    @MyAnnotation(key = "queryDatabase")
     public void provideHttpResponse() {
         System.out.println("provide response:");
     }

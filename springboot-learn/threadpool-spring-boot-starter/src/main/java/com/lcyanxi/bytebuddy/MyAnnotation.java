@@ -11,4 +11,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface MyAnnotation {
+
+    /**
+     * key
+     * @return
+     */
+    String key() default "default";
 }

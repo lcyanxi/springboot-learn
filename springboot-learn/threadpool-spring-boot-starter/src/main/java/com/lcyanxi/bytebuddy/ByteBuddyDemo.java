@@ -21,15 +21,14 @@ import java.util.stream.Stream;
 public class ByteBuddyDemo {
     public static void main(String[] args) throws Exception {
         MyService service = enhanceByAnnotation();
-        service.queryDatabase();;
+        service.queryDatabase();
         service.provideHttpResponse();
         service.noLog();
 
     }
 
     public static class LoggerInterceptor {
-        public static void log(@SuperCall Callable<Void> zuper)
-                throws Exception {
+        public static void log(@SuperCall Callable<Void> zuper) throws Exception {
             System.out.println("---before---");
             try {
                 zuper.call();
@@ -39,8 +38,7 @@ public class ByteBuddyDemo {
         }
     }
 
-    private static MyService enhanceByAnnotation() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
-
+    private static MyService enhanceByAnnotation() throws Exception {
         return new ByteBuddy()
                 .subclass(MyService.class)
                 .method(new ByteBuddyDemo.FilterMethodWithLogAnnotation())
