@@ -26,6 +26,7 @@
         <module>springboot-service</module>
         <module>springboot-worker</module>
         <module>springboot-shardingsphere</module>
+        <module>threadpool-spring-boot-starter</module>
     </modules>
 
 

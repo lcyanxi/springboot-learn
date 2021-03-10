@@ -37,6 +37,7 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,8 +48,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    ThreadPoolExecutor threadPool = new ThreadPoolExecutor(10, 10, 3,
-            TimeUnit.SECONDS, new ArrayBlockingQueue<>(3));
     @DubboReference
     private IUserLessonService userLessonService;
 
@@ -57,6 +56,9 @@ public class UserController {
 
     @Resource
     private DefaultMQProducer defaultMQProducer;
+
+    @Autowired
+    private ThreadPoolExecutor threadPoolExecutor;
 
 
     @RequestMapping(value = "/user/index",method = RequestMethod.GET)
@@ -147,6 +149,11 @@ public class UserController {
             e.printStackTrace();
         }
         return "下单失败";
+    }
+
+    @GetMapping(value = "/thread-pool-info")
+    public String threadPoolTest(){
+        return "coreSize: " + threadPoolExecutor.getCorePoolSize() + ", maxSize: " + threadPoolExecutor.getMaximumPoolSize() + ", poolSize: " + threadPoolExecutor.getPoolSize();
     }
 
 

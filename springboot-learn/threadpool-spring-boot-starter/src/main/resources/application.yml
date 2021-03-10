@@ -1,0 +1,17 @@
+#server:
+#  port: 8083
+#
+#spring:
+#  application:
+#    name: threadpool-spring-boot-starter
+#
+#
+#app:
+#  id: threadpool-spring-boot-starter
+#apollo:
+#  meta: http://localhost:8080
+#  bootstrap:
+#    enabled: true
+#    eagerLoad:
+#      enabled: true
+#

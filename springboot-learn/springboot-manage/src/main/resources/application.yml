@@ -21,6 +21,15 @@ logging:
   file: logs/springboo-dubbo-consumer.log
 
 
+app:
+  id: springboot-manage
+apollo:
+  meta: http://localhost:8080
+  bootstrap:
+    enabled: true
+    eagerLoad:
+      enabled: true
+
 #spring:
 #  application:
 #    name: ware-elastic-search
