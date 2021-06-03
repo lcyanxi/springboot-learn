@@ -9,8 +9,12 @@ import net.bytebuddy.matcher.ElementMatcher;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,6 +24,17 @@ import java.util.stream.Stream;
 
 public class ByteBuddyDemo {
     public static void main(String[] args) throws Exception {
+        ArrayList list = new ArrayList(12);
+        list.add(11);
+        System.out.println(list.size());
+        StringBuffer buffer  = new StringBuffer();
+        buffer.append("dd");
+        Hashtable hashtable = new Hashtable();
+        hashtable.put("2",2);
+//        hashtable.put(null,null);
+        HashMap hashMap = new HashMap();
+        hashMap.put(null,null);
+
         MyService service = enhanceByAnnotation();
         service.queryDatabase();
         service.provideHttpResponse();
