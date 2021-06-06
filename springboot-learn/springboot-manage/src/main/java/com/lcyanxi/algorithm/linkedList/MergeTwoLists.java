@@ -44,7 +44,7 @@ public class MergeTwoLists {
         ListNode head = new ListNode(-1);
         ListNode current = head;
         // 合并，直至有一个链表为空
-        while (listNode1 != null && listNode1 != null) {
+        while (listNode1 != null && listNode2 != null) {
             if (listNode1.val >= listNode2.val) {
                 current.next = listNode2;
                 listNode2 = listNode2.next;

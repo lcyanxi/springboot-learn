@@ -66,6 +66,20 @@ public class CharExchange {
         return num;
     }
 
+    private static int charExchenge3(String str,char charStr){
+        int slow = 0;
+        int fast = 0;
+        int num = 0;
+        while (fast < str.length()){
+            if (str.charAt(fast) == charStr){
+                num = num + (fast - slow);
+                slow ++;
+            }
+            fast ++;
+        }
+        return num;
+    }
+
     private static void quickSort(int arr[],int left, int right){
         if (left < right){
             int target = quickSortUtil(arr, left, right);

@@ -20,23 +20,18 @@ public class LengthOfLongestSubstring {
         System.out.println(lengthOfLongestSubstring3(str));
     }
     private static int lengthOfLongestSubstring(String string){
-        char[] chars = string.toCharArray();
         int length = 0;
-        Map<Character,Integer> map = Maps.newHashMap();
-        for (int i = 0; i < chars.length; i ++){
-            char temp = chars[i];
+        for (int i = 0; i < string.length(); i ++){
+            char temp = string.charAt(i);
+            Map<Character,Integer> map = Maps.newHashMap();
             map.put(temp,1);
-            for (int j = i + 1; j < chars.length; j++){
-                if(temp == chars[j] || map.containsKey(chars[j])){
+            for (int j = i + 1; j < string.length(); j++){
+                if(temp == string.charAt(j) || map.containsKey(string.charAt(j))){
                     break;
                 }
-                map.put(chars[j],1);
+                map.put(string.charAt(j),1);
             }
-            int size = map.size();
-            map.clear();
-            if (size > length){
-                length = size;
-            }
+            length = Math.max(map.size(),length);
         }
         return length;
     }

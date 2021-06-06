@@ -50,7 +50,7 @@ public class MaxSubArray {
         }
         int temp = 0;
         int sum = arr[0];
-        for (int i = 1; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++){
             if ((temp + arr[i]) < arr[i]){
                 temp = arr[i];
             }else {
