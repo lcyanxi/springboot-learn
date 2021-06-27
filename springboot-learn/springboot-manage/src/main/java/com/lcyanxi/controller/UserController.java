@@ -1,18 +1,10 @@
 package com.lcyanxi.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import com.lcyanxi.enums.RocketTopicInfoEnum;
-import com.lcyanxi.jwt.JWTUtils;
-import com.lcyanxi.model.User;
-import com.lcyanxi.model.UserDemo;
-import com.lcyanxi.model.UserLesson;
-import com.lcyanxi.service.IUserLessonService;
-import com.lcyanxi.service.IUserService;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import java.util.*;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import javax.annotation.Resource;
+
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -20,19 +12,20 @@ import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
+import com.lcyanxi.enums.RocketTopicInfoEnum;
+import com.lcyanxi.filter.JWTUtils;
+import com.lcyanxi.model.User;
+import com.lcyanxi.model.UserDemo;
+import com.lcyanxi.model.UserLesson;
+import com.lcyanxi.service.IUserLessonService;
+import com.lcyanxi.service.IUserService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
@@ -148,61 +141,21 @@ public class UserController {
 
 
     @PostMapping(value = "/test-post",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String process2Post(@RequestBody UserDemo demo) throws IOException {
-        log.info("process2Post param :[{}]"+demo);
+    public String process2Post(@RequestBody UserDemo demo){
+        log.info("process2Post param :[{}]",demo);
         return JSON.toJSONString(demo);
     }
 
     @GetMapping(value = "/test-get/{userId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String process(@PathVariable Integer userId, String userName){
         UserDemo userDemo = UserDemo.builder().userId(userId).age(11).userName(userName).build();
-        log.info("process is result:[{}]" + userDemo);
+        log.info("process is result:[{}]", userDemo);
         return JSON.toJSONString(userDemo);
     }
 
     @DeleteMapping(value = "/deleted/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String deleteBodyDimension(@PathVariable String userId) {
         return "SUCCESS";
-    }
-
-    public  static void readFileData(String path) throws Exception{
-        //简写如下
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-                new FileInputStream(path), "UTF-8"));
-        String line ;
-        String[] arrs ;
-        Set<String> orders = Sets.newHashSet();
-        Set<Integer> products = Sets.newHashSet();
-        while ((line = br.readLine()) != null) {
-            arrs=line.split(",");
-            String orderNo = arrs[0];
-            Integer productId = Integer.parseInt(arrs[1]);
-            orders.add(orderNo);
-            products.add(productId);
-        }
-
-        System.out.println("select order_no,product_id,status from pr_user_class where is_deleted = 0 and  order_no in("+
-                orders.stream().map(String::valueOf).collect(Collectors.joining(","))+") and product_id in ("+
-                products.stream().map(String::valueOf).collect(Collectors.joining(","))+")");
-
-
-        System.out.println("select order_no,product_id,status from tb_user_product where is_deleted = 0 and  order_no in("+
-                orders.stream().map(String::valueOf).collect(Collectors.joining(","))+") and product_id in ("+
-                products.stream().map(String::valueOf).collect(Collectors.joining(","))+")");
-        br.close();
-    }
-
-
-    public  boolean isNumber(Object o){
-        return  (Pattern.compile("[0-9]*")).matcher(String.valueOf(o)).matches();
-    }
-
-
-    @Data
-    class Info {
-        private Integer id;
-        private String orderNo ;
-        private Integer productId;
     }
 
 }

@@ -1,8 +1,8 @@
 package com.lcyanxi.config;
 
 import com.lcyanxi.filter.ChannelFilter;
+import com.lcyanxi.filter.JWTInterceptor;
 import com.lcyanxi.filter.RequestLogInterceptor;
-import com.lcyanxi.jwt.JWTInterceptor;
 import org.springframework.aop.SpringProxy;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

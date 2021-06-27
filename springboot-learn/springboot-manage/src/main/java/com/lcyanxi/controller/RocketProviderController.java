@@ -1,19 +1,22 @@
 package com.lcyanxi.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
-import com.lcyanxi.enums.RocketTopicInfoEnum;
 import java.util.Map;
+
 import javax.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
+
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
+import com.lcyanxi.enums.RocketTopicInfoEnum;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author lichang
