@@ -1,6 +1,5 @@
 package com.lcyanxi.filter;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -103,7 +102,7 @@ public class RequestLogInterceptor extends HandlerInterceptorAdapter {
         // calculate request cost time
         String startTime = RequestLogger.getAttribute("startTime");
         if (!StringUtils.isBlank(startTime)) {
-            long cost = finishTime - Long.valueOf(startTime);
+            long cost = finishTime - Long.parseLong(startTime);
             RequestLogger.setAttribute("requestCost", String.valueOf(cost));
         }
 
