@@ -24,7 +24,7 @@ logging:
 app:
   id: springboot-manage
 apollo:
-  meta: http://localhost:8080
+  meta: http://lcyanxi.com:8080
   bootstrap:
     enabled: true
     eagerLoad:
