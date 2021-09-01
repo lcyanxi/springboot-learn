@@ -50,15 +50,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public Map<String, Object> login(User user) {
-        log.info("用户名：{}", user.getUserName());
-        log.info("password: {}", user.getPassword());
-
+    public Map<String, Object> login(String userName, String password) {
+        log.info("login userName：{}, password: {}", userName,password);
         Map<String, Object> map = new HashMap<>();
 
         try {
-            User userDB = userService.findUserByUserNamePassword(user.getUserName(),user.getPassword());
-
+            User userDB = userService.findUserByUserNamePassword(userName,password);
             Map<String, String> payload = new HashMap<>();
             payload.put("userName", userDB.getUserName());
             payload.put("password", userDB.getPassword());

@@ -10,24 +10,19 @@ import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUser1Service;
 import com.lcyanxi.service.IUserLessonService;
 import com.lcyanxi.service.IUserService;
-import java.util.Date;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-
 import java.util.List;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 @DubboService
 public class UserLessonServiceImpl implements IUserLessonService {
@@ -52,7 +47,7 @@ public class UserLessonServiceImpl implements IUserLessonService {
         if (!application.contains("springboot-service") || CollectionUtils.isEmpty(userLessonList)) {
             return false;
         }
-        log.info("insertUserLesson userLessonList:{}",userLessonList.toString());
+        log.info("insertUserLesson userLessonList:{}",userLessonList);
         return userLessonMapper.insertBatch(userLessonList);
     }
 
@@ -67,31 +62,19 @@ public class UserLessonServiceImpl implements IUserLessonService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void transactionExceptionRequired(Integer userId, String userName) {
-        User user = new User();
-        user.setPassword("123");
-        user.setUserId(userId);
-        user.setUserName(userName);
+        User user = User.builder().password("123").userId(userId).userName(userName).build();
         userService.insert(user) ;
-
-        User1 user1 = new User1();
-        user1.setName(userName);
+        User1 user1 = User1.builder().name(userName).build();
         user1Service.insert(user1);
-
-//        throw  new RuntimeException();
     }
 
 
     @Override
     @Transactional
     public void transactionExceptionRequiredException(Integer userId, String userName) {
-        User user = new User();
-        user.setPassword("123");
-        user.setUserId(userId);
-        user.setUserName(userName);
+        User user = User.builder().password("123").userId(userId).userName(userName).build();
         userService.insertException(user) ;
-
-        User1 user1 = new User1();
-        user1.setName(userName);
+        User1 user1 = User1.builder().name(userName).build();
         user1Service.insert(user1);
     }
 
@@ -99,14 +82,10 @@ public class UserLessonServiceImpl implements IUserLessonService {
     @Transactional(propagation = Propagation.REQUIRED)
     public void transactionExceptionRequiredExceptionTry(Integer userId, String userName) {
 
-        User1 user1 = new User1();
-        user1.setName(userName);
+        User1 user1 = User1.builder().name(userName).build();
         user1Service.insert(user1);
 
-        User user = new User();
-        user.setPassword("222");
-        user.setUserId(userId);
-        user.setUserName(userName);
+        User user = User.builder().password("123").userId(userId).userName(userName).build();
         try {
             userService.insertException(user) ;
         }catch (Exception e){

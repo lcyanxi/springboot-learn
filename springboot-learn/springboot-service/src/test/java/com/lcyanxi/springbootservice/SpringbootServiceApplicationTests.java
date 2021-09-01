@@ -2,7 +2,6 @@ package com.lcyanxi.springbootservice;
 
 
 import com.lcyanxi.model.User;
-import com.lcyanxi.service.IUser1Service;
 import com.lcyanxi.service.IUserLessonService;
 import com.lcyanxi.service.IUserService;
 import org.junit.Test;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 
@@ -22,10 +22,10 @@ public class SpringbootServiceApplicationTests {
     @Autowired
     DataSource dataSource;
 
-    @Autowired
+    @Resource
     private IUserLessonService userLessonService;
 
-    @Autowired
+    @Resource
     private IUserService userService;
 
     @Test
@@ -51,10 +51,7 @@ public class SpringbootServiceApplicationTests {
 
     @Test
     public void insertExceptionWithCallTest(){
-        User user = new User();
-        user.setUserName("wangwu");
-        user.setUserId(1211);
-        user.setPassword("121212");
+        User user = User.builder().userName("wangwu").userId(1211).password("121212").build();
         userService.insertExceptionWithCall(user);
         System.out.println();
     }
