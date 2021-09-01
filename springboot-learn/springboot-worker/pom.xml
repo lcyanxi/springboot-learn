@@ -10,10 +10,14 @@
 	<artifactId>springboot-worker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-worker</name>
-	<description>Demo project for Spring Boot</description>
-
 
 	<dependencies>
+		<dependency>
+			<groupId>com.lcyanxi</groupId>
+			<artifactId>springboot-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -24,15 +28,12 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
 		<!-- MQ Begin -->
 		<dependency>
 			<groupId>org.apache.rocketmq</groupId>
 			<artifactId>rocketmq-client</artifactId>
-			<version>4.3.0</version>
 		</dependency>
 		<!-- MQ End -->
-
 		<!-- 引入jdbc支持 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -48,7 +49,6 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.1.10</version>
 		</dependency>
 
 		<dependency>
@@ -74,21 +74,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.xuxueli</groupId>
-			<artifactId>xxl-job-core</artifactId>
-			<version>2.2.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.lcyanxi</groupId>
-			<artifactId>springboot-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>20.0</version>
 		</dependency>
 
 		<dependency>

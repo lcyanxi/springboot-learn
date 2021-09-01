@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan("mapper")
 @SpringBootApplication
-public class SpringbootShardingsphereApplication {
+public class ShardingsphereApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootShardingsphereApplication.class, args);
+		SpringApplication.run(ShardingsphereApplication.class, args);
 	}
 
 }
