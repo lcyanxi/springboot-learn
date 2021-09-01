@@ -1,6 +1,8 @@
 package com.lcyanxi.model;
 
 import java.io.Serializable;
+
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -8,23 +10,12 @@ import lombok.Data;
  * @date 2020/11/28
  */
 @Data
+@Builder
 public class User implements Serializable,Cloneable {
     private String id;
     private String userName;
     private Integer userId;
     private String password;
-
-    static {
-        System.out.println("User static start");
-    }
-
-    public User() {
-    }
-
-    private User(String id, String userName) {
-        this.id = id;
-        this.userName = userName;
-    }
 
     @Override
     public String toString() {
