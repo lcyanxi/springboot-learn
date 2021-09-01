@@ -16,7 +16,7 @@ import java.sql.Connection;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringbootServiceApplicationTests {
+public class ServiceApplicationTests {
 
 
     @Autowired

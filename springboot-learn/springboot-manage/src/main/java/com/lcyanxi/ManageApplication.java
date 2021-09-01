@@ -1,15 +1,17 @@
 package com.lcyanxi;
 
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class SpringbootManageApplication {
+@EnableApolloConfig
+public class ManageApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootManageApplication.class, args);
+        SpringApplication.run(ManageApplication.class, args);
     }
 
 }

@@ -11,6 +11,7 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +44,9 @@ public class UserController {
     @Autowired
     private ThreadPoolExecutor threadPoolExecutor;
 
+    @Value("${date.value}")
+    private String dataValue;
+
 
     @RequestMapping(value = "/user/index",method = RequestMethod.GET)
     public String index(){
@@ -51,7 +55,7 @@ public class UserController {
 
     @GetMapping("/login")
     public Map<String, Object> login(String userName, String password) {
-        log.info("login userName：{}, password: {}", userName,password);
+        log.info("login userName：{}, password: {},dataValue:{}", userName,password,dataValue);
         Map<String, Object> map = new HashMap<>();
 
         try {
