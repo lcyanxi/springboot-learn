@@ -18,9 +18,11 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<groupId>com.lcyanxi</groupId>
+			<artifactId>springboot-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.shardingsphere</groupId>
 			<artifactId>sharding-jdbc-spring-boot-starter</artifactId>
@@ -51,38 +53,6 @@
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>3.0.5</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.lcyanxi</groupId>
-			<artifactId>springboot-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>8</source>
-					<target>8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
