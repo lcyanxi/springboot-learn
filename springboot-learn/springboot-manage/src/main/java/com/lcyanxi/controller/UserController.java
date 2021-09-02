@@ -1,10 +1,14 @@
 package com.lcyanxi.controller;
 
-import java.util.*;
-import java.util.concurrent.ThreadPoolExecutor;
-
-import javax.annotation.Resource;
-
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
+import com.lcyanxi.enums.RocketTopicInfoEnum;
+import com.lcyanxi.filter.JWTUtils;
+import com.lcyanxi.model.User;
+import com.lcyanxi.model.UserLesson;
+import com.lcyanxi.service.IUserLessonService;
+import com.lcyanxi.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -15,18 +19,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
-import com.lcyanxi.enums.RocketTopicInfoEnum;
-import com.lcyanxi.filter.JWTUtils;
-import com.lcyanxi.model.User;
-import com.lcyanxi.model.UserDemo;
-import com.lcyanxi.model.UserLesson;
-import com.lcyanxi.service.IUserLessonService;
-import com.lcyanxi.service.IUserService;
-
-import lombok.extern.slf4j.Slf4j;
+import javax.annotation.Resource;
+import java.util.*;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @Slf4j
 @RestController
@@ -44,9 +39,6 @@ public class UserController {
     @Autowired
     private ThreadPoolExecutor threadPoolExecutor;
 
-    @Value("${date.value}")
-    private String dataValue;
-
 
     @RequestMapping(value = "/user/index",method = RequestMethod.GET)
     public String index(){
@@ -55,7 +47,7 @@ public class UserController {
 
     @GetMapping("/login")
     public Map<String, Object> login(String userName, String password) {
-        log.info("login userName：{}, password: {},dataValue:{}", userName,password,dataValue);
+        log.info("login userName：{}, password: {}", userName,password);
         Map<String, Object> map = new HashMap<>();
 
         try {
@@ -140,19 +132,6 @@ public class UserController {
         return "coreSize: " + threadPoolExecutor.getCorePoolSize() + ", maxSize: " + threadPoolExecutor.getMaximumPoolSize() + ", poolSize: " + threadPoolExecutor.getPoolSize();
     }
 
-
-    @PostMapping(value = "/test-post",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String process2Post(@RequestBody UserDemo demo){
-        log.info("process2Post param :[{}]",demo);
-        return JSON.toJSONString(demo);
-    }
-
-    @GetMapping(value = "/test-get/{userId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String process(@PathVariable Integer userId, String userName){
-        UserDemo userDemo = UserDemo.builder().userId(userId).age(11).userName(userName).build();
-        log.info("process is result:[{}]", userDemo);
-        return JSON.toJSONString(userDemo);
-    }
 
     @DeleteMapping(value = "/deleted/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String deleteBodyDimension(@PathVariable String userId) {

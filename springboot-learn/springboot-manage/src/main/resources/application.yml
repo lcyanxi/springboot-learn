@@ -29,7 +29,7 @@ apollo:
     enabled: true
     eagerLoad:
       enabled: true
-    namespaces:
+    namespaces: commonConfig
 
 #spring:
 #  application:
