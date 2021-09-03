@@ -11,7 +11,6 @@
 	<artifactId>threadpool-spring-boot-starter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>threadpool-spring-boot-starter</name>
-	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -36,7 +35,6 @@
 		<dependency>
 			<groupId>com.ctrip.framework.apollo</groupId>
 			<artifactId>apollo-client</artifactId>
-			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
