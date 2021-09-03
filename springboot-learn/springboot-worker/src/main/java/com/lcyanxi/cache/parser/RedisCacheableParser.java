@@ -42,11 +42,8 @@ public class RedisCacheableParser {
     @Autowired
     private ApplicationContext applicationContext;
 
-
-
     @Pointcut("@annotation(com.lcyanxi.cache.RedisCacheable)")
-    public void cutPoint() {
-    }
+    public void cutPoint() {}
 
     @Around("cutPoint()")
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -94,9 +91,8 @@ public class RedisCacheableParser {
 
     private void putCache(String key, int expire, int randomMax, Object resultObject) {
         int randomTTL = expire + ThreadLocalRandom.current().nextInt(0, randomMax);
-        this.retriesCall(() -> {
-            return this.redisClient.opsForValue().setIfAbsent(key, JSON.toJSONString(resultObject),randomTTL , TimeUnit.MILLISECONDS);
-            }, 1, (e) -> {
+        this.retriesCall(() -> this.redisClient.opsForValue().setIfAbsent(key, JSON.toJSONString(resultObject),randomTTL ,
+                TimeUnit.MILLISECONDS), 1, (e) -> {
             logger.error("Jspringboot worker RedisCacheable 设置缓存失败[cacheKey:[{}]]", key, e);
             return null;
         });
