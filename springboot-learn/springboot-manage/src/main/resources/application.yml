@@ -24,12 +24,12 @@ logging:
 app:
   id: springboot-manage
 apollo:
-  meta: http://lcyanxi.com:8080
+  meta: http://localhost:8080
   bootstrap:
     enabled: true
+    namespaces: application
     eagerLoad:
       enabled: true
-    namespaces: commonConfig
 
 #spring:
 #  application:
