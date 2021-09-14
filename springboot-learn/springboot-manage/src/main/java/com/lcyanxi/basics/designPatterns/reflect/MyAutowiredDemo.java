@@ -49,6 +49,6 @@ public class MyAutowiredDemo {
                 e.printStackTrace();
             }
         });
-        log.info("myAutowiredDemo get userService:[{}]",controller.getCountServiceIntense());
+//        log.info("myAutowiredDemo get userService:[{}]",controller.getCountServiceIntense());
     }
 }
