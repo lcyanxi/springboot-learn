@@ -1,7 +1,6 @@
 package com.lcyanxi.config;
 
 import com.lcyanxi.filter.ChannelFilter;
-import com.lcyanxi.filter.JWTInterceptor;
 import com.lcyanxi.filter.RequestLogInterceptor;
 import org.springframework.aop.SpringProxy;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -19,9 +18,9 @@ public class WebConfig implements WebMvcConfigurer,SpringProxy {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-                registry.addInterceptor(new JWTInterceptor())
-                .addPathPatterns("/user/*")
-                .excludePathPatterns("/login");
+//                registry.addInterceptor(new JWTInterceptor())
+//                .addPathPatterns("/user/*")
+//                .excludePathPatterns("/login");
                 registry.addInterceptor(new RequestLogInterceptor());
     }
 

@@ -2,12 +2,13 @@ package com.lcyanxi.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
+import com.lcyanxi.annotation.AccessControl;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
-import com.lcyanxi.filter.JWTUtils;
 import com.lcyanxi.model.User;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.IUserLessonService;
 import com.lcyanxi.service.IUserService;
+import com.lcyanxi.utils.JWTUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.ThreadPoolExecutor;
+
+import static com.lcyanxi.content.Contents.ATTRIBUTE_CURRENT_UID;
 
 @Slf4j
 @RestController
@@ -58,6 +61,7 @@ public class UserController {
             Map<String, String> payload = new HashMap<>();
             payload.put("userName", userDB.getUserName());
             payload.put("password", userDB.getPassword());
+            payload.put(ATTRIBUTE_CURRENT_UID,userName+password);
             String token = JWTUtils.getToken(payload);
 
             map.put("state", true);
@@ -74,8 +78,9 @@ public class UserController {
     }
 
     @GetMapping("/find")
-    public String findAllData(){
-       log.info("findAllData times:[{}]",System.currentTimeMillis());
+    @AccessControl
+    public String findAllData(@RequestAttribute(value = ATTRIBUTE_CURRENT_UID) String userId){
+       log.info("findAllData userId:[{}] , times:[{}]",userId,System.currentTimeMillis());
         return "获得" + userLessonService.findAll().size() +"条数据";
     }
 
