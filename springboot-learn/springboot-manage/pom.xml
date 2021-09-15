@@ -21,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
-            <artifactId>accessControl-springboot-starter</artifactId>
+            <artifactId>webmvc-springboot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

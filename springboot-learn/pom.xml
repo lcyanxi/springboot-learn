@@ -52,7 +52,7 @@
 
             <dependency>
                 <groupId>com.lcyanxi.commons</groupId>
-                <artifactId>accessControl-springboot-starter</artifactId>
+                <artifactId>webmvc-springboot-starter</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
 
