@@ -1,6 +1,5 @@
 package com.lcyanxi.dictionary;
 
-import com.lcyanxi.limit.dictionary.InitApolloLocalCacheBeanPostProcessor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
