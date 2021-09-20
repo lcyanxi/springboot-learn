@@ -27,6 +27,7 @@
         <rocketmq.client.version>4.3.0</rocketmq.client.version>
         <xxl.job.core.version>2.2.0</xxl.job.core.version>
         <webmagic.version>0.7.4</webmagic.version>
+        <fastjson.version>1.2.72</fastjson.version>
     </properties>
 
     <modules>
@@ -51,9 +52,25 @@
             </dependency>
 
             <dependency>
+                <groupId>com.lcyanxi</groupId>
+                <artifactId>springboot-api</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.lcyanxi.commons</groupId>
                 <artifactId>webmvc-springboot-starter</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-web</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.lcyanxi.commons</groupId>
@@ -80,6 +97,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.spring.boot.starter.version}</version>
@@ -90,14 +113,6 @@
                 <version>${druid.spring.boot.starter.version}</version>
             </dependency>
 
-            <!-- Apache Dubbo  -->
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-dependencies-bom</artifactId>
-                <version>${dubbo.starter.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
