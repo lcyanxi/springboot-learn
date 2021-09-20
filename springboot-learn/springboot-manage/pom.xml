@@ -19,6 +19,13 @@
             <artifactId>springboot-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>com.lcyanxi.commons</groupId>
+            <artifactId>jetcache-springboot-starter</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>webmvc-springboot-starter</artifactId>

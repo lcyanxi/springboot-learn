@@ -12,14 +12,6 @@ dubbo:
     address: nacos://lcyanxi.com:8848
   consumer:
     timeout: 30000
-# log config
-logging:
-  config: classpath:log4j2.xml
-  level:
-    root: info
-    web: info
-  file: logs/springboo-dubbo-consumer.log
-
 
 app:
   id: springboot-manage
@@ -30,14 +22,3 @@ apollo:
     namespaces: application
     eagerLoad:
       enabled: true
-
-#spring:
-#  application:
-#    name: ware-elastic-search
-#  data:
-#    elasticsearch:
-#      # 默认 elasticsearch
-#      cluster-name: elasticsearch
-#      # 9200作为Http协议，主要用于外部通讯
-#      # 9300作为Tcp协议，jar之间就是通过tcp协议通讯
-#      cluster-nodes: lcyanxi.com:9300

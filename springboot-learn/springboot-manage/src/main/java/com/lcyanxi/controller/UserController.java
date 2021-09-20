@@ -6,6 +6,7 @@ import com.lcyanxi.annotation.AccessControl;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
 import com.lcyanxi.model.User;
 import com.lcyanxi.model.UserLesson;
+import com.lcyanxi.service.ISalaryCalService;
 import com.lcyanxi.service.IUserLessonService;
 import com.lcyanxi.service.IUserService;
 import com.lcyanxi.utils.JWTUtils;
@@ -15,7 +16,6 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,8 @@ import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import static com.lcyanxi.content.Contents.ATTRIBUTE_CURRENT_UID;
+import static com.lcyanxi.constent.Contents.ATTRIBUTE_CURRENT_UID;
+
 
 @Slf4j
 @RestController
@@ -39,11 +40,15 @@ public class UserController {
     @Resource
     private DefaultMQProducer defaultMQProducer;
 
-    @Autowired
+    @Resource
     private ThreadPoolExecutor threadPoolExecutor;
+
+    @Resource
+    private ISalaryCalService salaryCalService;
 
     @Value("${date.value}")
     private String dataValue;
+
 
 
     @RequestMapping(value = "/user/index",method = RequestMethod.GET)
@@ -146,4 +151,9 @@ public class UserController {
         return "SUCCESS";
     }
 
+    @GetMapping(value = "/salary")
+    public String salary(String salary){
+        Double aDouble = salaryCalService.cal(Double.parseDouble(salary));
+        return String.valueOf(aDouble);
+    }
 }
