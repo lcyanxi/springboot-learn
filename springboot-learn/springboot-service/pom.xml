@@ -22,6 +22,11 @@
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>dubbolimit-springboot-starter</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.lcyanxi.commons</groupId>
+            <artifactId>jetcache-springboot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -114,12 +119,6 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

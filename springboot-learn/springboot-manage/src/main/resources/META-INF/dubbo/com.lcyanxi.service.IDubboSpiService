@@ -1,3 +1,0 @@
-dubboSpiOtherService = com.lcyanxi.serviceImpl.DubboSpiOtherServiceImpl
-dubboSpiService = com.lcyanxi.serviceImpl.DubboSpiServiceImpl
-adaptiveDubboSpiService = com.lcyanxi.serviceImpl.AdaptiveDubboSpiServiceImpl

@@ -1,19 +1,16 @@
 package com.lcyanxi.springbootmanage;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.lcyanxi.model.ClassInfo;
-import com.lcyanxi.util.DateUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.CollectionUtils;
 
 /**
  * @author lichang
