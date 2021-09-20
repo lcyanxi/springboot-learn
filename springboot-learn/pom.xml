@@ -27,7 +27,6 @@
         <rocketmq.client.version>4.3.0</rocketmq.client.version>
         <xxl.job.core.version>2.2.0</xxl.job.core.version>
         <webmagic.version>0.7.4</webmagic.version>
-        <fastjson.version>1.2.72</fastjson.version>
     </properties>
 
     <modules>
@@ -37,6 +36,7 @@
         <module>springboot-worker</module>
         <module>springboot-shardingsphere</module>
         <module>threadpool-spring-boot-starter</module>
+        <module>springboot-scheduler</module>
     </modules>
 
 
@@ -54,6 +54,12 @@
             <dependency>
                 <groupId>com.lcyanxi</groupId>
                 <artifactId>springboot-api</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lcyanxi.commons</groupId>
+                <artifactId>xxljob-springboot-starter</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
 
@@ -94,12 +100,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
             </dependency>
 
             <dependency>
