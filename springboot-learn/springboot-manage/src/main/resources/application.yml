@@ -13,12 +13,8 @@ dubbo:
   consumer:
     timeout: 30000
 
-app:
-  id: springboot-manage
 apollo:
   meta: http://localhost:8080
   bootstrap:
     enabled: true
-    namespaces: application
-    eagerLoad:
-      enabled: true
+    namespaces: manage-application,INFRA.redis

@@ -17,13 +17,9 @@ dubbo:
   scan:
     base-packages: com.lcyanxi.service.impl
 
-app:
-  id: springboot-service
 apollo:
   meta: http://localhost:8080
   bootstrap:
     enabled: true
-    namespaces: application,commonConfig,ratelimiter
-    eagerLoad:
-      enabled: true
+    namespaces: commonConfig,dubboLimitConfig,INFRA.redis
 
