@@ -4,3 +4,9 @@ server:
 spring:
   application:
     name: springboo-scheduler
+
+apollo:
+  meta: http://localhost:8080
+  bootstrap:
+    enabled: true
+    namespaces: INFRA.xxl-job
