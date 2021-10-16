@@ -31,6 +31,11 @@
 
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
+            <artifactId>rocketmq-springboot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lcyanxi.commons</groupId>
             <artifactId>webmvc-springboot-starter</artifactId>
         </dependency>
         <dependency>
@@ -88,19 +93,11 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-        <!-- MQ Begin -->
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
         </dependency>
-        <!-- MQ End -->
 
-        <!-- ES Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-        </dependency>
-        <!-- ES End -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

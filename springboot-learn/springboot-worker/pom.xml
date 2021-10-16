@@ -18,6 +18,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.lcyanxi.commons</groupId>
+			<artifactId>rocketmq-springboot-starter</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
@@ -60,17 +65,10 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>com.alibaba.otter</groupId>-->
-<!--			<artifactId>canal.client</artifactId>-->
-<!--			<version>1.1.4</version>-->
-<!--			<exclusions>-->
-<!--				<exclusion>-->
-<!--					<artifactId>guava</artifactId>-->
-<!--					<groupId>com.google.guava</groupId>-->
-<!--				</exclusion>-->
-<!--			</exclusions>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.alibaba.otter</groupId>
+			<artifactId>canal.client</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>com.xuxueli</groupId>
