@@ -10,7 +10,7 @@ dubbo:
     name: springboot-service
   registry:
 #    address: lcyanxi.com:2181,lcyanxi.com:2182,lcyanxi.com:2183
-    address: nacos://lcyanxi.com:8848
+    address: nacos://47.93.245.76:8848
   protocol:
     name: dubbo
     port: 20881

@@ -29,6 +29,7 @@
         <xxl.job.core.version>2.2.0</xxl.job.core.version>
         <webmagic.version>0.7.4</webmagic.version>
         <caffeine.version>2.8.2</caffeine.version>
+        <canal.client.version>1.1.4</canal.client.version>
     </properties>
 
     <modules>
@@ -85,7 +86,11 @@
                 <artifactId>dubbolimit-springboot-starter</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.lcyanxi.commons</groupId>
+                <artifactId>rocketmq-springboot-starter</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>com.lcyanxi.commons</groupId>
                 <artifactId>jetcache-springboot-starter</artifactId>
@@ -169,6 +174,18 @@
                 <groupId>com.github.ben-manes.caffeine</groupId>
                 <artifactId>caffeine</artifactId>
                 <version>${caffeine.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.otter</groupId>
+                <artifactId>canal.client</artifactId>
+                <version>${canal.client.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>guava</artifactId>
+                        <groupId>com.google.guava</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,13 +1,15 @@
 package com.lcyanxi;
 
+import com.lcyanxi.rocketmq.annotation.EnableMQConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ThreadpoolStarterApplication {
+@EnableMQConfiguration
+public class WorkerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ThreadpoolStarterApplication.class, args);
+		SpringApplication.run(WorkerApplication.class, args);
 	}
 
 }

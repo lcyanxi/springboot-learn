@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.lcyanxi.config.ThreadPoolAutoConfiguration,com.lcyanxi.ratelimiter.RateLimiterConfigurationLister
