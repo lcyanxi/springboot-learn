@@ -14,7 +14,6 @@ dubbo:
     timeout: 30000
 
 apollo:
-  meta: http://localhost:8080
   bootstrap:
     enabled: true
     namespaces: manage-application,INFRA.redis

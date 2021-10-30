@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * @author lichang
@@ -27,7 +29,7 @@ public class UserServiceImpl implements IUserService {
     private String dataValue;
 
     @Override
-    @Cached(name = "findUserByUserNamePassword", key = "#userName", expire = 10, cacheType = CacheType.BOTH)
+    @Cached(name = "findUserByUserNamePassword", key = "#userName", expire = 1, timeUnit = TimeUnit.MINUTES, cacheType = CacheType.BOTH)
     public User findUserByUserNamePassword(String userName, String password) {
         log.info("findUserByUserNamePassword userName:{},password:{},dataValue:{}", userName, password, dataValue);
         return userMapper.findUserByUserNamePassword(userName, password);
