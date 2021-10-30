@@ -22,13 +22,10 @@
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>jetcache-springboot-starter</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.lcyanxi</groupId>
-            <artifactId>threadpool-spring-boot-starter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
+<!--        <dependency>-->
+<!--            <groupId>com.lcyanxi.commons</groupId>-->
+<!--            <artifactId>redissonlock-springboot-starter</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>rocketmq-springboot-starter</artifactId>
@@ -142,14 +139,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>easyexcel</artifactId>
-            <version>2.2.10</version>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.github.ben-manes.caffeine</groupId>
-            <artifactId>caffeine</artifactId>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
         </dependency>
     </dependencies>
 </project>

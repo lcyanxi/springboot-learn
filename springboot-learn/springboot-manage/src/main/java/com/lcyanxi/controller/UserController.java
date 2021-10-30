@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.concurrent.ThreadPoolExecutor;
 
 import static com.lcyanxi.constent.Contents.ATTRIBUTE_CURRENT_UID;
 
@@ -41,15 +40,7 @@ public class UserController {
     private DefaultMQProducer defaultMQProducer;
 
     @Resource
-    private ThreadPoolExecutor threadPoolExecutor;
-
-    @Resource
     private ISalaryCalService salaryCalService;
-
-    @Value("${date.value}")
-    private String dataValue;
-
-
 
     @RequestMapping(value = "/user/index",method = RequestMethod.GET)
     public String index(){
@@ -58,7 +49,7 @@ public class UserController {
 
     @GetMapping("/login")
     public Map<String, Object> login(String userName, String password) {
-        log.info("login userName：{}, password: {},dataValue:{}", userName,password,dataValue);
+        log.info("login userName：{}, password: {}", userName,password);
         Map<String, Object> map = new HashMap<>();
 
         try {
@@ -140,19 +131,15 @@ public class UserController {
         return "下单失败";
     }
 
-    @GetMapping(value = "/thread-pool-info")
-    public String threadPoolTest(){
-        return "coreSize: " + threadPoolExecutor.getCorePoolSize() + ", maxSize: " + threadPoolExecutor.getMaximumPoolSize() + ", poolSize: " + threadPoolExecutor.getPoolSize();
-    }
-
-
     @DeleteMapping(value = "/deleted/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String deleteBodyDimension(@PathVariable String userId) {
         return "SUCCESS";
     }
 
     @GetMapping(value = "/salary")
+//    @RedissonLock(lockPre = "salary",value = "#salary")
     public String salary(String salary){
+        log.info("salary:{}",salary);
         Double aDouble = salaryCalService.cal(Double.parseDouble(salary));
         return String.valueOf(aDouble);
     }
