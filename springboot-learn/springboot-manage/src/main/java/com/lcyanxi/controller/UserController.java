@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.lcyanxi.annotation.AccessControl;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
+import com.lcyanxi.lock.RedissonLock;
 import com.lcyanxi.model.User;
 import com.lcyanxi.model.UserLesson;
 import com.lcyanxi.service.ISalaryCalService;
@@ -16,7 +17,6 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -136,10 +136,12 @@ public class UserController {
         return "SUCCESS";
     }
 
-    @GetMapping(value = "/salary")
-//    @RedissonLock(lockPre = "salary",value = "#salary")
-    public String salary(String salary){
+    @GetMapping(value = "/salary",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RedissonLock(lockPre = "demoTest",value = "#id",leaseSeconds = 3000)
+    public String salary(String salary) throws InterruptedException {
         log.info("salary:{}",salary);
+        Thread.sleep(100000);
+        log.info("salary sleep.......");
         Double aDouble = salaryCalService.cal(Double.parseDouble(salary));
         return String.valueOf(aDouble);
     }
