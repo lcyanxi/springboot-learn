@@ -1,0 +1,171 @@
+[2021-10-31 11:02:05.199+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ServiceApplication on LICHANGdeMBP.lan with PID 5633 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-service/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:02:05.205+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:02:07.894+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:110 {} ###############################################
+[2021-10-31 11:02:07.894+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:111 {} #					                            #
+[2021-10-31 11:02:07.894+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:114 {} #	 guavaDefaultRateLimiterListener namespace is application init key:[jwyth_guava_rate_limiter_default_key] -> value:[10]   #
+[2021-10-31 11:02:07.895+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:114 {} #	 guavaDefaultRateLimiterListener namespace is application init key:[jwyth_guava_rate_limiter_total] -> value:[20]   #
+[2021-10-31 11:02:07.895+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:114 {} #	 guavaDefaultRateLimiterListener namespace is application init key:[jwyth.sys.guava.rate.limiter.rule] -> value:[[
+    {
+        "resource": "com.koolearn.jianke.service.ICourseInfoBizService:findProductsByCourseInfoId(java.lang.Integer)",
+        "qps": 1000,
+        "enable": true,
+        "limitApp": "default"
+    },
+    {
+        "resource": "com.koolearn.jianke.service.ICourseInfoBizService:findProductsByCourseInfoId(java.lang.Integer)",
+        "qps": 1000,
+        "enable": true,
+        "limitApp": "jianke-tesseract-job-core"
+    },
+    {
+        "resource": "com.koolearn.jianke.service.k12.service.IRecommendSubClassBizService:k12GetRecommendSubClasses(java.util.List,java.lang.Integer)",
+        "qps": 1,
+        "enable": true,
+        "limitApp": "default"
+    },
+    {
+        "resource": "com.lcyanxi.service.IUserLessonService:findAll()",
+        "qps": 1,
+        "enable": true,
+        "limitApp": "default"
+    }
+]]   #
+[2021-10-31 11:02:07.895+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:116 {} #					                            #
+[2021-10-31 11:02:07.895+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:117 {} ###############################################
+[2021-10-31 11:02:17.556+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ServiceApplication in 12.905 seconds (JVM running for 15.127)
+[2021-10-31 11:03:57.688+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 5683 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:03:57.689+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:07:08.985+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 5733 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:07:08.987+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:08:21.251+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 5763 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:08:21.253+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:09:57.955+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 5793 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:09:57.956+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:14:20.153+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 5856 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:14:20.154+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:14:32.241+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ManageApplication in 12.655 seconds (JVM running for 14.126)
+[2021-10-31 11:15:32.163+0800] INFO  [http-nio-8081-exec-1] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:15:32.203+0800] INFO  [http-nio-8081-exec-1] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635650132133||salary=100||finishTime=1635650132203||requestCost=70||
+[2021-10-31 11:17:17.554+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 5917 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:17:17.555+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:17:28.591+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ManageApplication in 11.643 seconds (JVM running for 13.447)
+[2021-10-31 11:17:54.117+0800] INFO  [http-nio-8081-exec-1] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:17:54.142+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:142 {} salary:100
+[2021-10-31 11:17:54.287+0800] INFO  [http-nio-8081-exec-1] c.l.s.SalaryCalServiceImpl:20 {} salaryCalServiceImpl cal money:100.0
+[2021-10-31 11:17:54.316+0800] INFO  [http-nio-8081-exec-1] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635650269099||salary=100||finishTime=1635650274316||requestCost=5217||
+[2021-10-31 11:21:25.570+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 5983 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:21:25.571+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:21:36.821+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ManageApplication in 11.889 seconds (JVM running for 13.548)
+[2021-10-31 11:22:04.332+0800] INFO  [http-nio-8081-exec-1] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:22:04.348+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:142 {} salary:100
+[2021-10-31 11:22:11.364+0800] INFO  [http-nio-8081-exec-2] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:22:11.389+0800] INFO  [http-nio-8081-exec-2] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635650531364||salary=100||finishTime=1635650531389||requestCost=25||
+[2021-10-31 11:22:15.739+0800] INFO  [http-nio-8081-exec-4] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:22:15.747+0800] INFO  [http-nio-8081-exec-4] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=PostmanRuntime/7.28.4||startTime=1635650535739||salary=100||finishTime=1635650535747||requestCost=8||
+[2021-10-31 11:22:19.124+0800] INFO  [http-nio-8081-exec-5] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:22:19.130+0800] INFO  [http-nio-8081-exec-5] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=PostmanRuntime/7.28.4||startTime=1635650539123||salary=100||finishTime=1635650539130||requestCost=7||
+[2021-10-31 11:23:24.493+0800] INFO  [http-nio-8081-exec-10] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:23:24.502+0800] INFO  [http-nio-8081-exec-10] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=PostmanRuntime/7.28.4||startTime=1635650604493||salary=100||finishTime=1635650604502||requestCost=9||
+[2021-10-31 11:23:27.767+0800] INFO  [http-nio-8081-exec-2] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:23:27.774+0800] INFO  [http-nio-8081-exec-2] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635650607767||salary=100||finishTime=1635650607774||requestCost=7||
+[2021-10-31 11:23:44.351+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:144 {} salary sleep.......
+[2021-10-31 11:23:44.464+0800] INFO  [http-nio-8081-exec-1] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635650524303||salary=100||finishTime=1635650624464||requestCost=100161||
+[2021-10-31 11:33:17.620+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 6204 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:33:17.621+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:33:28.766+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ManageApplication in 11.995 seconds (JVM running for 13.785)
+[2021-10-31 11:33:57.158+0800] INFO  [http-nio-8081-exec-2] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:33:57.177+0800] INFO  [http-nio-8081-exec-2] c.l.c.UserController:142 {} salary:100
+[2021-10-31 11:33:59.708+0800] INFO  [http-nio-8081-exec-3] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:33:59.728+0800] INFO  [http-nio-8081-exec-3] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651239708||salary=100||finishTime=1635651239727||requestCost=19||
+[2021-10-31 11:34:01.052+0800] INFO  [http-nio-8081-exec-4] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:34:01.059+0800] INFO  [http-nio-8081-exec-4] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651241052||salary=100||finishTime=1635651241059||requestCost=7||
+[2021-10-31 11:34:01.977+0800] INFO  [http-nio-8081-exec-5] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:34:01.984+0800] INFO  [http-nio-8081-exec-5] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651241976||salary=100||finishTime=1635651241984||requestCost=8||
+[2021-10-31 11:34:37.474+0800] INFO  [http-nio-8081-exec-6] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:34:37.480+0800] INFO  [http-nio-8081-exec-6] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651277473||salary=100||finishTime=1635651277480||requestCost=7||
+[2021-10-31 11:34:38.720+0800] INFO  [http-nio-8081-exec-7] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:34:38.729+0800] INFO  [http-nio-8081-exec-7] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651278719||salary=100||finishTime=1635651278729||requestCost=10||
+[2021-10-31 11:34:52.137+0800] INFO  [http-nio-8081-exec-8] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:34:52.144+0800] INFO  [http-nio-8081-exec-8] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651292137||salary=100||finishTime=1635651292144||requestCost=7||
+[2021-10-31 11:35:37.176+0800] INFO  [http-nio-8081-exec-2] c.l.c.UserController:144 {} salary sleep.......
+[2021-10-31 11:35:37.348+0800] INFO  [http-nio-8081-exec-2] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=PostmanRuntime/7.28.4||startTime=1635651237122||salary=100||finishTime=1635651337348||requestCost=100226||
+[2021-10-31 11:35:41.691+0800] INFO  [http-nio-8081-exec-10] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:35:41.693+0800] INFO  [http-nio-8081-exec-10] c.l.c.UserController:142 {} salary:100
+[2021-10-31 11:36:09.198+0800] INFO  [http-nio-8081-exec-1] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:salary_100...........
+[2021-10-31 11:36:09.204+0800] INFO  [http-nio-8081-exec-1] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=PostmanRuntime/7.28.4||startTime=1635651369198||salary=100||finishTime=1635651369204||requestCost=6||
+[2021-10-31 11:37:21.695+0800] INFO  [http-nio-8081-exec-10] c.l.c.UserController:144 {} salary sleep.......
+[2021-10-31 11:37:21.710+0800] INFO  [http-nio-8081-exec-10] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651341690||salary=100||finishTime=1635651441710||requestCost=100020||
+[2021-10-31 11:40:55.930+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 6322 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:40:55.931+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:41:06.386+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ManageApplication in 11.453 seconds (JVM running for 12.685)
+[2021-10-31 11:41:16.817+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:141 {} salary:100
+[2021-10-31 11:41:16.818+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:152 {} demoTest:100
+[2021-10-31 11:41:16.818+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:143 {} test:100
+[2021-10-31 11:42:02.141+0800] INFO  [http-nio-8081-exec-1] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651676802||salary=100||finishTime=1635651722139||requestCost=45337||errorCode=500||errorMsg=java.lang.InterruptedException: sleep interrupted||
+[2021-10-31 11:42:26.416+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 6359 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 11:42:26.417+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 11:42:38.196+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ManageApplication in 12.486 seconds (JVM running for 14.561)
+[2021-10-31 11:42:38.372+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:141 {} salary:100
+[2021-10-31 11:42:38.372+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:152 {} demoTest:100
+[2021-10-31 11:42:38.373+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:143 {} test:100
+[2021-10-31 11:43:23.952+0800] INFO  [http-nio-8081-exec-2] c.l.c.UserController:141 {} salary:100
+[2021-10-31 11:54:03.380+0800] INFO  [http-nio-8081-exec-1] c.l.c.UserController:145 {} salary sleep.......
+[2021-10-31 11:54:03.382+0800] INFO  [http-nio-8081-exec-2] c.l.c.UserController:152 {} demoTest:100
+[2021-10-31 11:54:03.383+0800] INFO  [http-nio-8081-exec-2] c.l.c.UserController:143 {} test:100
+[2021-10-31 11:54:03.584+0800] INFO  [http-nio-8081-exec-1] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651758354||salary=100||finishTime=1635652443584||requestCost=685230||
+[2021-10-31 11:54:21.183+0800] INFO  [http-nio-8081-exec-2] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635651793591||salary=100||finishTime=1635652461181||requestCost=667590||errorCode=500||errorMsg=java.lang.InterruptedException: sleep interrupted||
+[2021-10-31 18:03:32.507+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ServiceApplication on LICHANGdeMBP.lan with PID 7720 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-service/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 18:03:32.508+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 18:03:35.040+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:110 {} ###############################################
+[2021-10-31 18:03:35.040+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:111 {} #					                            #
+[2021-10-31 18:03:35.041+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:114 {} #	 guavaDefaultRateLimiterListener namespace is application init key:[jwyth_guava_rate_limiter_default_key] -> value:[10]   #
+[2021-10-31 18:03:35.041+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:114 {} #	 guavaDefaultRateLimiterListener namespace is application init key:[jwyth_guava_rate_limiter_total] -> value:[20]   #
+[2021-10-31 18:03:35.041+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:114 {} #	 guavaDefaultRateLimiterListener namespace is application init key:[jwyth.sys.guava.rate.limiter.rule] -> value:[[
+    {
+        "resource": "com.koolearn.jianke.service.ICourseInfoBizService:findProductsByCourseInfoId(java.lang.Integer)",
+        "qps": 1000,
+        "enable": true,
+        "limitApp": "default"
+    },
+    {
+        "resource": "com.koolearn.jianke.service.ICourseInfoBizService:findProductsByCourseInfoId(java.lang.Integer)",
+        "qps": 1000,
+        "enable": true,
+        "limitApp": "jianke-tesseract-job-core"
+    },
+    {
+        "resource": "com.koolearn.jianke.service.k12.service.IRecommendSubClassBizService:k12GetRecommendSubClasses(java.util.List,java.lang.Integer)",
+        "qps": 1,
+        "enable": true,
+        "limitApp": "default"
+    },
+    {
+        "resource": "com.lcyanxi.service.IUserLessonService:findAll()",
+        "qps": 1,
+        "enable": true,
+        "limitApp": "default"
+    }
+]]   #
+[2021-10-31 18:03:35.042+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:116 {} #					                            #
+[2021-10-31 18:03:35.042+0800] INFO  [main] c.l.l.GuavaDefaultRateLimiterListener:117 {} ###############################################
+[2021-10-31 18:03:43.384+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ServiceApplication in 11.397 seconds (JVM running for 12.734)
+[2021-10-31 18:03:49.373+0800] INFO  [main] o.s.b.StartupInfoLogger:50 {} Starting ManageApplication on LICHANGdeMBP.lan with PID 7729 (/Users/lichang/Documents/ideaData/springboot-learn/springboot-learn/springboot-manage/target/classes started by lichang in /Users/lichang/Documents/ideaData/springboot-learn/springboot-learn)
+[2021-10-31 18:03:49.374+0800] INFO  [main] o.s.b.SpringApplication:648 {} No active profile set, falling back to default profiles: default
+[2021-10-31 18:04:00.148+0800] INFO  [main] o.s.b.StartupInfoLogger:59 {} Started ManageApplication in 11.354 seconds (JVM running for 12.935)
+[2021-10-31 18:04:12.239+0800] INFO  [http-nio-8081-exec-2] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:demoTest_null...........
+[2021-10-31 18:04:12.258+0800] INFO  [http-nio-8081-exec-2] c.l.c.UserController:143 {} salary:100
+[2021-10-31 18:04:17.104+0800] INFO  [http-nio-8081-exec-3] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:demoTest_null...........
+[2021-10-31 18:04:17.106+0800] INFO  [http-nio-8081-exec-3] c.l.c.UserController:143 {} salary:100
+[2021-10-31 18:04:27.605+0800] INFO  [http-nio-8081-exec-4] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:demoTest_null...........
+[2021-10-31 18:04:27.607+0800] INFO  [http-nio-8081-exec-4] c.l.c.UserController:143 {} salary:100
+[2021-10-31 18:05:07.048+0800] INFO  [http-nio-8081-exec-5] c.l.l.RedissonLockAspect:54 {} redissonLockAspect aroundMethod is start key:demoTest_null...........
+[2021-10-31 18:05:07.051+0800] INFO  [http-nio-8081-exec-5] c.l.c.UserController:143 {} salary:100
+[2021-10-31 18:05:12.262+0800] INFO  [http-nio-8081-exec-2] c.l.c.UserController:145 {} salary sleep.......
+[2021-10-31 18:05:12.370+0800] INFO  [http-nio-8081-exec-2] c.l.s.SalaryCalServiceImpl:20 {} salaryCalServiceImpl cal money:100.0
+[2021-10-31 18:05:12.392+0800] INFO  [http-nio-8081-exec-2] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=PostmanRuntime/7.28.4||startTime=1635674652212||salary=100||finishTime=1635674712391||requestCost=60179||
+[2021-10-31 18:05:17.109+0800] INFO  [http-nio-8081-exec-3] c.l.c.UserController:145 {} salary sleep.......
+[2021-10-31 18:05:17.117+0800] INFO  [http-nio-8081-exec-3] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635674657103||salary=100||finishTime=1635674717117||requestCost=60014||
+[2021-10-31 18:05:27.609+0800] INFO  [http-nio-8081-exec-4] c.l.c.UserController:145 {} salary sleep.......
+[2021-10-31 18:05:27.614+0800] INFO  [http-nio-8081-exec-4] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635674667605||salary=100||finishTime=1635674727614||requestCost=60009||
+[2021-10-31 18:06:07.052+0800] INFO  [http-nio-8081-exec-5] c.l.c.UserController:145 {} salary sleep.......
+[2021-10-31 18:06:07.055+0800] INFO  [http-nio-8081-exec-5] c.l.i.RequestLogProcessorInterceptor:84 {} method=GET||uri=/salary||ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36||startTime=1635674707047||salary=100||finishTime=1635674767055||requestCost=60008||

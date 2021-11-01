@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static com.lcyanxi.constent.Contents.ATTRIBUTE_CURRENT_UID;
 
@@ -137,10 +138,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/salary",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @RedissonLock(lockPre = "demoTest",value = "#id",leaseSeconds = 3000)
+    @RedissonLock(lockPre = "demoTest",value = "#salary",leaseSeconds = 3)
     public String salary(String salary) throws InterruptedException {
         log.info("salary:{}",salary);
-        Thread.sleep(100000);
+        TimeUnit.SECONDS.sleep(60);
         log.info("salary sleep.......");
         Double aDouble = salaryCalService.cal(Double.parseDouble(salary));
         return String.valueOf(aDouble);

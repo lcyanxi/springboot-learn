@@ -2,6 +2,7 @@ package com.lcyanxi.service.impl;
 
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.Cached;
+import com.lcyanxi.commons.lock.annotation.RedissonLock;
 import com.lcyanxi.dto.UserMapper;
 import com.lcyanxi.model.User;
 import com.lcyanxi.service.IUserService;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     @Cached(name = "findUserByUserNamePassword", key = "#userName", expire = 1, timeUnit = TimeUnit.MINUTES, cacheType = CacheType.BOTH)
+    @RedissonLock(lockPre = "findUserByUserNamePassword",value = "#userName",leaseSeconds = 3)
     public User findUserByUserNamePassword(String userName, String password) {
         log.info("findUserByUserNamePassword userName:{},password:{},dataValue:{}", userName, password, dataValue);
         return userMapper.findUserByUserNamePassword(userName, password);

@@ -24,6 +24,11 @@
 
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
+            <artifactId>redissonlock-springboot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lcyanxi.commons</groupId>
             <artifactId>jetcache-springboot-starter</artifactId>
         </dependency>
         <dependency>
@@ -98,6 +103,16 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.72</version>
+        </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <version>1.9.5</version>
         </dependency>
 
         <dependency>
