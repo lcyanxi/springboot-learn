@@ -33,10 +33,10 @@ import static com.lcyanxi.constent.Contents.ATTRIBUTE_CURRENT_UID;
 @RestController
 public class UserController {
 
-    @DubboReference(check = false)
+    @DubboReference
     private IUserLessonService userLessonService;
 
-    @DubboReference(check = false)
+    @DubboReference
     private IUserService userService;
 
     @Resource
