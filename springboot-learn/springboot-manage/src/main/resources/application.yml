@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: springboo-manage
+  redis:
+    host: 127.0.0.1
+    database: 1
+    port: 6379
+    password: lc121718
+    timeout: 10000
 
 dubbo:
   application:

@@ -35,4 +35,13 @@ public interface Constants {
      * 队列容量
      */
     String queueCapacity = "queueCapacity";
+
+
+    String HOUR_KEY = "hour_key";
+
+    String DAY_KEY = "day_key";
+
+    String WEEK_KEY = "week_key";
+
+    String MONTH_KEY = "month_key";
 }

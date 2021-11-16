@@ -17,6 +17,8 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,10 +33,10 @@ import static com.lcyanxi.constent.Contents.ATTRIBUTE_CURRENT_UID;
 @RestController
 public class UserController {
 
-    @DubboReference
+    @DubboReference(check = false)
     private IUserLessonService userLessonService;
 
-    @DubboReference
+    @DubboReference(check = false)
     private IUserService userService;
 
     @Resource
@@ -42,6 +44,9 @@ public class UserController {
 
     @Resource
     private ISalaryCalService salaryCalService;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @RequestMapping(value = "/user/index",method = RequestMethod.GET)
     public String index(){
@@ -146,4 +151,23 @@ public class UserController {
         Double aDouble = salaryCalService.cal(Double.parseDouble(salary));
         return String.valueOf(aDouble);
     }
+
+    @GetMapping(value = "/lock",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String lock(String salary){
+        String key = String.format("lock_%s",salary);
+        String uniqueId = String.valueOf(Thread.currentThread().getId());
+        try{
+            Boolean lock = redisTemplate.opsForValue().setIfAbsent(key, uniqueId, 3000, TimeUnit.MILLISECONDS);
+            if (Objects.nonNull(lock) && lock){
+                // .........
+            }
+        }finally {
+            String value = redisTemplate.opsForValue().get(key);
+            if (uniqueId.equals(value)){
+                redisTemplate.delete(key);
+            }
+        }
+        return "ok";
+    }
+
 }
