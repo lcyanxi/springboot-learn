@@ -15,14 +15,12 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class UtilTest {
-    private static final long LAST_CONNECTION_TIMEOUT = TimeUnit.MINUTES.toSeconds(10);
     @Test
     public void test() {
         int index = 0;
         while (index++ < 100) {
             int score = 6;
             long num = 19;
-            log.info("LAST_CONNECTION_TIMEOUT:{}",LAST_CONNECTION_TIMEOUT);
             int rang = BigDecimal.valueOf(num).multiply(BigDecimal.valueOf(0.05)).intValue();
             int newRange = BigDecimal.valueOf(num).multiply(BigDecimal.valueOf(0.05))
                     .setScale(0, RoundingMode.HALF_UP).intValue();
