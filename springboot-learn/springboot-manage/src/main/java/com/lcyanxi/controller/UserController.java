@@ -145,7 +145,6 @@ public class UserController {
     @GetMapping(value = "/salary",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RedissonLock(lockPre = "demoTest",value = "#salary",leaseSeconds = 3)
     public String salary(String salary) throws InterruptedException {
-        log.info("salary:{}",salary);
         TimeUnit.SECONDS.sleep(60);
         log.info("salary sleep.......");
         Double aDouble = salaryCalService.cal(Double.parseDouble(salary));
