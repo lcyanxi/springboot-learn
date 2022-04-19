@@ -36,6 +36,9 @@ public class UtilTest {
         String kangkang = Optional.ofNullable(user.getUserName()).orElse("kangkang");
         System.out.println(kangkang);
 
+        List<String> aa = Lists.newArrayList(null,null);
+        System.out.println("aa"+ aa.size());
+
 
 
 //        Set<String> strings = map.keySet();
