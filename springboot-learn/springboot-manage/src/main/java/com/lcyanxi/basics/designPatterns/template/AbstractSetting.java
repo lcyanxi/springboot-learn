@@ -3,6 +3,7 @@ package com.lcyanxi.basics.designPatterns.template;
 /**
  * @author : lichang
  * @desc : 模版方法：父类定义骨架，子类实现某些细节
+ *       AQS：使用该设计模式
  * @since : 2022/04/21/6:03 下午
  */
 public abstract class AbstractSetting {

@@ -1,11 +1,14 @@
 package com.lcyanxi.basics.juc;
 
+import com.lcyanxi.basics.juc.lock.SynchronizedToReentrantLock;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLockDemo {
     private static final Lock lock = new ReentrantLock();
+    private static final SynchronizedToReentrantLock synchronizedToReentrantLock = new SynchronizedToReentrantLock();
 
     /**
      * 公平锁
@@ -14,25 +17,27 @@ public class ReentrantLockDemo {
 
     public static void main(String[] args) {
 
-        fairSync();
+        // fairSync();
 
-//        for (int i = 0; i< 10; i++){
-//            new Thread(() -> test(),"线程"+i).start();
-//        }
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> test(), "线程" + i).start();
+        }
         System.out.println("===================");
     }
 
-    public static void test(){
-        for (int i = 0; i < 2 ;i++){
+    public static void test() {
+        for (int i = 0; i < 2; i++) {
             try {
-                lock.lock();
-                System.out.println(Thread.currentThread().getName()+"获取到锁了");
+                // lock.lock();
+                synchronizedToReentrantLock.lock();
+                System.out.println(Thread.currentThread().getName() + "获取到锁了");
                 TimeUnit.SECONDS.sleep(2);
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
-            }finally {
-                System.out.println(Thread.currentThread().getName()+"释放锁了");
-                lock.unlock();
+            } finally {
+                System.out.println(Thread.currentThread().getName() + "释放锁了");
+                // lock.unlock();
+                synchronizedToReentrantLock.unlock();
             }
         }
     }
@@ -41,11 +46,12 @@ public class ReentrantLockDemo {
     /**
      * 公平锁测试
      */
-    public static void  fairSync(){
-        for(int i = 0 ;i < 10; i++){
+    public static void fairSync() {
+        for (int i = 0; i < 10; i++) {
             new Thread(new ThreadDemo(i)).start();
         }
     }
+
     static class ThreadDemo implements Runnable {
         Integer id;
 
@@ -58,7 +64,6 @@ public class ReentrantLockDemo {
         public void run() {
             try {
                 TimeUnit.MILLISECONDS.sleep(10);
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
