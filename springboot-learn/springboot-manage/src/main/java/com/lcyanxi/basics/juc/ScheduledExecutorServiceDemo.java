@@ -12,7 +12,7 @@ import org.apache.rocketmq.common.ThreadFactoryImpl;
 
 /**
  * @author : lichang
- * @desc : 描述信息
+ * @desc : 可在指定延迟后或周期性地执行线程任线程池
  * @since : 2022/05/01/9:39 上午
  */
 @Slf4j
@@ -62,7 +62,7 @@ public class ScheduledExecutorServiceDemo {
         executor.scheduleWithFixedDelay(
                 () -> {
                     try {
-                        Thread.sleep(5000); // 执行时间超过执行周期
+                        Thread.sleep(1000); // 执行时间超过执行周期
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
