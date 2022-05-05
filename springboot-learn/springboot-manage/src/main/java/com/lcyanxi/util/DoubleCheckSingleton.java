@@ -7,7 +7,7 @@ package com.lcyanxi.util;
 public class DoubleCheckSingleton {
     private static volatile DoubleCheckSingleton singleton;
 
-    public DoubleCheckSingleton() {}
+    private DoubleCheckSingleton() {}
 
     public static  DoubleCheckSingleton  getInstance(){
         if (singleton == null){
@@ -17,6 +17,12 @@ public class DoubleCheckSingleton {
                     memory = allocate(); 1:分配对象的内存空间
                     init(memory); 2.初始化对象
                     instance = memory; 3.设置instance指向刚分配的内存地址
+                     */
+
+                    /**
+                     * 不用 volatile
+                     * DoubleCheckSingleton item = new DoubleCheckSingleton();
+                     * singleton = item;
                      */
                     singleton  = new DoubleCheckSingleton();
                 }

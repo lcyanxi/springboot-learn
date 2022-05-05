@@ -31,6 +31,7 @@
         <caffeine.version>2.8.2</caffeine.version>
         <canal.client.version>1.1.4</canal.client.version>
         <redisson.version>3.5.0</redisson.version>
+        <poi-ooxml.version>4.0.0</poi-ooxml.version>
     </properties>
 
     <modules>
@@ -197,6 +198,21 @@
                         <groupId>com.google.guava</groupId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>cn.afterturn</groupId>
+                <artifactId>easypoi-base</artifactId>
+                <version>${poi-ooxml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.afterturn</groupId>
+                <artifactId>easypoi-web</artifactId>
+                <version>${poi-ooxml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.afterturn</groupId>
+                <artifactId>easypoi-annotation</artifactId>
+                <version>${poi-ooxml.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
