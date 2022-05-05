@@ -5,6 +5,7 @@ import com.lcyanxi.basics.juc.lock.SynchronizedToReentrantLock;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ReentrantLockDemo {
     private static final Lock lock = new ReentrantLock();

@@ -17,6 +17,7 @@ dubbo:
     base-packages: com.lcyanxi.service.impl
 
 apollo:
+  meta: http://47.93.245.76:8080
   bootstrap:
     enabled: true
     namespaces: commonConfig,dubboLimitConfig,INFRA.redis
