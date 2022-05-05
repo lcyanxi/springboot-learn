@@ -12,7 +12,8 @@ import org.apache.rocketmq.common.ThreadFactoryImpl;
 import org.springframework.util.CollectionUtils;
 
 /**
- * 模拟  future.get()会阻塞
+ * 模拟 future.get()会阻塞
+ * 
  * @author lichang
  * @date 2020/11/14
  */
@@ -22,29 +23,29 @@ public class ThreadPoolExecutorDemo {
     public static void main(String[] args) {
         // 构造一个线程池
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(5, 6, 3,
-                TimeUnit.SECONDS, new ArrayBlockingQueue<>(3),new ThreadFactoryImpl("ThreadPoolExecutorDemo_"));
+                TimeUnit.SECONDS, new ArrayBlockingQueue<>(3), new ThreadFactoryImpl("ThreadPoolExecutorDemo_"));
 
         List<Future<String>> objects = Lists.newArrayList();
 
         System.out.println("------------------任务开始执行---------------------");
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             Future<String> future = threadPool.submit(() -> {
+                String name = Thread.currentThread().getName();
                 try {
-                    String name = Thread.currentThread().getName();
-                    long time = (long) (Math.random()*10);
-                    System.out.println(name + "开始睡眠" + time +"ms");
+                    long time = (long) (Math.random() * 10);
+                    System.out.println(name + "开始睡眠" + time + "ms");
                     TimeUnit.SECONDS.sleep(time);
-                    System.out.println(name + "submit方法执行任务完成");
+                    System.out.println(name + " submit方法执行任务完成");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return SUCCESS;
+                return SUCCESS + " " + name;
             });
             objects.add(future);
         }
         threadPool.shutdown();
 
-        if (!CollectionUtils.isEmpty(objects)){
+        if (!CollectionUtils.isEmpty(objects)) {
             objects.forEach(future -> {
                 String s = null;
                 try {
@@ -59,6 +60,5 @@ public class ThreadPoolExecutorDemo {
         System.out.println("-------------------main thread end---------------------");
     }
 }
-
 
 
