@@ -22,10 +22,10 @@
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>jetcache-springboot-starter</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.lcyanxi.commons</groupId>-->
-<!--            <artifactId>redissonlock-springboot-starter</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.lcyanxi.commons</groupId>
+            <artifactId>redissonlock-springboot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>rocketmq-springboot-starter</artifactId>

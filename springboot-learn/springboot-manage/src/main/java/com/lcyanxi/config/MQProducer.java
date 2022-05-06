@@ -1,4 +1,4 @@
-package com.lcyanxi.serviceImpl;
+package com.lcyanxi.config;
 
 import com.lcyanxi.rocketmq.base.AbstractMQProducer;
 import com.lcyanxi.rocketmq.base.MQException;

@@ -3,7 +3,7 @@ package com.lcyanxi.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.lcyanxi.rocketmq.base.Result;
-import com.lcyanxi.serviceImpl.MQProducer;
+import com.lcyanxi.config.MQProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -27,7 +27,7 @@ import static com.lcyanxi.topic.RocketTopic.USER_LESSON_TOPIC;
 public class MQController {
 
     @Resource
-    private MQProducer defaultMQProducer;
+    private MQProducer mqProducer;
 
     @RequestMapping(value = "/send/msg",method = RequestMethod.GET)
     public String sendDedupMsg(String userName){
@@ -37,7 +37,7 @@ public class MQController {
         Map<String,String> map = Maps.newHashMap();
         map.put("userName",userName);
         Message message = new Message(USER_LESSON_TOPIC, JSONObject.toJSONBytes(JSONObject.toJSONString(map)));
-        Result<SendResult> sendResultResult = defaultMQProducer.syncSendOrderly(message, userName);
+        Result<SendResult> sendResultResult = mqProducer.syncSendOrderly(message, userName);
         return msg + sendResultResult.isSuccess;
     }
 
@@ -51,9 +51,9 @@ public class MQController {
         map.put("userName",name);
         Message sendMsg = new Message(SEND_DEDUP_TOPIC, JSONObject.toJSONBytes(JSONObject.toJSONString(map)));
 
-        defaultMQProducer.asyncSend(sendMsg, new SendCallback() {
+        mqProducer.asyncSend(sendMsg, new SendCallback() {
             @Override
-            public void onSuccess(org.apache.rocketmq.client.producer.SendResult sendResult) {
+            public void onSuccess(SendResult sendResult) {
                 log.info("asyncSend onSuccess");
             }
 
