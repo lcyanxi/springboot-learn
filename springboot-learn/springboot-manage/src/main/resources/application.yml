@@ -15,7 +15,7 @@ dubbo:
   application:
     name: springboot-manage
   registry:
-    address: nacos://localhost:8848
+    address: nacos://47.93.245.76:8848
   consumer:
     timeout: 30000
 
