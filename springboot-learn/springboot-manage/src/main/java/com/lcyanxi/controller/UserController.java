@@ -60,6 +60,9 @@ public class UserController {
 
         try {
             User userDB = userService.findUserByUserNamePassword(userName,password);
+            if (Objects.isNull(userDB)){
+                return map;
+            }
             Map<String, String> payload = new HashMap<>();
             payload.put("userName", userDB.getUserName());
             payload.put("password", userDB.getPassword());

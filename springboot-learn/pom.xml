@@ -17,10 +17,9 @@
         <java.version>1.8</java.version>
         <!-- 在properties中统一控制依赖包的版本，更清晰-->
         <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
-        <dubbo.starter.version>2.7.7</dubbo.starter.version>
+        <dubbo.version>2.7.7</dubbo.version>
         <guava.version>23.0</guava.version>
         <sharding.jdbc.version>4.0.0</sharding.jdbc.version>
-        <dubbo.registry.nacos.version>2.7.7</dubbo.registry.nacos.version>
         <nacos-client.version>1.4.0</nacos-client.version>
         <mybatis.spring.boot.starter.version>2.0.0</mybatis.spring.boot.starter.version>
         <druid.spring.boot.starter.version>1.1.10</druid.spring.boot.starter.version>
@@ -126,17 +125,16 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.spring.boot.starter.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>${dubbo.starter.version}</version>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
             </dependency>
             <!-- Dubbo Registry Nacos -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-registry-nacos</artifactId>
-                <version>${dubbo.registry.nacos.version}</version>
+                <version>${dubbo.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.nacos</groupId>
