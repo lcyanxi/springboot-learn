@@ -2,9 +2,9 @@ package com.lcyanxi.service.impl;
 
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.Cached;
-import com.lcyanxi.commons.lock.annotation.RedissonLock;
 import com.lcyanxi.dto.UserMapper;
 import com.lcyanxi.model.User;
+import com.lcyanxi.redis.annotation.RedissonLock;
 import com.lcyanxi.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;

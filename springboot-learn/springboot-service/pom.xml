@@ -21,12 +21,6 @@
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>dubbolimit-springboot-starter</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.lcyanxi.commons</groupId>
-            <artifactId>redissonlock-springboot-starter</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>jetcache-springboot-starter</artifactId>
@@ -56,6 +50,10 @@
             <artifactId>dubbo</artifactId>
         </dependency>
         <!-- Dubbo Registry Nacos -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-registry-nacos</artifactId>

@@ -2,15 +2,15 @@ package com.lcyanxi.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
-import com.lcyanxi.annotation.AccessControl;
-import com.lcyanxi.commons.lock.annotation.RedissonLock;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
 import com.lcyanxi.model.User;
 import com.lcyanxi.model.UserLesson;
+import com.lcyanxi.redis.annotation.RedissonLock;
 import com.lcyanxi.service.ISalaryCalService;
 import com.lcyanxi.service.IUserLessonService;
 import com.lcyanxi.service.IUserService;
-import com.lcyanxi.utils.JWTUtils;
+import com.lcyanxi.web.annotation.AccessControl;
+import com.lcyanxi.web.utils.JWTUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -26,7 +26,7 @@ import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static com.lcyanxi.constent.Contents.ATTRIBUTE_CURRENT_UID;
+import static com.lcyanxi.web.constent.Contents.ATTRIBUTE_CURRENT_UID;
 
 
 @Slf4j
