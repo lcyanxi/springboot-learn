@@ -1,10 +1,11 @@
 package com.lcyanxi;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import com.alicp.jetcache.autoconfigure.JetCacheAutoConfiguration;
 import com.lcyanxi.dubbolimit.annotation.EnableDubboLimit;
 import com.lcyanxi.redis.annotation.EnableCacheConfiguration;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 
