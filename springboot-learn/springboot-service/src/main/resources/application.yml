@@ -4,12 +4,12 @@ server:
 spring:
   application:
     name: springboot-service
-
+# 47.93.245.76
 dubbo:
   application:
     name: springboot-service
   registry:
-    address: nacos://47.93.245.76:8848
+    address: nacos://localhost:8848
   protocol:
     name: dubbo
     port: 20881

@@ -11,7 +11,6 @@
     <artifactId>springboot-manage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>springboot-manage</name>
-    <description>Demo project for Spring Boot</description>
 
     <dependencies>
         <dependency>
@@ -26,12 +25,6 @@
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>rocketmq-springboot-starter</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.lcyanxi.commons</groupId>
-            <artifactId>dubbo-springboot-starter</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>webmvc-springboot-starter</artifactId>
@@ -74,6 +67,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-registry-nacos</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
