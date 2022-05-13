@@ -12,7 +12,7 @@ import com.lcyanxi.redis.annotation.EnableCacheConfiguration;
 @SpringBootApplication(exclude = {
         JetCacheAutoConfiguration.class
 })
-@EnableDubboLimit
+//@EnableDubboLimit
 @EnableCacheConfiguration
 public class ServiceApplication {
 

@@ -27,6 +27,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static com.lcyanxi.web.constent.Contents.ATTRIBUTE_CURRENT_UID;
+import static com.lcyanxi.web.interceptor.AccessControlIerInterceptor.JWT_PREFIX;
 
 
 @Slf4j
@@ -48,26 +49,26 @@ public class UserController {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    @RequestMapping(value = "/user/index",method = RequestMethod.GET)
-    public String index(){
+    @RequestMapping(value = "/user/index", method = RequestMethod.GET)
+    public String index() {
         return "hello world";
     }
 
     @GetMapping("/login")
     public Map<String, Object> login(String userName, String password) {
-        log.info("login userName：{}, password: {}", userName,password);
+        log.info("login userName：{}, password: {}", userName, password);
         Map<String, Object> map = new HashMap<>();
 
         try {
-            User userDB = userService.findUserByUserNamePassword(userName,password);
-            if (Objects.isNull(userDB)){
+            User userDB = userService.findUserByUserNamePassword(userName, password);
+            if (Objects.isNull(userDB)) {
                 return map;
             }
             Map<String, String> payload = new HashMap<>();
             payload.put("userName", userDB.getUserName());
             payload.put("password", userDB.getPassword());
-            payload.put(ATTRIBUTE_CURRENT_UID,userName+password);
-            String token = JWTUtils.getToken(payload);
+            payload.put(ATTRIBUTE_CURRENT_UID, userName + password);
+            String token = JWT_PREFIX + JWTUtils.getToken(payload);
 
             map.put("state", true);
             map.put("msg", "登录成功");
@@ -84,21 +85,21 @@ public class UserController {
 
     @GetMapping("/find")
     @AccessControl
-    public String findAllData(@RequestAttribute(value = ATTRIBUTE_CURRENT_UID) String userId){
-       log.info("findAllData userId:[{}] , times:[{}]",userId,System.currentTimeMillis());
-        return "获得" + userLessonService.findAll().size() +"条数据";
+    public String findAllData(@RequestAttribute(value = ATTRIBUTE_CURRENT_UID) String userId) {
+        log.info("findAllData userId:[{}] , times:[{}]", userId, System.currentTimeMillis());
+        return "获得" + userLessonService.findAll().size() + "条数据";
     }
 
 
-    @RequestMapping(value = "/user/addUserLesson",method = RequestMethod.GET)
-    public String addUserLesson(Integer productId,String userId){
+    @RequestMapping(value = "/user/addUserLesson", method = RequestMethod.GET)
+    public String addUserLesson(Integer productId, String userId) {
         List<UserLesson> lessons = new ArrayList<>();
         String name = "admin";
-        for (int i = 0 ;i < 10 ;i++){
-            UserLesson userLesson=new UserLesson();
+        for (int i = 0; i < 10; i++) {
+            UserLesson userLesson = new UserLesson();
             userLesson.setParentClassId(1);
             userLesson.setBuyStatus(false);
-            userLesson.setOrderNo(System.currentTimeMillis()+"");
+            userLesson.setOrderNo(System.currentTimeMillis() + "");
             userLesson.setClassId(1);
             userLesson.setBuyTime(new Date());
             userLesson.setClassCourseId(11);
@@ -113,26 +114,26 @@ public class UserController {
             lessons.add(userLesson);
         }
         Boolean result = userLessonService.insertUserLesson(lessons);
-        return "添加课次结果:"+result;
+        return "添加课次结果:" + result;
     }
 
-    @RequestMapping(value = "/update",method = RequestMethod.GET)
-    public String update(Integer userId,Integer classId){
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public String update(Integer userId, Integer classId) {
         Boolean result = userLessonService.updateByUserId(userId, classId);
         String message = result ? "成功" : "失败";
-        return   "登陆 :" + message;
+        return "登陆 :" + message;
     }
 
-    @RequestMapping(value = "/orderly",method = RequestMethod.GET)
-    public String orderly(String orderNo){
+    @RequestMapping(value = "/orderly", method = RequestMethod.GET)
+    public String orderly(String orderNo) {
         try {
-            Map<Object,Object> map = Maps.newHashMap();
-            map.put("orderNo",orderNo);
-            map.put("ts",System.currentTimeMillis());
+            Map<Object, Object> map = Maps.newHashMap();
+            map.put("orderNo", orderNo);
+            map.put("ts", System.currentTimeMillis());
             Message sendMsg = new Message(RocketTopicInfoEnum.ORDERLY_TOPIC.getTopic(), JSONObject.toJSONBytes(map));
             SendResult sendResult = defaultMQProducer.send(sendMsg);
-            if (sendResult.getSendStatus() == SendStatus.SEND_OK){
-                return  "下单成功";
+            if (sendResult.getSendStatus() == SendStatus.SEND_OK) {
+                return "下单成功";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -145,8 +146,8 @@ public class UserController {
         return "SUCCESS";
     }
 
-    @GetMapping(value = "/salary",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @RedissonLock(lockPre = "demoTest",value = "#salary",leaseSeconds = 3)
+    @GetMapping(value = "/salary", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RedissonLock(lockPre = "demoTest", value = "#salary", leaseSeconds = 3)
     public String salary(String salary) throws InterruptedException {
         TimeUnit.SECONDS.sleep(60);
         log.info("salary sleep.......");
@@ -154,18 +155,18 @@ public class UserController {
         return String.valueOf(aDouble);
     }
 
-    @GetMapping(value = "/lock",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String lock(String salary){
-        String key = String.format("lock_%s",salary);
+    @GetMapping(value = "/lock", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String lock(String salary) {
+        String key = String.format("lock_%s", salary);
         String uniqueId = String.valueOf(Thread.currentThread().getId());
-        try{
+        try {
             Boolean lock = redisTemplate.opsForValue().setIfAbsent(key, uniqueId, 3000, TimeUnit.MILLISECONDS);
-            if (Objects.nonNull(lock) && lock){
+            if (Objects.nonNull(lock) && lock) {
                 // .........
             }
-        }finally {
+        } finally {
             String value = redisTemplate.opsForValue().get(key);
-            if (uniqueId.equals(value)){
+            if (uniqueId.equals(value)) {
                 redisTemplate.delete(key);
             }
         }
