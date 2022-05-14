@@ -1,6 +1,8 @@
 package com.lcyanxi.service.impl;
 
 
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.google.common.collect.Lists;
 import com.lcyanxi.constant.Constants;
 import com.lcyanxi.dto.UserLessonMapper;
@@ -23,6 +25,8 @@ import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 @Slf4j
 @DubboService
 public class UserLessonServiceImpl implements IUserLessonService {
@@ -31,7 +35,7 @@ public class UserLessonServiceImpl implements IUserLessonService {
     private UserLessonMapper userLessonMapper;
 
     @Autowired
-    private IUserService  userService;
+    private IUserService userService;
 
     @Autowired
     private IUser1Service user1Service;
@@ -47,14 +51,14 @@ public class UserLessonServiceImpl implements IUserLessonService {
         if (!application.contains("springboot-service") || CollectionUtils.isEmpty(userLessonList)) {
             return false;
         }
-        log.info("insertUserLesson userLessonList:{}",userLessonList);
+        log.info("insertUserLesson userLessonList:{}", userLessonList);
         return userLessonMapper.insertBatch(userLessonList);
     }
 
 
     @Override
     public Boolean updateByUserId(Integer userId, Integer classId) {
-        log.info("updateByUserId userId:{},classId:{}",userId,classId);
+        log.info("updateByUserId userId:{},classId:{}", userId, classId);
         return userLessonMapper.updateByUserId(userId, classId);
     }
 
@@ -63,7 +67,7 @@ public class UserLessonServiceImpl implements IUserLessonService {
     @Transactional(propagation = Propagation.REQUIRED)
     public void transactionExceptionRequired(Integer userId, String userName) {
         User user = User.builder().password("123").userId(userId).userName(userName).build();
-        userService.insert(user) ;
+        userService.insert(user);
         User1 user1 = User1.builder().name(userName).build();
         user1Service.insert(user1);
     }
@@ -73,7 +77,7 @@ public class UserLessonServiceImpl implements IUserLessonService {
     @Transactional
     public void transactionExceptionRequiredException(Integer userId, String userName) {
         User user = User.builder().password("123").userId(userId).userName(userName).build();
-        userService.insertException(user) ;
+        userService.insertException(user);
         User1 user1 = User1.builder().name(userName).build();
         user1Service.insert(user1);
     }
@@ -87,41 +91,41 @@ public class UserLessonServiceImpl implements IUserLessonService {
 
         User user = User.builder().password("123").userId(userId).userName(userName).build();
         try {
-            userService.insertException(user) ;
-        }catch (Exception e){
-            log.error("transactionExceptionRequiredExceptionTry userService exception",e);
+            userService.insertException(user);
+        } catch (Exception e) {
+            log.error("transactionExceptionRequiredExceptionTry userService exception", e);
         }
     }
 
     @Override
-    public List<UserLesson> findAll(){
+    public List<UserLesson> findAll() {
         try {
-            Future<List<UserLesson>> submit = threadPoolExecutor.submit(() -> {
-                printThreadPoolStatus(threadPoolExecutor);
-                return userLessonMapper.findAll();});
-            return submit.get();
-        }catch (Exception e){
-            log.error("userLessonServiceImpl findAll is error",e);
+            printThreadPoolStatus(threadPoolExecutor);
+            return userLessonMapper.findAll();
+        } catch (Exception e) {
+            log.error("userLessonServiceImpl findAll is error", e);
         }
         return Lists.newArrayList();
     }
 
-    private static void printThreadPoolStatus(ThreadPoolExecutor threadPoolExecutor){
+    private static void printThreadPoolStatus(ThreadPoolExecutor threadPoolExecutor) {
         LinkedBlockingQueue queue = (LinkedBlockingQueue) threadPoolExecutor.getQueue();
         System.out.println(
                 Thread.currentThread().getName() + "_" + ":" +
                         "核心线程数:" + threadPoolExecutor.getCorePoolSize() +
                         "活动线程数:" + threadPoolExecutor.getActiveCount() +
                         "最大线程数:" + threadPoolExecutor.getMaximumPoolSize() +
-                        "线程池活跃度:" + divide(threadPoolExecutor.getActiveCount(),threadPoolExecutor.getMaximumPoolSize()) +
+                        "线程池活跃度:" + divide(threadPoolExecutor.getActiveCount(), threadPoolExecutor.getMaximumPoolSize())
+                        +
                         "任务完成数:" + threadPoolExecutor.getCompletedTaskCount() +
                         "队列大小:" + (queue.size() + queue.remainingCapacity()) +
                         "当前线程排队线程数:" + queue.size() +
                         "队列剩余大小:" + queue.remainingCapacity() +
-                        "队列使用度:" + divide(queue.size(),queue.size() + queue.remainingCapacity()));
+                        "队列使用度:" + divide(queue.size(), queue.size() + queue.remainingCapacity()));
 
     }
-    private static String divide(int num1, int num2){
-        return String.format("%1.2f%%",Double.parseDouble(num1 + "")/Double.parseDouble(num2 + "")*100);
+
+    private static String divide(int num1, int num2) {
+        return String.format("%1.2f%%", Double.parseDouble(num1 + "") / Double.parseDouble(num2 + "") * 100);
     }
 }

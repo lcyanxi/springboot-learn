@@ -18,7 +18,7 @@ public class BusinessThreadPoolConfig {
     @Bean(name = "businessThreadPoolExecutor")
     public ThreadPoolExecutor asyncRunBusinessThreadPoolExecutor() {
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("businessThreadPoolExecutor-pool-%d").build();
-        return new ThreadPoolExecutor(5, 6, 3,
+        return new ThreadPoolExecutor(10, 16, 3,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(3),
                 namedThreadFactory,
