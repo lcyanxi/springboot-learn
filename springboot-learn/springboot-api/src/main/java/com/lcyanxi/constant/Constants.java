@@ -16,6 +16,12 @@ public interface Constants {
      */
     String APPLICATION = "application";
 
+    /**
+     * 应用名称
+     */
+    String DUBBO_APPLICATION = "dubboApplication";
+
+
     String HOST = "localhost";
 
     Integer PORT = 8088;

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: springboo-manage
+    name: springboot-manage
   redis:
     host: 127.0.0.1
     database: 1

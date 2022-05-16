@@ -24,6 +24,7 @@ public class LogTraceConsumerFilter implements Filter {
         String application = invoker.getUrl().getParameter(Constants.APPLICATION);
         if (application != null) {
             RpcContext.getContext().setAttachment(Constants.APPLICATION, application);
+            RpcContext.getContext().setAttachment(Constants.DUBBO_APPLICATION, application);
         }
 
         Result result = null;
@@ -37,8 +38,8 @@ public class LogTraceConsumerFilter implements Filter {
             Throwable throwable = (result == null) ? null : result.getException();
             Object resultObj = (result == null) ? null : result.getValue();
             long costTime = System.currentTimeMillis() - startTime;
-            log.info("[TRACE] Call [{}], [{}].{}()] param:[{}], return:[{}], exception:[{}], cost:[{} ms]!",
-                    serverIp, invoker.getInterface(), invocation.getMethodName(), invocation.getArguments(), resultObj, throwable, costTime);
+            log.info("[TRACE] Call [{}], [{}].{}()] param:[{}], exception:[{}], cost:[{} ms]!",
+                    serverIp, invoker.getInterface(), invocation.getMethodName(), invocation.getArguments(), throwable, costTime);
         }
     }
 }
