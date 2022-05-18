@@ -10,6 +10,22 @@ spring:
     port: 6379
     password: lc121718
     timeout: 10000
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8070
+      datasource:
+        flow:
+          nacos:
+            server-addr: localhost:8848
+            data-id: ${spring.application.name}-flow-rules
+            group-id: SENTINEL_GROUP
+            rule-type: flow
+            data-type: json
+
 
 dubbo:
   application:

@@ -4,6 +4,21 @@ server:
 spring:
   application:
     name: springboot-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8070
+      datasource:
+        flow:
+          nacos:
+            server-addr: localhost:8848
+            data-id: ${spring.application.name}-flow-rules
+            group-id: SENTINEL_GROUP
+            rule-type: flow
+            data-type: json
 # 47.93.245.76
 dubbo:
   application:
