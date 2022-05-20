@@ -29,7 +29,20 @@ spring:
             data-id: ${spring.application.name}-param-rules
             group-id: SENTINEL_GROUP
             rule-type: param-flow
-            data-type: json
+        system:
+          nacos:
+            server-addr: localhost:8848
+            data-id: ${spring.application.name}-system-rules
+            group-id: SENTINEL_GROUP
+            rule-type: system
+        authority:
+          nacos:
+            server-addr: localhost:8848
+            data-id: ${spring.application.name}-authority-rules
+            group-id: SENTINEL_GROUP
+            rule-type: authority
+
+# DataSourcePropertiesConfiguration && NacosDataSourceProperties
 # 47.93.245.76
 dubbo:
   application:

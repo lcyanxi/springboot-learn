@@ -36,7 +36,18 @@ spring:
             group-id: SENTINEL_GROUP
             rule-type: param-flow
             data-type: json
-
+        system:
+          nacos:
+            server-addr: localhost:8848
+            data-id: ${spring.application.name}-system-rules
+            group-id: SENTINEL_GROUP
+            rule-type: system
+        authority:
+          nacos:
+            server-addr: localhost:8848
+            data-id: ${spring.application.name}-authority-rules
+            group-id: SENTINEL_GROUP
+            rule-type: authority
 dubbo:
   application:
     name: springboot-manage
