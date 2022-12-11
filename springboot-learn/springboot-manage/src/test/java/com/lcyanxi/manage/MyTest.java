@@ -1,4 +1,4 @@
-package com.lcyanxi.springbootmanage;
+package com.lcyanxi.manage;
 
 import com.lcyanxi.service.ICountService;
 import org.junit.Test;

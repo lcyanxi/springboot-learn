@@ -1,4 +1,4 @@
-package com.lcyanxi.springbootmanage;
+package com.lcyanxi.manage;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;

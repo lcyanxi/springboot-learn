@@ -1,13 +1,12 @@
-package com.lcyanxi.springbootmanage;
+package com.lcyanxi.manage;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.lcyanxi.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,22 @@ import java.util.concurrent.*;
 public class DemoTest {
 
     public static void main(String[] args) {
+
+        List<User> users = Lists.newArrayList();
+        for (int i = 0 ; i < 10 ; i++){
+            String name = "name_"+ i;
+            users.add(User.builder().userName(name).build());
+        }
+        users.forEach(user -> {
+            log.info("start" + user.getUserName());
+            long time = (long) (Math.random()*10);
+            try {
+                log.info("start" + user.getUserName() + time);
+                TimeUnit.SECONDS.sleep(time);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
 
         ThreadFactory threadFactory =
                 new ThreadFactoryBuilder().setNameFormat("DemoTest-%d").build();

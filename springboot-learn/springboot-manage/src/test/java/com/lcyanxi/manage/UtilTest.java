@@ -1,4 +1,4 @@
-package com.lcyanxi.springbootmanage;
+package com.lcyanxi.manage;
 
 import java.lang.reflect.Field;
 import java.util.*;

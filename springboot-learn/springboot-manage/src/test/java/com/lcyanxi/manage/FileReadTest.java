@@ -1,4 +1,4 @@
-package com.lcyanxi.springbootmanage;
+package com.lcyanxi.manage;
 
 import java.io.BufferedReader;
 import java.io.File;

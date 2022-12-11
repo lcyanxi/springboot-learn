@@ -55,6 +55,7 @@ dubbo:
     address: nacos://localhost:8848
   consumer:
     timeout: 30000
+    check: false
 
 apollo:
   bootstrap:

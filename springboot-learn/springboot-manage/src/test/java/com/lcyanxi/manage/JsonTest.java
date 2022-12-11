@@ -1,20 +1,11 @@
-package com.lcyanxi.springbootmanage;
+package com.lcyanxi.manage;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.MapDifference;
-import com.google.common.collect.Maps;
 import com.lcyanxi.model.ShowLine;
-import com.lcyanxi.util.FlatMapUtil;
 import org.assertj.core.util.Lists;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author : lichang

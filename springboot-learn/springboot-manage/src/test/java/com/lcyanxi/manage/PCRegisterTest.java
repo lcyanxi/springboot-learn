@@ -1,4 +1,4 @@
-package com.lcyanxi.springbootmanage;
+package com.lcyanxi.manage;
 
 import com.google.common.collect.Lists;
 import com.lcyanxi.model.ClassInfo;

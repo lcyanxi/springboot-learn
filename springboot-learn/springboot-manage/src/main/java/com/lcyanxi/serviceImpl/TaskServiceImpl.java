@@ -2,6 +2,7 @@ package com.lcyanxi.serviceImpl;
 
 import com.lcyanxi.constant.Constants;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Service
-public class TaskServiceImpl {
+public class TaskServiceImpl implements InitializingBean {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -119,7 +120,6 @@ public class TaskServiceImpl {
             this.refreshWeek();
             // 刷新30天的统计数据
             this.refreshMonth();
-            // TODO 在分布式系统中，建议用xxljob来实现定时
             try {
                 Thread.sleep(1000 * 60 * 60);
             } catch (InterruptedException e) {
@@ -134,12 +134,16 @@ public class TaskServiceImpl {
     public void refreshDataHour() {
         while (true) {
             this.refreshHour();
-            // TODO 在分布式系统中，建议用xxljob来实现定时
             try {
                 TimeUnit.SECONDS.sleep(5);
             } catch (Exception e) {
                 log.error("refreshDataHour is exception", e);
             }
         }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        log.info("TaskServiceImpl Initializing ......");
     }
 }
