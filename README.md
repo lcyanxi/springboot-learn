@@ -120,6 +120,7 @@
 - [RocketMQ消息重试原理](消息队列/RocketMQ消息重试原理.md)【默认重试次数是16次那为什么延迟消息级别是18个？】
 ##### kafka
 - [Kafka如何实现每秒几十万的高并发写入](消息队列/Kafka如何实现每秒几十万的高并发写入.md)【零拷贝(sendfile) + pageChe + 顺序写】
+- [Kafka文件存储机制](消息队列/Kafka文件存储机制.md)【在 partition 中如何通过 offset 查找 message？】
 
 
 
