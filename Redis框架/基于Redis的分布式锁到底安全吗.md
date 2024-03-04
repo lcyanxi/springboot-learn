@@ -148,5 +148,20 @@ Martin的这篇文章中，还有一个很有见地的观点，就是对锁的�
 
 顺便提一下，基于ZooKeeper的分布式锁的实现，并不是最优的。它会引发“herd effect”（**羊群效应**），降低获取锁的性能。
 
+---
+
+
+ZooKeeper是怎么检测出某个客户端已经崩溃了呢？实际上，每个客户端都与ZooKeeper的某台服务器维护着一个Session，这个Session依赖定期的心跳(heartbeat)来维持。如果ZooKeeper长时间收不到客户端的心跳（这个时间称为Sesion的过期时间），那么它就认为Session过期了，通过这个Session所创建的所有的ephemeral类型的znode节点都会被自动删除。
+
+设想如下的执行序列：
+
+- 客户端1创建了znode节点/lock，获得了锁。
+- 客户端1进入了长时间的GC pause。
+- 客户端1连接到ZooKeeper的Session过期了。znode节点/lock被自动删除。
+- 客户端2创建了znode节点/lock，从而获得了锁。
+- 客户端1从GC pause中恢复过来，它仍然认为自己持有锁。
+- 最后，客户端1和客户端2都认为自己持有了锁，冲突了。这与之前Martin在文章中描述的由于GC pause导致的分布式锁失效的情况类似。
+
+看起来，用ZooKeeper实现的分布式锁也不一定就是安全的。该有的问题它还是有。
 
 [基于Redis的分布式锁到底安全吗](http://zhangtielei.com/posts/blog-redlock-reasoning.html)
