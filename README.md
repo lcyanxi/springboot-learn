@@ -98,6 +98,8 @@
 
 # Redis
 - [基于Redis的分布式锁到底安全吗](Redis框架/基于Redis的分布式锁到底安全吗.md)【看门狗机制】
+- [数据库缓存强一致性问题](https://mp.weixin.qq.com/s/U87wrGsx0Eop3CbF9mlTwQ)【大部分读多写少场景建议选择更新数据库后删除缓存】
+
 
 # zookeeper： 
 - [ZooKeeper分布式锁实现原理](zookeeper/ZooKeeper分布式锁实现原理.md)【零时有序节点 + Watcher机制】
