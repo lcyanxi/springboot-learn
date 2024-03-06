@@ -98,6 +98,7 @@
 
 # Redis
 - [基于Redis的分布式锁到底安全吗](Redis框架/基于Redis的分布式锁到底安全吗.md)【看门狗机制】
+- [Redis分布式锁解决高并发场景](Redis框架/秒杀Redis分段锁，如何设计？.md)【分布式锁，如何实现高并发？分段锁思想】
 - [数据库缓存强一致性问题](https://mp.weixin.qq.com/s/U87wrGsx0Eop3CbF9mlTwQ)【大部分读多写少场景建议选择更新数据库后删除缓存】
 
 
