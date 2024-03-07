@@ -1,25 +1,27 @@
- _站在巨人的肩膀上，仰望'星空'，脚踏实地_
- 
-# 大厂常见算法： 
+_站在巨人的肩膀上，仰望'星空'，脚踏实地_
+
+# 大厂常见算法：
 
 [大厂常见算法](大厂常见算法/leetcode算法.md)
 
 # 设计模式：
+
 - [策略模式](设计模式/策略模式.md)
 - [观察者模式](设计模式/观察者模式.md) 【Spring Event && Guava Event】
 
 # Java基础：
+
 - [BIO/NIO/AIO网络模型](Java基础/IO网络模型.md)
 - [零拷贝原理](消息队列/零拷贝原理.md)【为什么rocket采取mmap而不是sendfile方式呢？】
 - [堆外内存原理](Java基础/堆外内存原理.md)
 - [Java自定义注解-Annotation](Java基础/Java自定义注解-Annotation.md)【元注解都有那些？有什么作用】
 
-
 # Java并发：
+
 - [Object notify()会立刻释放锁么?](Java并发/Object%20notify()会立刻释放锁么.md)【wait会放弃cpu资源吗】
 - [Synchronized锁机制](Java并发/Synchronized锁机制.md)【对象在内存中的存储布局,一个对象最小占多少字节？】
 - [反射实现原理](Java并发/反射获取class对象的方式.md)【1.单例模式真的就安全吗？2.为什么jdbc要用class.forName加载类?】
-- [Java8如何优化CAS性能](Java并发/Java8如何优化CAS性能.md) 
+- [Java8如何优化CAS性能](Java并发/Java8如何优化CAS性能.md)
 - [深入分析ThreadLocal原理](Java并发/深入分析ThreadLocal原理.md)【如何避免ThradLocal带来的内存泄露问题？】
 - [Volatile原理](Java并发/Volatile原理.md)【什么是Java内存模型(JMM)?】
 - [LockSupport阻塞和唤醒线程](Java并发/LockSupport阻塞和唤醒线程.md)【waitStatus的作用是什么？】
@@ -32,10 +34,9 @@
 - [CompletionService解决获取返回值阻塞问题](Java并发/CompletionService解决获取返回值阻塞问题.md)
   【如何手动实现一个线程池？】
 - [关于HashMap那些问题](Java并发/关于HashMap那些问题.md)【HashMap7除了死循环问题外还有那些线程不安全的地方？HashMap8呢？】
-  
-
 
 # Java虚拟机：
+
 - [类加载器机制](Java虚拟机/类加载器.md)【1.int[]的类加载器是谁？ 2.SPI机制是如何打破双亲委派模型的？】
 - [自定义类加载器实现热加载](Java虚拟机/自定义类加载器实现热加载.md)
 - [JVM内存模型-方法区](Java虚拟机/JVM内存模型-方法区.md)【方法区的演进细节】
@@ -48,7 +49,8 @@
 - [强、软、弱、虚引用使用场景](Java虚拟机/强、软、弱、虚引用使用场景.md)
 - [7种垃圾回收器横向纵向对比](Java虚拟机/7种垃圾回收器横向纵向对比.md)
 
-# 计算机网络： 
+# 计算机网络：
+
 - [输入网址后，期间发生了什么？](计算机网络/输入网址后，期间发生了什么.md)
 - [TCP 重传、滑动窗口、流量控制、拥塞控制机制？](计算机网络/TCP%20重传、滑动窗口、流量控制、拥塞控制机制.md)
   【数据传输过程怎么解决丢包问题？】
@@ -56,7 +58,8 @@
   【分布式环境下session解决方案有哪些？】
 - [八幅漫画理解使用JSON Web Token设计单点登录系统](计算机网络/八幅漫画理解使用JSON%20Web%20Token设计单点登录系统.md)
 
-# 数据库原理： 
+# 数据库原理：
+
 - [一条查询/更新SQL语句是如何执行的？](数据库原理/一条SQL查询或更新语句是如何执行的.md)
 - [讲答疑文章(1)-日志和索引相关问题](数据库原理/讲答疑文章(1)-日志和索引相关问题.md)【两阶段提交是如何保证数据不丢的？】
 - [讲事务隔离:为什么你改了我还看不见](数据库原理/讲事务隔离:为什么你改了我还看不见.md)【并发版本控制(mvcc)是如何实现的？】
@@ -71,18 +74,16 @@
 - [Limit Offset优化方案](数据库原理/Limit%20Offset优化方案.md)【基于游标分页】
 - [Mysql并行复制原理](数据库原理/Mysql并行复制原理.md)【主从延迟的原因有那些？】
 
-
-
-
-
 # Spring框架：
+
 - [自定义注解Autowired实现](Spring框架/自定义注解Autowired实现.md) 【IOC实现原理： 工厂 + 反射】
-- [Spring Bean生命周期](Spring框架/Spring%20Bean生命周期) 
-- [Spring容器初始化完成后将Apollo的配置缓存到本地](Spring框架/Spring容器初始化完成后将Apollo的配置缓存到本地.md) 
+- [Spring Bean生命周期](Spring框架/Spring%20Bean生命周期)
+- [Spring容器初始化完成后将Apollo的配置缓存到本地](Spring框架/Spring容器初始化完成后将Apollo的配置缓存到本地.md)
 - [Spring中的循环依赖](Spring框架/Spring中的循环依赖.md) 【三级缓存为什么要使用工厂而不是直接使用引用？】
 - [图解Spring事务的传播机制原理](Spring框架/图解Spring事务的传播机制原理.md)【@transactional注解在什么情况下会失效，为什么？】
 
-# 分布式RPC框架： 
+# 分布式RPC框架：
+
 - [RPC实战与核心原理-基础篇](分布式RPC框架/RPC实战与核心原理-基础篇.md)
 - [RPC实战与核心原理-进阶篇](分布式RPC框架/RPC实战与核心原理-进阶篇.md)
 - [RPC实战与核心原理-高级篇](分布式RPC框架/RPC实战与核心原理-高级篇.md)【分布式环境下如何快速定位问题？】
@@ -97,23 +98,27 @@
 - [Dubbo服务调用流程](分布式RPC框架/Dubbo服务调用流程.md)【一个request请求何如跟一个response对应上的？】
 
 # Redis
+
 - [基于Redis的分布式锁到底安全吗](Redis框架/基于Redis的分布式锁到底安全吗.md)【看门狗机制】
 - [Redis分布式锁解决高并发场景](Redis框架/秒杀Redis分段锁，如何设计？.md)【分布式锁，如何实现高并发？分段锁思想】
 - [数据库缓存强一致性问题](https://mp.weixin.qq.com/s/U87wrGsx0Eop3CbF9mlTwQ)【大部分读多写少场景建议选择更新数据库后删除缓存】
+- [Redis为什么用跳表而不用平衡树？](Redis框架/Redis为什么用跳表而不用平衡树？.md)【支持范围查找、插入/删除数据变动、内存占用、算法实现难度】
 
+# zookeeper：
 
-# zookeeper： 
 - [ZooKeeper分布式锁实现原理](zookeeper/ZooKeeper分布式锁实现原理.md)【零时有序节点 + Watcher机制】
 
+# 分库分表：
 
-
-# 分库分表： 
 - [基于当当网的shardingJdbc进行分库分表demo](分库分表/基于当当网的shardingJdbc进行分库分表.md)
 
-# 消息队列： 
+# 消息队列：
+
 - [消息队列高手课-基础篇](消息队列/消息队列高手课-基础篇.md)
 - [消息队列高手课-进阶篇](消息队列/消息队列高手课-进阶篇.md)
+
 ##### RocketMQ
+
 - [RocketMQ高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
 - [RocketMQ消息存储原理](消息队列/RocketMQ消息存储原理.md)【零拷贝(mmap) + PageChe + 顺序写来提高吞吐量】
 - [零拷贝原理](消息队列/零拷贝原理.md)【为什么rocket采取mmap而不是sendfile方式呢？】
@@ -124,7 +129,9 @@
 - [RocketMQ消息高可靠](消息队列/RocketMQ消息高可靠.md)【同步策略 + 刷盘策略 + ACK】
 - [RocketMQ长轮询机制](消息队列/RocketMQ长轮询机制.md)【pull && push的优缺点】
 - [RocketMQ消息重试原理](消息队列/RocketMQ消息重试原理.md)【默认重试次数是16次那为什么延迟消息级别是18个？】
+
 ##### kafka
+
 - [Kafka如何实现每秒几十万的高并发写入](消息队列/Kafka如何实现每秒几十万的高并发写入.md)【零拷贝(sendfile) + pageChe + 顺序写】
 - [Kafka文件存储机制](消息队列/Kafka文件存储机制.md)【在 partition 中如何通过 offset 查找 message？】
 
