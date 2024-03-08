@@ -17,10 +17,10 @@
             <groupId>com.lcyanxi</groupId>
             <artifactId>springboot-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.lcyanxi.commons</groupId>
-            <artifactId>jetcache-springboot-starter</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.lcyanxi.commons</groupId>-->
+<!--            <artifactId>jetcache-springboot-starter</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.lcyanxi.commons</groupId>
             <artifactId>rocketmq-springboot-starter</artifactId>

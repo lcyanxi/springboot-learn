@@ -1,3 +1,4 @@
+/*
 package com.lcyanxi.serviceImpl;
 
 import com.alicp.jetcache.anno.CacheType;
@@ -6,10 +7,12 @@ import com.lcyanxi.service.ISalaryCalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+*/
 /**
  * @author lichang
  * @date 2021/1/25
- */
+ *//*
+
 @Slf4j
 @Service
 public class SalaryCalServiceImpl implements ISalaryCalService {
@@ -21,3 +24,4 @@ public class SalaryCalServiceImpl implements ISalaryCalService {
         return money * 10;
     }
 }
+*/

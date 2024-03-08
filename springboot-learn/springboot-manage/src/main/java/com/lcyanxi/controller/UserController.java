@@ -5,7 +5,6 @@ import com.google.common.collect.Maps;
 import com.lcyanxi.enums.RocketTopicInfoEnum;
 import com.lcyanxi.model.User;
 import com.lcyanxi.model.UserLesson;
-import com.lcyanxi.redis.annotation.RedissonLock;
 import com.lcyanxi.service.ISalaryCalService;
 import com.lcyanxi.service.IUserLessonService;
 import com.lcyanxi.service.IUserService;
@@ -43,8 +42,8 @@ public class UserController {
     @Resource
     private DefaultMQProducer defaultMQProducer;
 
-    @Resource
-    private ISalaryCalService salaryCalService;
+//    @Resource
+//    private ISalaryCalService salaryCalService;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -147,12 +146,12 @@ public class UserController {
     }
 
     @GetMapping(value = "/salary", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @RedissonLock(lockPre = "demoTest", value = "#salary", leaseSeconds = 3)
+//    @RedissonLock(lockPre = "demoTest", value = "#salary", leaseSeconds = 3)
     public String salary(String salary) throws InterruptedException {
         TimeUnit.SECONDS.sleep(60);
         log.info("salary sleep.......");
-        Double aDouble = salaryCalService.cal(Double.parseDouble(salary));
-        return String.valueOf(aDouble);
+//        Double aDouble = salaryCalService.cal(Double.parseDouble(salary));
+        return String.valueOf(100);
     }
 
     @GetMapping(value = "/lock", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
