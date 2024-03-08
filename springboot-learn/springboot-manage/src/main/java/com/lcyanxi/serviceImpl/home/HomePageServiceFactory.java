@@ -24,11 +24,11 @@ public class HomePageServiceFactory {
     @Resource
     private List<HomePageService> homePageServices;
 
-    private Map<HomePageType, HomePageService> sectionServiceMap = Maps.newConcurrentMap();
+    private Map<HomePageType, HomePageService> homePageTypeServiceMap = Maps.newConcurrentMap();
 
     @PostConstruct
     private void init() {
-        sectionServiceMap = homePageServices.stream()
+        homePageTypeServiceMap = homePageServices.stream()
                 .collect(Collectors.toMap(HomePageService::getHomePageType, Function.identity()));
     }
 
@@ -40,6 +40,6 @@ public class HomePageServiceFactory {
         if (pageType == null) {
             return null;
         }
-        return sectionServiceMap.get(pageType);
+        return homePageTypeServiceMap.get(pageType);
     }
 }

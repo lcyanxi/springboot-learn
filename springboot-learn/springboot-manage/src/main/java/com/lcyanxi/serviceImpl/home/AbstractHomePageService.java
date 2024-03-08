@@ -35,7 +35,6 @@ public abstract class AbstractHomePageService<C extends HomeContext, D> implemen
             TimeUnit.SECONDS, new ArrayBlockingQueue<>(3),
             new ThreadFactoryBuilder().setNameFormat("home_page_%d").build());
 
-
     @Override
     public HomePageInfo<?> getHomePageInfo(String req) {
         // 构建上下文参数
@@ -84,25 +83,22 @@ public abstract class AbstractHomePageService<C extends HomeContext, D> implemen
         List<CardTypeProcessor<ICard, C>> processors = getCardTypeProcessors(context);
         Set<String> cardTypeNames = cardTypes.stream().map(CardType::getType).collect(Collectors.toSet());
 
-        List<Future<ICard>> list = Lists.newArrayList();
-        for (CardTypeProcessor<ICard, C> processor : processors) {
-            if (processor != null && cardTypeNames.contains(processor.supportCard().getType())) {
-                Future<ICard> sectionFuture = threadPool.submit(() -> processor.doBuildCard(context));
-                list.add(sectionFuture);
-            }
-        }
+        List<Future<ICard>> list = processors.stream()
+                .filter(item -> item != null && cardTypeNames.contains(item.supportCard().getType()))
+                .map(processor -> threadPool.submit(() -> processor.doBuildCard(context))).collect(Collectors.toList());
+
         List<ICard> cards = Lists.newArrayList();
         list.forEach(future -> {
             try {
                 ICard card = future.get(1000, TimeUnit.MILLISECONDS);
-                if (Objects.nonNull(card)) {
-                    if (card instanceof CardWithItems
-                            && IPhoneCardType.SECTION_THREE.getType().equals(card.getType())) {
-                        CardWithItems cardWithItems = (CardWithItems) card;
-                        cardWithItems.withName("iphone_card_three");
-                    }
-                    cards.add(card);
+                if (Objects.isNull(card)) {
+                    return;
                 }
+                if (card instanceof CardWithItems && IPhoneCardType.SECTION_THREE.getType().equals(card.getType())) {
+                    CardWithItems cardWithItems = (CardWithItems) card;
+                    cardWithItems.withName("iphone_card_three");
+                }
+                cards.add(card);
             } catch (Exception e) {}
         });
         return cards.stream().sorted(Comparator.comparing(ICard::getIndex)).collect(Collectors.toList());
