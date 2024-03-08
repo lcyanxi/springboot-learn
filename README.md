@@ -76,26 +76,26 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 
 # Spring框架：
 
-- [自定义注解Autowired实现](Spring框架/自定义注解Autowired实现.md) 【IOC实现原理： 工厂 + 反射】
-- [Spring Bean生命周期](Spring框架/Spring%20Bean生命周期)
-- [Spring容器初始化完成后将Apollo的配置缓存到本地](Spring框架/Spring容器初始化完成后将Apollo的配置缓存到本地.md)
-- [Spring中的循环依赖](Spring框架/Spring中的循环依赖.md) 【三级缓存为什么要使用工厂而不是直接使用引用？】
-- [图解Spring事务的传播机制原理](Spring框架/图解Spring事务的传播机制原理.md)【@transactional注解在什么情况下会失效，为什么？】
+- [自定义注解 Autowired 实现](Spring框架/自定义注解Autowired实现.md) 【IOC实现原理： 工厂 + 反射】
+- [Spring Bean 生命周期](Spring框架/Spring%20Bean生命周期)
+- [Spring 容器初始化完成后将 Apollo 的配置缓存到本地](Spring框架/Spring容器初始化完成后将Apollo的配置缓存到本地.md)
+- [Spring 中的循环依赖](Spring框架/Spring中的循环依赖.md) 【三级缓存为什么要使用工厂而不是直接使用引用？】
+- [图解 Spring 事务的传播机制原理](Spring框架/图解Spring事务的传播机制原理.md)【@transactional注解在什么情况下会失效，为什么？】
 
 # 分布式RPC框架：
 
-- [RPC实战与核心原理-基础篇](分布式RPC框架/RPC实战与核心原理-基础篇.md)
-- [RPC实战与核心原理-进阶篇](分布式RPC框架/RPC实战与核心原理-进阶篇.md)
-- [RPC实战与核心原理-高级篇](分布式RPC框架/RPC实战与核心原理-高级篇.md)【分布式环境下如何快速定位问题？】
-- [TraceId如何在RPC中传递](分布式RPC框架/TraceId如何在RPC中传递.md)【InternalThreadLocal性能如何提升的？】
+- [RPC 实战与核心原理-基础篇](分布式RPC框架/RPC实战与核心原理-基础篇.md)
+- [RPC 实战与核心原理-进阶篇](分布式RPC框架/RPC实战与核心原理-进阶篇.md)
+- [RPC 实战与核心原理-高级篇](分布式RPC框架/RPC实战与核心原理-高级篇.md)【分布式环境下如何快速定位问题？】
+- [TraceId 如何在 RPC 中传递](分布式RPC框架/TraceId如何在RPC中传递.md)【InternalThreadLocal性能如何提升的？】
 - [分布式追踪系统原理-SkyWalking](分布式RPC框架/分布式追踪系统原理-SkyWalking.md)【traceId 如何保证全局唯一?】
-- [关于RPC dubbo超时原理](分布式RPC框架/关于RPC%20dubbo超时原理.md)【接口的幂等性如何解决？】
+- [关于 RPC dubbo 超时原理](分布式RPC框架/关于RPC%20dubbo超时原理.md)【接口的幂等性如何解决？】
 - [动态代理在RPC框架中的性能对比](分布式RPC框架/动态代理在RPC框架中的性能对比.md)
-- [Dubbo SPI与JDK SPI 实现原理分析](Dubbo%20SPI与JDK%20SPI%20实现原理分析.md)
+- [Dubbo SPI 与 JDK SPI 实现原理分析](Dubbo%20SPI与JDK%20SPI%20实现原理分析.md)
   【1.Dubbo SPI仅仅只是解决JDK SPI无法按需加载问题吗？2.如何根据请求的参数来动态加载实现类？】
-- [Dubbo最小活跃调用策略是如何实现的？](分布式RPC框架/Dubbo最小活跃调用策略是如何实现的.md)
-- [Dubbo服务暴露过程](分布式RPC框架/Dubbo服务暴露过程.md)
-- [Dubbo服务调用流程](分布式RPC框架/Dubbo服务调用流程.md)【一个request请求何如跟一个response对应上的？】
+- [Dubbo 最小活跃调用策略是如何实现的？](分布式RPC框架/Dubbo最小活跃调用策略是如何实现的.md)
+- [Dubbo 服务暴露过程](分布式RPC框架/Dubbo服务暴露过程.md)
+- [Dubbo 服务调用流程](分布式RPC框架/Dubbo服务调用流程.md)【一个 request 请求何如跟一个 response 对应上的？】
 
 # Redis
 
@@ -103,14 +103,20 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 - [Redis分布式锁解决高并发场景](Redis框架/秒杀Redis分段锁，如何设计？.md)【分布式锁，如何实现高并发？分段锁思想】
 - [数据库缓存强一致性问题](https://mp.weixin.qq.com/s/U87wrGsx0Eop3CbF9mlTwQ)【大部分读多写少场景建议选择更新数据库后删除缓存】
 - [Redis为什么用跳表而不用平衡树？](Redis框架/Redis为什么用跳表而不用平衡树？.md)【支持范围查找、插入/删除数据变动、内存占用、算法实现难度】
+- [一文搞懂 Redis 架构演化之路](https://mp.weixin.qq.com/s/QssILJLna_v7XQWtV5UMzA)【数据持久化、主从复制、哨兵、分片集群】
+
+
+
+
+
 
 # zookeeper：
 
-- [ZooKeeper分布式锁实现原理](zookeeper/ZooKeeper分布式锁实现原理.md)【零时有序节点 + Watcher机制】
+- [ZooKeeper 分布式锁实现原理](zookeeper/ZooKeeper分布式锁实现原理.md)【零时有序节点 + Watcher 机制】
 
 # 分库分表：
 
-- [基于当当网的shardingJdbc进行分库分表demo](分库分表/基于当当网的shardingJdbc进行分库分表.md)
+- [基于当当网的 shardingJdbc 进行分库分表 demo](分库分表/基于当当网的shardingJdbc进行分库分表.md)
 
 # 消息队列：
 
@@ -119,21 +125,21 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 
 ##### RocketMQ
 
-- [RocketMQ高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
-- [RocketMQ消息存储原理](消息队列/RocketMQ消息存储原理.md)【零拷贝(mmap) + PageChe + 顺序写来提高吞吐量】
-- [零拷贝原理](消息队列/零拷贝原理.md)【为什么rocket采取mmap而不是sendfile方式呢？】
-- [构建基于RocketMQ的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
-- [RocketMQ消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)【要么基于mysql要么基于redis】
-- [RocketMQ消息ACK机制及消费进度管理](消息队列/RocketMQ消息ACK机制及消费进度管理.md)
-- [RocketMQ消息文件过期原理](消息队列/RocketMQ消息文件过期原理.md) 【72小时 + 凌晨4点】
-- [RocketMQ消息高可靠](消息队列/RocketMQ消息高可靠.md)【同步策略 + 刷盘策略 + ACK】
-- [RocketMQ长轮询机制](消息队列/RocketMQ长轮询机制.md)【pull && push的优缺点】
-- [RocketMQ消息重试原理](消息队列/RocketMQ消息重试原理.md)【默认重试次数是16次那为什么延迟消息级别是18个？】
+- [RocketMQ 高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
+- [RocketMQ 消息存储原理](消息队列/RocketMQ消息存储原理.md)【零拷贝(mmap) + PageChe + 顺序写来提高吞吐量】
+- [零拷贝原理](消息队列/零拷贝原理.md)【为什么 rocket 采取mmap而不是 sendfile 方式呢？】
+- [构建基于 RocketMQ 的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
+- [RocketMQ 消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)【要么基于 mysql 要么基于 redis】
+- [RocketMQ 消息 ACK 机制及消费进度管理](消息队列/RocketMQ消息ACK机制及消费进度管理.md)
+- [RocketMQ 消息文件过期原理](消息队列/RocketMQ消息文件过期原理.md) 【72 小时 + 凌晨 4 点】
+- [RocketMQ 消息高可靠](消息队列/RocketMQ消息高可靠.md)【同步策略 + 刷盘策略 + ACK】
+- [RocketMQ 长轮询机制](消息队列/RocketMQ长轮询机制.md)【pull && push 的优缺点】
+- [RocketMQ 消息重试原理](消息队列/RocketMQ消息重试原理.md)【默认重试次数是16次那为什么延迟消息级别是18个？】
 
 ##### kafka
 
-- [Kafka如何实现每秒几十万的高并发写入](消息队列/Kafka如何实现每秒几十万的高并发写入.md)【零拷贝(sendfile) + pageChe + 顺序写】
-- [Kafka文件存储机制](消息队列/Kafka文件存储机制.md)【在 partition 中如何通过 offset 查找 message？】
+- [Kafka 如何实现每秒几十万的高并发写入](消息队列/Kafka如何实现每秒几十万的高并发写入.md)【零拷贝(sendfile) + pageChe + 顺序写】
+- [Kafka 文件存储机制](消息队列/Kafka文件存储机制.md)【在 partition 中如何通过 offset 查找 message？】
 
 
 
