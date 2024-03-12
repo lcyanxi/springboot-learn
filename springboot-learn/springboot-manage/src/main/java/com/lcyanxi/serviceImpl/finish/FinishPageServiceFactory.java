@@ -21,6 +21,7 @@ import com.lcyanxi.finish.TrainingType;
 public class FinishPageServiceFactory {
     @Resource
     private List<FinishPageService> finishPageServiceList;
+
     private Map<TrainingType, FinishPageService> finishPageServiceMap;
 
     @PostConstruct

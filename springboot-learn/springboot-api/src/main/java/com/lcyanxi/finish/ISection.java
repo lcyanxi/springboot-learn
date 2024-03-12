@@ -6,9 +6,10 @@ package com.lcyanxi.finish;
  * @since : 2024/03/10/11:33 上午
  */
 public interface ISection {
+
     String getType();
 
-    String getName();
-
     int getIndex();
+
+    String getSectionName();
 }

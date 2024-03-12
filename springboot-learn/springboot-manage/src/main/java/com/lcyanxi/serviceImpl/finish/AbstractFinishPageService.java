@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lcyanxi.finish.FinishPageContext;
 import com.lcyanxi.finish.FinishPageReq;
+import com.lcyanxi.finish.FinishPageRsp;
 import com.lcyanxi.finish.SectionType;
 import com.lcyanxi.serviceImpl.finish.section.FinishSectionHandlerService;
 
@@ -23,4 +24,8 @@ public abstract class AbstractFinishPageService implements FinishPageService {
 
     protected abstract List<FinishSectionHandlerService> getSectionTypeHandlerList(FinishPageContext context);
 
+    @Override
+    public FinishPageRsp getLogPage(FinishPageReq request) {
+        return null;
+    }
 }

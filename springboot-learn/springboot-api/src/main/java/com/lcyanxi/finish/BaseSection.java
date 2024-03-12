@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class BaseSection implements ISection{
+public class BaseSection implements ISection {
 
-    private String getType;
+    private String type;
 
-    private String getName;
+    private int index;
 
-    private int getIndex;
+    private String sectionName;
 
     public BaseSection(SectionType sectionType) {
-        this.getType = sectionType.getType();
-        this.getIndex = sectionType.getIndex();
-        this.getName = sectionType.getName();
+        this.type = sectionType.getType();
+        this.index = sectionType.getIndex();
+        this.sectionName = sectionType.getName();
     }
 }

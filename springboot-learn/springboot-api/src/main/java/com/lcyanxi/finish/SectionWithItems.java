@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : lichang
@@ -15,10 +16,12 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public class SectionWithItems<T> extends BaseSection{
+public class SectionWithItems<T> extends BaseSection {
     private List<T> items;
 
-    public SectionWithItems(SectionType sectionType){
+    private Map<String, String> tracks;
+
+    public SectionWithItems(SectionType sectionType) {
         super(sectionType);
     }
 }
