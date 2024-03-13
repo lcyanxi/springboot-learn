@@ -6,15 +6,16 @@ import lombok.Data;
 /**
  * @author : lichang
  * @desc : 描述信息
- * @since : 2024/03/11/6:23 下午
+ * @since : 2024/03/13/10:08 上午
  */
-@Builder
 @Data
-public class FinishPageContext {
-
-    private String logId;
+@Builder
+public class BasicInfo {
+    private String userName;
 
     private String userId;
 
-    private long creatAt;
+    private String gender;
+
+    private String trainingType;
 }

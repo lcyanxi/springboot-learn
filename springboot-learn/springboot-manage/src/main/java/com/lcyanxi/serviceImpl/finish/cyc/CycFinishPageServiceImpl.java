@@ -1,15 +1,17 @@
-package com.lcyanxi.serviceImpl.finish.run;
+package com.lcyanxi.serviceImpl.finish.cyc;
 
-import com.google.common.collect.Lists;
-import com.lcyanxi.enums.FinishSectionEnum;
+import java.util.List;
+
 import com.lcyanxi.finish.*;
-import com.lcyanxi.serviceImpl.finish.AbstractFinishPageService;
-import com.lcyanxi.serviceImpl.finish.section.FinishSectionHandlerService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.google.common.collect.Lists;
+import com.lcyanxi.enums.FinishSectionEnum;
+import com.lcyanxi.serviceImpl.finish.AbstractFinishPageService;
+import com.lcyanxi.serviceImpl.finish.section.FinishSectionHandlerService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author : lichang
@@ -18,13 +20,13 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class RunFinishPageService extends AbstractFinishPageService {
+public class CycFinishPageServiceImpl extends AbstractFinishPageService<FinishPageContext, BasicInfo> {
     @Autowired
     private List<FinishSectionHandlerService> handlerServices;
 
     @Override
     protected FinishPageContext buildContext(FinishPageReq req) {
-        return null;
+        return super.buildCommonContext(req);
     }
 
     @Override
@@ -39,6 +41,12 @@ public class RunFinishPageService extends AbstractFinishPageService {
 
     @Override
     public TrainingType getTrainingType() {
-        return TrainingType.Run;
+        return TrainingType.Cyc;
+    }
+
+    @Override
+    protected BasicInfo buildBasicInfo(FinishPageContext context) {
+        return BasicInfo.builder().userName(TrainingType.Cyc.getDesc()).trainingType(TrainingType.Cyc.getType())
+                .gender("X").userId(context.getUserId()).build();
     }
 }
