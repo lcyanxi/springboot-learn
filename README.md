@@ -99,10 +99,11 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 
 # Redis
 - [Redis 底层数据结构(一)-哈希表（dict）](Redis框架/Redis%20底层数据结构-哈希表（dict）.md)【怎么解决哈希冲突？什么是渐进式 rehash ？】
+- [Redis 底层数据结构(二)-压缩列表（ziplist）](Redis框架/Redis%20底层数据结构-压缩列表（ziplist）.md)【怎么做到的节省内存？有什么缺点？链锁更新问题是什么？】
+- [Redis 底层数据结构(三)-跳表（skiplist）](Redis框架/Redis为什么用跳表而不用平衡树？.md)【支持范围查找、插入/删除数据变动、内存占用、算法实现难度。为什么用跳表而不用平衡树？】
 - [基于 Redis 的分布式锁到底安全吗](Redis框架/基于Redis的分布式锁到底安全吗.md)【看门狗机制】
 - [Redis 分布式锁解决高并发场景](Redis框架/秒杀Redis分段锁，如何设计？.md)【分布式锁，如何实现高并发？分段锁思想】
 - [数据库缓存强一致性问题](https://mp.weixin.qq.com/s/U87wrGsx0Eop3CbF9mlTwQ)【大部分读多写少场景建议选择更新数据库后删除缓存】
-- [Redis 为什么用跳表而不用平衡树？](Redis框架/Redis为什么用跳表而不用平衡树？.md)【支持范围查找、插入/删除数据变动、内存占用、算法实现难度】
 - [Redis 持久化策略浅析](Redis框架/Redis%20持久化策略浅析.md)【大 key 对持久化的影响？COW 机制(写时复制机制)是什么？】
 - [一文搞懂 Redis 架构演化之路](https://mp.weixin.qq.com/s/QssILJLna_v7XQWtV5UMzA)【数据持久化、主从复制、哨兵、分片集群】
 
