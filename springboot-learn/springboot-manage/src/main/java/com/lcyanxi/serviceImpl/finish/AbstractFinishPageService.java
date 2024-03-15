@@ -38,7 +38,7 @@ public abstract class AbstractFinishPageService<C extends FinishPageContext, D> 
     }
 
     @Override
-    public FinishPageRsp getLogPage(FinishPageReq request) {
+    public FinishPageRsp<D> getLogPage(FinishPageReq request) {
         // 构建上下文参数
         FinishPageContext context = buildContext(request);
         if (context == null) {
