@@ -2,14 +2,12 @@ package com.lcyanxi.serviceImpl.finish.cyc;
 
 import java.util.List;
 
-import com.lcyanxi.finish.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 import com.lcyanxi.enums.FinishSectionEnum;
+import com.lcyanxi.finish.*;
 import com.lcyanxi.serviceImpl.finish.AbstractFinishPageService;
-import com.lcyanxi.serviceImpl.finish.section.FinishSectionHandlerService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,8 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class CycFinishPageServiceImpl extends AbstractFinishPageService<FinishPageContext, BasicInfo> {
-    @Autowired
-    private List<FinishSectionHandlerService> handlerServices;
 
     @Override
     protected FinishPageContext buildContext(FinishPageReq req) {
@@ -32,11 +28,6 @@ public class CycFinishPageServiceImpl extends AbstractFinishPageService<FinishPa
     @Override
     protected List<SectionType> getSectionTypeList(FinishPageContext context) {
         return Lists.newArrayList(FinishSectionEnum.values());
-    }
-
-    @Override
-    protected List<FinishSectionHandlerService> getSectionTypeHandlerList(FinishPageContext context) {
-        return handlerServices;
     }
 
     @Override

@@ -1,16 +1,19 @@
 package com.lcyanxi.serviceImpl.finish.run;
 
-import com.google.common.collect.Lists;
-import com.lcyanxi.enums.FinishSectionEnum;
-import com.lcyanxi.finish.*;
-import com.lcyanxi.model.User;
-import com.lcyanxi.serviceImpl.finish.AbstractFinishPageService;
-import com.lcyanxi.serviceImpl.finish.section.FinishSectionHandlerService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.google.common.collect.Lists;
+import com.lcyanxi.enums.FinishSectionEnum;
+import com.lcyanxi.finish.FinishPageContext;
+import com.lcyanxi.finish.FinishPageReq;
+import com.lcyanxi.finish.SectionType;
+import com.lcyanxi.finish.TrainingType;
+import com.lcyanxi.model.User;
+import com.lcyanxi.serviceImpl.finish.AbstractFinishPageService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author : lichang
@@ -20,8 +23,6 @@ import java.util.List;
 @Slf4j
 @Service
 public class RunFinishPageServiceImpl extends AbstractFinishPageService<FinishPageContext, User> {
-    @Autowired
-    private List<FinishSectionHandlerService> handlerServices;
 
     @Override
     protected FinishPageContext buildContext(FinishPageReq req) {
@@ -31,11 +32,6 @@ public class RunFinishPageServiceImpl extends AbstractFinishPageService<FinishPa
     @Override
     protected List<SectionType> getSectionTypeList(FinishPageContext context) {
         return Lists.newArrayList(FinishSectionEnum.values());
-    }
-
-    @Override
-    protected List<FinishSectionHandlerService> getSectionTypeHandlerList(FinishPageContext context) {
-        return handlerServices;
     }
 
     @Override

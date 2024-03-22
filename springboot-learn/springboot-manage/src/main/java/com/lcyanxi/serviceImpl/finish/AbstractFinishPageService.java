@@ -7,12 +7,16 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import com.google.common.collect.Maps;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.lcyanxi.finish.*;
 import com.lcyanxi.serviceImpl.finish.section.FinishSectionHandlerService;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author : lichang
@@ -23,14 +27,23 @@ public abstract class AbstractFinishPageService<C extends FinishPageContext, D> 
     ThreadPoolExecutor threadPool = new ThreadPoolExecutor(5, 6, 3,
             TimeUnit.SECONDS, new ArrayBlockingQueue<>(3),
             new ThreadFactoryBuilder().setNameFormat("finish_page_%d").build());
+    @Autowired
+    private List<FinishSectionHandlerService> sectionTypeHandlerServiceList;
+
+    private final Map<SectionType, FinishSectionHandlerService> sectionFactoryMap = Maps.newConcurrentMap();
+
+    @PostConstruct
+    public void init() {
+        for (FinishSectionHandlerService sectionFactory : sectionTypeHandlerServiceList) {
+            sectionFactoryMap.put(sectionFactory.getSectionType(), sectionFactory);
+        }
+    }
 
     // 由子类构造上下文参数
     protected abstract FinishPageContext buildContext(FinishPageReq req);
 
-
     protected abstract List<SectionType> getSectionTypeList(FinishPageContext context);
 
-    protected abstract List<FinishSectionHandlerService> getSectionTypeHandlerList(FinishPageContext context);
 
     // 由子类构建 meta 信息
     protected D buildBasicInfo(FinishPageContext context) {
@@ -59,14 +72,12 @@ public abstract class AbstractFinishPageService<C extends FinishPageContext, D> 
         if (CollectionUtils.isEmpty(sectionTypeList)) {
             return new ArrayList<>();
         }
-        // 获取每个 section 类型具体的执行器
-        List<FinishSectionHandlerService> sectionTypeHandlerList = getSectionTypeHandlerList(context);
-        Set<String> sectionTypes = sectionTypeList.stream().map(SectionType::getType).collect(Collectors.toSet());
-
-        List<Future<ISection>> list = sectionTypeHandlerList.stream()
-                .filter(item -> item != null && sectionTypes.contains(item.getSectionType().getType()))
-                .map(processor -> threadPool.submit(() -> processor.doBuildSection(context)))
-                .collect(Collectors.toList());
+        List<Future<ISection>> list =
+                sectionTypeList.stream().filter(sectionFactoryMap::containsKey)
+                        .map(processor -> {
+                            FinishSectionHandlerService finishSectionHandlerService = sectionFactoryMap.get(processor);
+                           return threadPool.submit(() -> finishSectionHandlerService.doBuildSection(context));
+                        }).collect(Collectors.toList());
 
         List<ISection> cards = Lists.newArrayList();
         list.forEach(future -> {
@@ -86,7 +97,7 @@ public abstract class AbstractFinishPageService<C extends FinishPageContext, D> 
                 .creatAt(System.currentTimeMillis()).build();
     }
 
-    protected BasicInfo buildCommonBasicInfo(FinishPageContext context){
+    protected BasicInfo buildCommonBasicInfo(FinishPageContext context) {
         return BasicInfo.builder().gender("男").userId(context.getUserId()).userName("达康书记").build();
     }
 }
