@@ -1,11 +1,8 @@
 package com.lcyanxi.util;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-
 import java.time.*;
-import java.time.temporal.ChronoUnit;
-import java.time.zone.ZoneRules;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 
 /**
  * @author : lichang
@@ -15,20 +12,26 @@ import java.time.zone.ZoneRules;
 public class DataTest {
 
     public static void main(String[] args) {
-        String timezone = "America/Atka";
+        String timezone = "Pacific/Samoa";
         long timeMillis = System.currentTimeMillis();
         // 3.28 零点
         long time2 = 1711728000000L;
 
         long timeOffsetWithEast8 = getTimeOffsetWithEast8(time2, timezone);
         long a1 = timeOffsetWithEast8 / 1000 / 60 / 60;
+
         long currentTimeOffsetWithEast8 = getCurrentTimeOffsetWithEast8(timezone);
         long a2 = currentTimeOffsetWithEast8 / 1000 / 60 / 60;
         System.out.println("当前时间差值：" + a2 + " 凌晨：" + a1);
         System.out.println("当前时间：" + timeMillis + " 分区时间：" + (timeMillis - currentTimeOffsetWithEast8));
-        System.out.println("当前时间：" + time2 + " 分区时间：" + (time2 + Math.abs(timeOffsetWithEast8)));
+        System.out.println("当前时间：" + time2 + " 分区时间：" + (time2 - (timeOffsetWithEast8)));
         long b = -1000;
         System.out.println(Math.abs(b));
+
+
+        LocalDate firstDayOfWeek = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        System.out.println(firstDayOfWeek.format(formatter));
 
     }
 

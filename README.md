@@ -131,8 +131,8 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 
 - [RocketMQ 高性能之底层存储设计](消息队列/RocketMQ高性能之底层存储设计.md)
 - [RocketMQ 消息存储原理](消息队列/RocketMQ消息存储原理.md)【零拷贝(mmap) + PageChe + 顺序写来提高吞吐量】
-- [零拷贝原理](消息队列/零拷贝原理.md)【为什么 rocket 采取mmap而不是 sendfile 方式呢？】
-- [构建基于 RocketMQ 的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)
+- [零拷贝原理](消息队列/零拷贝原理.md)【为什么 rocket 采取mmap而不是 sendfile 方式呢？（安全性 / 吞吐量）】
+- [构建基于 RocketMQ 的分布式事务服务](消息队列/构建基于RocketMQ的分布式事务服务.md)【RMQ 如何实现事务消息的？】
 - [RocketMQ 消息幂等通用解决方案](消息队列/RocketMQ消息幂等通用解决方案.md)【要么基于 mysql 要么基于 redis】
 - [RocketMQ 消息 ACK 机制及消费进度管理](消息队列/RocketMQ消息ACK机制及消费进度管理.md)
 - [RocketMQ 消息文件过期原理](消息队列/RocketMQ消息文件过期原理.md) 【72 小时 + 凌晨 4 点】
