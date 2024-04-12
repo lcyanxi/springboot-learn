@@ -140,6 +140,7 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 - [RocketMQ 长轮询机制](消息队列/RocketMQ长轮询机制.md)【pull && push 的优缺点】
 - [RocketMQ 消息重试原理](消息队列/RocketMQ消息重试原理.md)【默认重试次数是16次那为什么延迟消息级别是18个？】
 
+- [RocketMQ 并发编程](消息队列/RocketMQ%20并发编程.md)【NameServer 为什么不使用 ConcurrentHashMap 作为 Topic 路由信息存储容器呢？】
 ##### kafka
 
 - [Kafka 如何实现每秒几十万的高并发写入](消息队列/Kafka如何实现每秒几十万的高并发写入.md)【零拷贝(sendfile) + pageChe + 顺序写】

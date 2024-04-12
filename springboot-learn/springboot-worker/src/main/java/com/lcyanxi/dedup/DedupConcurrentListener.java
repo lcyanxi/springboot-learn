@@ -13,6 +13,8 @@ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.message.MessageClientIDSetter;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 
 /**
@@ -23,13 +25,16 @@ import org.apache.rocketmq.common.message.MessageExt;
 @Slf4j
 @Data
 public abstract class DedupConcurrentListener implements MessageListenerConcurrently {
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
     // 默认不去重
-    private DedupConfig dedupConfig = DedupConfig.disableDupConsumeConfig("NOT-SET-CONSUMER-GROUP");
+    private DedupConfig dedupConfig =
+            DedupConfig.enableDedupConsumeConfig("NOT-SET-CONSUMER-GROUP", stringRedisTemplate);
 
     /**
      * 默认不去重
      */
-    public DedupConcurrentListener(){
+    public DedupConcurrentListener() {
         log.info("Construct QBConcurrentRMQListener with default {}", dedupConfig);
     }
 
@@ -46,27 +51,28 @@ public abstract class DedupConcurrentListener implements MessageListenerConcurre
                 hasConsumeFail = true;
             }
 
-            //如果前面出现消费失败的话，后面也不用消费了，因为都会重发
+            // 如果前面出现消费失败的话，后面也不用消费了，因为都会重发
             if (hasConsumeFail) {
                 break;
-            } else { //到现在都消费成功
+            } else { // 到现在都消费成功
                 ackIndexIfFail = i;
             }
         }
 
-        if (!hasConsumeFail) {//全都消费成功
+        if (!hasConsumeFail) {// 全都消费成功
             log.info("consume [{}] msg(s) all successfully", msgs.size());
-        } else {//存在失败的
-            //标记成功位，后面的会重发以重新消费，在这个位置之前的不会重发。 详情见源码：ConsumeMessageConcurrentlyService#processConsumeResult
+        } else {// 存在失败的
+            // 标记成功位，后面的会重发以重新消费，在这个位置之前的不会重发。 详情见源码：ConsumeMessageConcurrentlyService#processConsumeResult
             context.setAckIndex(ackIndexIfFail);
             log.warn("consume [{}] msg(s) fails, ackIndex = [{}] ", msgs.size(), context.getAckIndex());
         }
-        //无论如何最后都返回成功
+        // 无论如何最后都返回成功
         return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
     }
 
     /**
      * 子类实现此方法。真正处理消息
+     * 
      * @param messageExt
      * @return true表示消费成功，false表示消费失败
      */
@@ -74,7 +80,7 @@ public abstract class DedupConcurrentListener implements MessageListenerConcurre
 
 
     /**
-     *  默认拿uniqkey 作为去重的标识
+     * 默认拿uniqkey 作为去重的标识
      */
     protected String dedupMessageKey(final MessageExt messageExt) {
         String uniqID = MessageClientIDSetter.getUniqID(messageExt);
@@ -85,19 +91,18 @@ public abstract class DedupConcurrentListener implements MessageListenerConcurre
         }
     }
 
-    //消费消息，带去重的逻辑
+    // 消费消息，带去重的逻辑
     private boolean handleMsgInner(final MessageExt messageExt) {
         ConsumeStrategy strategy = new NormalConsumeStrategy();
 
         Function<MessageExt, String> dedupKeyFunction = messageExt1 -> dedupMessageKey(messageExt);
 
         if (dedupConfig.getDedupStrategy() == DedupConfig.DEDUP_STRATEGY_CONSUME_LATER) {
-             strategy = new DedupConsumeStrategy(dedupConfig, dedupKeyFunction);
+            strategy = new DedupConsumeStrategy(dedupConfig, dedupKeyFunction);
         }
-        //调用对应的策略
+        // 调用对应的策略
         return strategy.invoke(DedupConcurrentListener.this::doHandleMsg, messageExt);
     }
 }
-
 
 
