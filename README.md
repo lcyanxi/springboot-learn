@@ -35,6 +35,7 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 - [CompletionService解决获取返回值阻塞问题](Java并发/CompletionService解决获取返回值阻塞问题.md)
   【如何手动实现一个线程池？】
 - [关于HashMap那些问题](Java并发/关于HashMap那些问题.md)【HashMap7除了死循环问题外还有那些线程不安全的地方？HashMap8呢？】
+- [美团 CompletableFuture 原理与实践](https://mp.weixin.qq.com/s/GQGidprakfticYnbVYVYGQ)
 
 # Java虚拟机：
 

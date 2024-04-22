@@ -1,10 +1,7 @@
 package com.lcyanxi.serviceImpl.finish;
 
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Future;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Maps;
@@ -72,11 +69,13 @@ public abstract class AbstractFinishPageService<C extends FinishPageContext, D> 
         if (CollectionUtils.isEmpty(sectionTypeList)) {
             return new ArrayList<>();
         }
-        List<Future<ISection>> list =
+
+        List<CompletableFuture<ISection>> list =
                 sectionTypeList.stream().filter(sectionFactoryMap::containsKey)
                         .map(processor -> {
                             FinishSectionHandlerService finishSectionHandlerService = sectionFactoryMap.get(processor);
-                           return threadPool.submit(() -> finishSectionHandlerService.doBuildSection(context));
+                            return CompletableFuture
+                                    .supplyAsync(() -> finishSectionHandlerService.doBuildSection(context), threadPool);
                         }).collect(Collectors.toList());
 
         List<ISection> cards = Lists.newArrayList();
