@@ -140,6 +140,7 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 - [RocketMQ 消息高可靠](消息队列/RocketMQ消息高可靠.md)【同步策略 + 刷盘策略 + ACK】
 - [RocketMQ 长轮询机制](消息队列/RocketMQ长轮询机制.md)【pull && push 的优缺点】
 - [RocketMQ 消息重试原理](消息队列/RocketMQ消息重试原理.md)【默认重试次数是16次那为什么延迟消息级别是18个？】
+- [RocketMQ 【顺序消费实现原理】](https://www.cnblogs.com/shanml/p/17706095.html)【如何用三把锁来实现的？】
 
 - [RocketMQ 并发编程](消息队列/RocketMQ%20并发编程.md)【NameServer 为什么不使用 ConcurrentHashMap 作为 Topic 路由信息存储容器呢？】
 ##### kafka
