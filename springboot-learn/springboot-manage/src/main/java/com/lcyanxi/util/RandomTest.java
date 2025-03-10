@@ -10,7 +10,7 @@ public class RandomTest {
         double decimalPart = number - integerPart;
 
         // 计算小数点后第五位的值
-        double factor = Math.pow(10, 5);
+        double factor = Math.pow(10, 10);
         int currentFifthDecimal = (int) ((decimalPart * factor) % 10);
 
         // 替换小数点后第五位
@@ -21,7 +21,7 @@ public class RandomTest {
     }
 
     public static void main(String[] args) {
-        double a = 39;
+        double a = 116.646666667;
         System.out.println(replaceFifthDecimal(a));
     }
 }
