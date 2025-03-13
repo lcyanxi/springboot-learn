@@ -29,6 +29,7 @@ public class ZuicoolController {
             // 遍历并输出每个赛事的信息
             for (Element event : events) {
                 String title = event.select("h4.name a").text(); // 根据实际情况调整选择器
+                String cave = event.select("div.logo img").attr("src");
                 // 提取日期和地点
                 String[] dateAndLocation = event.select("div.info").text().split("·");
                 String eventDate = dateAndLocation[0].trim();
