@@ -40,7 +40,11 @@ public class ZuicoolController {
                 String[] split = detailUrl.split("/");
                 detailProcess(split[split.length - 1]);
                 System.out.printf("赛事名称: %s, 日期:%s , 地点: %s, 报名时间: %s, id：%s%n", title, eventDate, eventLocation, registrationDeadline, detailUrl);
+                break;
             }
+            String href = doc.select("li.next a").attr("href");
+            System.out.println(href);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
