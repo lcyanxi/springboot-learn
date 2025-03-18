@@ -2,6 +2,10 @@ package com.lcyanxi.controller;
 
 import com.lcyanxi.util.CourseClient;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,6 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Slf4j
 @RestController
@@ -58,5 +67,55 @@ public class ZuicoolController {
         Element contactElement = doc.select(".event-contact").first();
         String contactInfo = contactElement != null ? contactElement.text() : "未找到联系信息";
         System.out.printf("详情内容: %s, 联系人:%s%n", description,contactInfo);
+    }
+
+    public static void main(String[] args) {
+            String url = "https://zuicool.com/event/59067"; // 要解析的 URL
+            String htmlContent = fetchHtml(url);
+
+            if (htmlContent != null) {
+                System.out.println("获取的 HTML 内容：");
+                System.out.println(htmlContent);
+            } else {
+                System.out.println("未能获取 HTML 内容。");
+            }
+        }
+
+        public static String fetchHtml(String url) {
+            OkHttpClient client = new OkHttpClient();
+
+            // 创建请求对象
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                // 检查响应是否成功
+                if (!response.isSuccessful()) {
+                    throw new IOException("Unexpected code " + response);
+                }
+                // 返回 HTML 内容
+                return response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+
+
+    private static String extractUrls(String text) {
+        if (StringUtils.isBlank(text)) {
+            return "";
+        }
+        // 正则表达式匹配网址
+        String urlRegex = "https?://[\\w.-]+(:\\d+)?(/[^\\s]*)?";
+        Pattern pattern = Pattern.compile(urlRegex);
+        Matcher matcher = pattern.matcher(text);
+        // 查找并输出所有网址
+        if (matcher.find()) {
+            return matcher.group();
+        }
+        return "";
     }
 }

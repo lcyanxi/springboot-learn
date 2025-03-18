@@ -1,5 +1,7 @@
 package com.lcyanxi.fuxi.leecode;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class No77 {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> temps = new ArrayList<>();
+        return Lists.newArrayList();
     }
 
     private void process(int n, int k, List<List<Integer>> res,List<Integer> temps){
