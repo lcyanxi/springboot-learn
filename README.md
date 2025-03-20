@@ -75,6 +75,7 @@ _站在巨人的肩膀上，仰望'星空'，脚踏实地_
 - [Explain执行计划详解](数据库原理/Explain执行计划详解.md)【主要关注type、key、rows、filtered、Extra】
 - [Limit Offset优化方案](数据库原理/Limit%20Offset优化方案.md)【基于游标分页】
 - [Mysql并行复制原理](数据库原理/Mysql并行复制原理.md)【主从延迟的原因有那些？】
+- [为什么Mysql不允许在RC情况下使用Statement？](数据库原理/为什么Mysql不允许在RC情况下使用Statement？.md)【Mysql 默认隔离级别为什么是 RR?】
 
 # Spring框架：
 
