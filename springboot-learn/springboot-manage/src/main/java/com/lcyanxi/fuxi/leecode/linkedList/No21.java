@@ -1,4 +1,6 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.linkedList;
+
+import com.lcyanxi.fuxi.leecode.linkedList.ListNode;
 
 /**
  * 21. 合并两个有序链表

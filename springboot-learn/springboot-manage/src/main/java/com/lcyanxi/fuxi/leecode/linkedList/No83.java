@@ -1,6 +1,6 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.linkedList;
 
-import java.util.List;
+import com.lcyanxi.fuxi.leecode.linkedList.ListNode;
 
 /**
  * 83. 删除排序链表中的重复元素

@@ -1,6 +1,6 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.linkedList;
 
-import java.util.List;
+import com.lcyanxi.fuxi.leecode.linkedList.ListNode;
 
 /**
  * 24. 两两交换链表中的节点

@@ -1,4 +1,6 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.linkedList;
+
+import com.lcyanxi.fuxi.leecode.linkedList.ListNode;
 
 /**
  * 19. 删除链表的倒数第 N 个结点
