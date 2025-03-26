@@ -34,23 +34,6 @@ public class LRUCache {
         tail.pre = head;
     }
 
-    public static void main(String[] args) {
-        LRUCache lruCache = new LRUCache(3);
-
-        lruCache.put(1,1);
-        lruCache.put(2,2);
-        lruCache.put(3,3);
-
-        lruCache.put(4,4);
-        lruCache.get(2);
-
-        DoubleListNode head1 = lruCache.head;
-        while (head1 != null){
-            System.out.print(head1.value);
-            head1 = head1.next;
-        }
-
-    }
 
     public int get(int key) {
         if (!map.containsKey(key)) {
@@ -74,7 +57,7 @@ public class LRUCache {
             map.put(key,newNode);
         }else {
             if (capacity <= map.size()) {
-                DoubleListNode next = head.next;
+                DoubleListNode next = tail.pre;
                 map.remove(next.key);
                 remove(next);
                 insert(newNode);
@@ -92,12 +75,10 @@ public class LRUCache {
     }
 
     private void insert(DoubleListNode doubleListNode) {
-        DoubleListNode pre = tail.pre;
-
-        pre.next = doubleListNode;
-        doubleListNode.next = tail;
-        doubleListNode.pre = pre;
-        tail.pre = doubleListNode;
+        doubleListNode.next = head.next;
+        head.next.pre = doubleListNode;
+        head.next = doubleListNode;
+        doubleListNode.pre = head;
     }
 
     public class DoubleListNode {
@@ -112,6 +93,25 @@ public class LRUCache {
             this.key = key;
             this.value = value;
         }
+    }
+
+
+    public static void main(String[] args) {
+        LRUCache lruCache = new LRUCache(3);
+
+        lruCache.put(1,1);
+        lruCache.put(2,2);
+        lruCache.put(3,3);
+
+        lruCache.put(4,4);
+        lruCache.get(2);
+
+        DoubleListNode head1 = lruCache.head;
+        while (head1 != null){
+            System.out.print(head1.value);
+            head1 = head1.next;
+        }
+
     }
 
 }
