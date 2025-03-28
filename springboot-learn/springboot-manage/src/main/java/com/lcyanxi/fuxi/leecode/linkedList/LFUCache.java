@@ -3,6 +3,14 @@ package com.lcyanxi.fuxi.leecode.linkedList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 最少频率最久未使用 LFU
+ *
+ * 一个全局的 dataMap<key,Node>
+ * 频率计数器 <key,Nodes[]>
+ * 最小频率次数  minFreq
+ * 容量 capacity
+ */
 public class LFUCache {
     public class Node {
         int key;
