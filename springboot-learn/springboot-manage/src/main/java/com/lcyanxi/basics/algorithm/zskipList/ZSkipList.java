@@ -4,11 +4,7 @@
 //
 //import java.util.Random;
 //
-///**
-// * @author : lichang
-// * @desc : 跳表实现
-// * @since : 2023/09/02/5:18 下午
-// */
+//
 //public class ZSkipList<T extends Comparable> {
 //    /**
 //     * 跳表最大层数
