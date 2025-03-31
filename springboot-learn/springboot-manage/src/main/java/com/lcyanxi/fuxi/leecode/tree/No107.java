@@ -1,4 +1,4 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.tree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
