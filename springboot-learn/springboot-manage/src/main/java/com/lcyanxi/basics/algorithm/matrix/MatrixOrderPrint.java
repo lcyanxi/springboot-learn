@@ -16,9 +16,9 @@ package com.lcyanxi.basics.algorithm.matrix;
  */
 public class MatrixOrderPrint {
     public static void main(String[] args) {
-        int[][] matrix =  { {1,2,3},
-                            {4,5,6},
-                            {7,8,9}
+        int[][] matrix =  { {1,2,3,4},
+                            {5,6,7,8},
+                            {9,10,11,12}
                           };
         int[] ints = spiralOrder(matrix);
         for (int e : ints){
