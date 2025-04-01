@@ -10,7 +10,7 @@ import java.util.List;
  * 输入：head = [1,2,3,4,3,2,1]
  * 输出：true
  *
- * 思路： 后半部分链表反转
+ * 思路： 后半部分链表反转 + 双指针
  */
 public class No234 {
     public static boolean isPalindrome(ListNode head) {
