@@ -37,12 +37,14 @@ public class No73 {
                 }
             }
         }
-
-        for (int i =0; i<cowLength; i++){
-            for (int j = 0; j<colLength; j++){
-                if (cow.contains(i) || col.contains(j)){
-                    matrix[i][j] = 0;
-                }
+        for (Integer integer : cow){
+            for (int i =0;i < cowLength;i++){
+                matrix[integer][i] = 0;
+            }
+        }
+        for (Integer integer: col){
+            for (int i = 0; i< cowLength;i ++){
+                matrix[i][integer] = 0;
             }
         }
     }
