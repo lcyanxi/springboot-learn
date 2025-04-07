@@ -1,4 +1,4 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.Str;
 
 /**
  * 7. 整数反转

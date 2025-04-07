@@ -1,4 +1,4 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.array;
 
 import java.util.Arrays;
 import java.util.HashMap;

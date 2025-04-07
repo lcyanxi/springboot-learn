@@ -1,4 +1,4 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.array;
 
 /**
  * 11. 盛最多水的容器

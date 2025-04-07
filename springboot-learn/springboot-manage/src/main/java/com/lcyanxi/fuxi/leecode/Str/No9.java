@@ -1,4 +1,4 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.Str;
 
 /**
  * 9. 回文数

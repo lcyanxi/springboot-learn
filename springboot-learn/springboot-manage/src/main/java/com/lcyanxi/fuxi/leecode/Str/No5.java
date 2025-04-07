@@ -1,4 +1,4 @@
-package com.lcyanxi.fuxi.leecode;
+package com.lcyanxi.fuxi.leecode.Str;
 
 /**
  * 5. 最长回文子串
