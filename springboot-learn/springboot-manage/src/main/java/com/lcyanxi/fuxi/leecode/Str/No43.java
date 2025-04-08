@@ -1,5 +1,7 @@
 package com.lcyanxi.fuxi.leecode.Str;
 
+import java.util.LinkedHashSet;
+
 /**
  * 43. 字符串相乘
  *
@@ -25,6 +27,13 @@ package com.lcyanxi.fuxi.leecode.Str;
  */
 public class No43 {
     public String multiply(String num1, String num2) {
+        LinkedHashSet<Integer> set = new LinkedHashSet<>();
+        set.add(11);
+
+        for (Integer a : set){
+            System.out.println(a);
+        }
+
         if (num1.equals("0") || num2.equals("0")){
             return "0";
         }
