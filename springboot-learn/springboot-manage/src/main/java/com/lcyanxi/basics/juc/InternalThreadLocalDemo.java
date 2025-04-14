@@ -10,11 +10,14 @@ import org.apache.dubbo.common.threadlocal.InternalThreadLocal;
 public class InternalThreadLocalDemo {
 
     private static InternalThreadLocal<Integer> internalThreadLocal_0 = new InternalThreadLocal<>();
+    private static InheritableThreadLocal<Integer> inheritableThreadLocal = new InheritableThreadLocal<>();
 
     public static void main(String[] args) {
+        inheritableThreadLocal.set(10);
         new InternalThread(() -> {
             for (int i = 0; i < 5; i++) {
                 internalThreadLocal_0.set(i);
+                inheritableThreadLocal.set(i);
                 Integer value = internalThreadLocal_0.get();
                 System.out.println(Thread.currentThread().getName() + ":" + value);
             }

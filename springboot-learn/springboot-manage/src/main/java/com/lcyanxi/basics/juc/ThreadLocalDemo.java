@@ -10,6 +10,7 @@ public class ThreadLocalDemo {
 
     private static ThreadLocal<Integer> threadLocal = ThreadLocal.withInitial(() -> 0);
 
+
     public Integer getAndIncrement(){
         threadLocal.set(threadLocal.get() + 1);
         return threadLocal.get();
