@@ -35,17 +35,7 @@ public class No21 {
             cur.next = new ListNode(val);
             cur = cur.next;
         }
-        while (cur1 != null){
-            cur.next = new ListNode(cur1.val);
-            cur =cur.next;
-            cur1 = cur1.next;
-        }
-
-        while (cur2 != null){
-            cur.next = new ListNode(cur2.val);
-            cur =cur.next;
-            cur2 = cur2.next;
-        }
+        cur.next = cur1 == null? cur2 : cur1;
         return dummyHead.next;
     }
 

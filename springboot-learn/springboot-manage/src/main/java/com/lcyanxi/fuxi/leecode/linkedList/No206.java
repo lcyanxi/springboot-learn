@@ -20,19 +20,14 @@ public class No206 {
         if (head == null || head.next == null){
             return head;
         }
-        ListNode newHead = new ListNode(0);
+        ListNode newHead = null;
         while (head != null){
-            ListNode temp  = new ListNode(head.val);
+            ListNode temp  = head;
             head = head.next;
-            if (newHead.next != null){
-                ListNode item = newHead.next;
-                newHead.next =temp;
-                temp.next = item;
-            }else {
-                newHead.next = temp;
-            }
+            temp.next =  newHead;
+            newHead = temp;
         }
-        return newHead.next;
+        return newHead;
     }
 
     public static void main(String[] args) {

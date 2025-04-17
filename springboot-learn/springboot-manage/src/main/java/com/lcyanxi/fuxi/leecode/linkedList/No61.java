@@ -16,6 +16,17 @@ import com.lcyanxi.fuxi.leecode.linkedList.ListNode;
  * 双指针 + 闭合环
  */
 public class No61 {
+    public static ListNode rotateRight2(ListNode head, int k) {
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
+        ListNode dummy = new ListNode();
+
+        return dummy.next;
+    }
+
+
+
     public static ListNode rotateRight(ListNode head, int k) {
         if (head == null || head.next == null || k == 0) {
             return head;
