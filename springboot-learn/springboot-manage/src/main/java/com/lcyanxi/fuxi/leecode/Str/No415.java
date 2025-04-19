@@ -7,32 +7,31 @@ package com.lcyanxi.fuxi.leecode.Str;
  * 输出："134"
  */
 public class No415 {
+
     public static String addStrings(String num1, String num2) {
-        if (num1 == null) {
+        if (num1 == null){
             return num2;
         }
-        if (num2 == null) {
+        if (num2 == null){
             return num1;
         }
-        int len1 = num1.length() - 1;
-        int len2 = num2.length() - 1;
-        StringBuffer sb = new StringBuffer();
+        int len1 = num1.length() -1;
+        int len2 = num2.length() -1;
         int temp = 0;
-        while (len1 >= 0 || len2 >= 0) {
-            int char1 = len1 < 0 ? 0 : (num1.charAt(len1) - 48);
-            int char2 = len2 < 0 ? 0 : (num2.charAt(len2) - 48);
-            int sum = char1 + char2 + temp;
-            int num = sum % 10;
+        StringBuilder builder = new StringBuilder();
+        while (len1 >= 0 || len2 >=0){
+            int a1 = len1 < 0 ? 0 :num1.charAt(len1) - '0';
+            int b1 = len2 < 0 ? 0 :num2.charAt(len2) - '0';
+            int sum = a1 + b1 + temp;
+            builder.append(sum % 10);
             temp = sum / 10;
-            sb.append(num);
-            len2--;
             len1--;
+            len2--;
         }
         if (temp != 0){
-            sb.append(temp);
+            builder.append(temp);
         }
-        sb.reverse();
-        return sb.toString();
+        return builder.reverse().toString();
     }
 
     public static void main(String[] args) {
