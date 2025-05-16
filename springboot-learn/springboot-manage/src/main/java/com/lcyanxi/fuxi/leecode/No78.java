@@ -45,5 +45,4 @@ public class No78 {
         System.out.println(subsets(nums));
 
     }
-
 }
