@@ -9,41 +9,35 @@ package com.lcyanxi.fuxi.algorithm;
  */
 public class QuickSort {
 
-    private static void quickSort2(int[] num){
-        if (num == null || num.length == 0){
-            return;
-        }
-        quick(num,0,num.length-1);
-    }
-
-    private static void quick(int[] num, int left , int right){
+    private static void quickSort(int[] arr, int left, int right){
         if (left >= right){
             return;
         }
-        int mid = process(num, left, right);
-        quick(num,left,mid);
-        quick(num,mid +1 ,right);
+        int mid = sort(arr, left, right);
+        quickSort(arr, left, mid);
+        quickSort(arr, mid+1, right);
     }
 
-    private static int  process(int[] num,int left ,int right){
-        int target = num[left];
+    private static int  sort(int[] arr, int left , int right){
+        int temp = arr[left];
         while (left < right){
-            while (left < right && num[left] < target){
-                left ++;
+            while (left < right && arr[left] < temp){
+                left++;
             }
-            while (left < right && num[right] > target){
+            while (left < right && arr[right] > temp){
                 right--;
             }
-            int temp = num[left];
-            num[left] = num[right];
-            num[right] = temp;
+            int item = arr[left];
+            arr[left] = arr[right];
+            arr[right] = item;
         }
-        num[left] = target;
+        arr[left] = temp;
         return left;
     }
+
     static int [] arr = new int[]{5,4,7,1,2,8,9};
     public static void main(String[] args) {
-        quickSort2(arr);
+        quickSort(arr,0, arr.length -1);
          for (int a : arr){
              System.out.print(a);
          }

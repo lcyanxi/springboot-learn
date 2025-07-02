@@ -12,39 +12,41 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] arr = new int[]{5,4,7,1,2,8,9};
         int[]temp = new int[arr.length];
-        process(arr,0,arr.length-1,temp);
+        process(arr,0,arr.length-1, temp);
         for (int ar: arr){
             System.out.print(ar);
         }
     }
 
-    private static void process(int[] arr, int left, int right, int[] temp) {
-        if (left < right) {
-            int mid = (left + right) / 2;
-            process(arr, left, mid, temp);
-            process(arr, mid + 1, right, temp);
-            mergeSort(arr,left, mid, right, temp);
+    public static void process(int[] nums, int left , int right, int[] temps){
+        if (left>= right){
+            return;
         }
+        int mid = (left + right) / 2;
+        process(nums, left, mid, temps);
+        process(nums, mid +1,right, temps);
+        merge(nums,left,mid,right,temps);
     }
-
-
-    private static void mergeSort(int[] arr, int left, int mid, int right, int[] temp) {
+    private static void merge(int[] nums, int left, int mid, int right, int[] temps){
         int l = left;
-        int r = mid + 1;
+        int r = mid +1;
         int index = 0;
-        while (l <= mid && r <= right) {
-            temp[index++] = arr[r] > arr[l] ? arr[l++] : arr[r++];
+        while (l <= mid && r <= right){
+            if (nums[l] < nums[r]){
+                temps[index++] = nums[l++];
+            }else {
+                temps[index++] = nums[r++];
+            }
+        }
+        while (l <=mid){
+            temps[index++] = nums[l++];
         }
         while (r <= right){
-            temp[index++] = arr[r++];
-        }
-        while (l <= mid){
-            temp[index++] = arr[l++];
+            temps[index++] = nums[r++];
         }
         index = 0;
         while (left <= right){
-            arr[left++] = temp[index++];
+            nums[left++] = temps[index++];
         }
-
-    }
+    };
 }
