@@ -22,7 +22,6 @@ public class RedisOrderNumberGenerator {
         String date = getCurrentDate();
         String redisKey = REDIS_KEY_PREFIX + businessId + ":" + date;
 
-        // 生成自增序列号
         long seq = jedis.incr(redisKey);
 
         // 构造订单号
