@@ -19,25 +19,25 @@ public class No2 {
         char[] charArray = str.toCharArray();
         Arrays.sort(charArray);
         boolean[] use = new boolean[charArray.length];
-        List<Character> temp = Lists.newArrayList();
+        StringBuilder temp = new StringBuilder();
         List<String> res = new ArrayList<>();
         process(res, temp, use, charArray);
         return res;
     }
 
-    private static void process(List<String> res, List<Character> temp, boolean[] use, char[] charArray) {
-        if (temp.size() == charArray.length) {
-            res.add(temp.stream().map(String::valueOf).collect(Collectors.joining("")));
+    private static void process(List<String> res,StringBuilder temp, boolean[] use, char[] charArray) {
+        if (temp.length() == charArray.length) {
+            res.add(temp.toString());
             return;
         }
         for (int i = 0; i < charArray.length; i++) {
             if (use[i]) {
                 continue;
             }
-            temp.add(charArray[i]);
+            temp.append(charArray[i]);
             use[i] = true;
             process(res, temp, use, charArray);
-            temp.remove(temp.size() - 1);
+            temp.deleteCharAt(temp.length() - 1);
             use[i] = false;
         }
     }
