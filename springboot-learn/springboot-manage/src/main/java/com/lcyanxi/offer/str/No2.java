@@ -18,27 +18,27 @@ public class No2 {
     public static List<String> permutation(String str) {
         char[] charArray = str.toCharArray();
         Arrays.sort(charArray);
-        char[] use = new char[charArray.length];
+        boolean[] use = new boolean[charArray.length];
         List<Character> temp = Lists.newArrayList();
         List<String> res = new ArrayList<>();
         process(res, temp, use, charArray);
         return res;
     }
 
-    private static void process(List<String> res, List<Character> temp, char[] use, char[] charArray) {
+    private static void process(List<String> res, List<Character> temp, boolean[] use, char[] charArray) {
         if (temp.size() == charArray.length) {
             res.add(temp.stream().map(String::valueOf).collect(Collectors.joining("")));
             return;
         }
         for (int i = 0; i < charArray.length; i++) {
-            if (use[i] == '1') {
+            if (use[i]) {
                 continue;
             }
             temp.add(charArray[i]);
-            use[i] = '1';
+            use[i] = true;
             process(res, temp, use, charArray);
             temp.remove(temp.size() - 1);
-            use[i] = '0';
+            use[i] = false;
         }
     }
 
