@@ -1,11 +1,8 @@
 package com.lcyanxi.offer.str;
 
-import org.apache.commons.compress.utils.Lists;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 字符串的排列
@@ -31,7 +28,7 @@ public class No2 {
             return;
         }
         for (int i = 0; i < charArray.length; i++) {
-            if (use[i]) {
+            if (use[i] || i > 0 && charArray[i] == charArray[i-1]  && !use[i-1]) {
                 continue;
             }
             temp.append(charArray[i]);
@@ -43,7 +40,7 @@ public class No2 {
     }
 
     public static void main(String[] args) {
-        String str = "abcd";
+        String str = "aac";
         List<String> permutation = permutation(str);
         for (String s : permutation){
             System.out.println(s);
