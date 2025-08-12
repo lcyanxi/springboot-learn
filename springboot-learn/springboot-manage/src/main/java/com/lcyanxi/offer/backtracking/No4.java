@@ -1,4 +1,4 @@
-package com.lcyanxi.offer.array;
+package com.lcyanxi.offer.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
