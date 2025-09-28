@@ -28,7 +28,7 @@ public class No2 {
             return;
         }
         for (int i = 0; i < charArray.length; i++) {
-            if (use[i] || i > 0 && charArray[i] == charArray[i-1]  && !use[i-1]) {
+            if (use[i] ||( i > 0 && charArray[i] == charArray[i-1]  && !use[i-1])) {
                 continue;
             }
             temp.append(charArray[i]);
