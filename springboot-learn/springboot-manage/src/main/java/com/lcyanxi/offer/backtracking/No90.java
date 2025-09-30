@@ -19,10 +19,10 @@ import java.util.List;
 public class No90 {
     public static void main(String[] args) {
         int[] nums = {1, 2, 2};
-        System.out.println(process(nums));
+        System.out.println(subsetsWithDup(nums));
     }
 
-    private static List<List<Integer>> process(int[] nums) {
+    public static List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> items = new ArrayList<>();
