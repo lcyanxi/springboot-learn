@@ -28,6 +28,59 @@ public class No647 {
     public static void main(String[] args) {
         System.out.println(process("aaa"));
         System.out.println(process2("aaa"));
+        System.out.println("process3: " + process3("cbabc"));
+        System.out.println(process4("aaa"));
+
+    }
+
+    /**
+     * 暴力解法 0^n3 时间复杂度
+     */
+    private static List<String> process4(String str) {
+        List<String> res = new ArrayList<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            for (int j = i; j < str.length(); j++) {
+                if (check(str, i, j)) {
+                    res.add(str.substring(i, j + 1));
+                }
+            }
+        }
+        return res;
+    }
+
+    private static boolean check(String str, int left, int right) {
+        while (left <= right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    /**
+     * 动态规划： dp[i,j] = dp[i+1,j-1] = true
+     */
+    private static List<String> process3(String str) {
+        List<String> res = new ArrayList<>();
+        boolean[][] dp = new boolean[str.length()][str.length()];
+        for (int i = str.length() - 1; i >= 0; i--) {
+            for (int j = i; j < str.length(); j++) {
+                if (str.charAt(i) != str.charAt(j)) {
+                    continue;
+                }
+                if (j - i <= 1) {
+                    res.add(str.substring(i, j + 1));
+                    dp[i][j] = true;
+                } else if (dp[i + 1][j - 1]) {
+                    res.add(str.substring(i, j + 1));
+                    dp[i][j] = true;
+                }
+            }
+        }
+        return res;
     }
 
     /**
