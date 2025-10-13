@@ -47,7 +47,7 @@ public class No15 {
             if (sum == 0) {
                 List<Integer> item = Arrays.asList(target, nums[start], nums[end]);
                 res.add(item);
-                // 去重
+                // 去重 解决 0 0 0 0 0 情况
                 while (start < end && nums[end] == nums[end-1]){
                     end--;
                 }
