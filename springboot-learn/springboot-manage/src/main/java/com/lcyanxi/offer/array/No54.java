@@ -20,6 +20,34 @@ public class No54 {
         System.out.println(process(matrix));
     }
 
+    private static List<Integer> process2(int[][] matrix){
+        List<Integer> res = new ArrayList<>();
+        int row = 0;
+        int col = 0;
+        while (row < matrix.length && col < matrix[0].length){
+            while (col < matrix[0].length){
+                res.add(matrix[row][col]);
+                col++;
+            }
+            row++;
+            while (row < matrix.length){
+                res.add(matrix[row][col]);
+                row++;
+            }
+            col--;
+            while (row >=0){
+                res.add(matrix[row][col]);
+                col--;
+            }
+            row--;
+            while (col >=0){
+                res.add(matrix[row][col]);
+                row--;
+            }
+        }
+        return res;
+    }
+
     private static List<Integer> process(int[][] matrix) {
         List<Integer> res = new ArrayList<>();
         int left = 0;
