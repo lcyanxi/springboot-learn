@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class No18 {
     public static void main(String[] args) {
-        int[] nums = {2, 2, 2, 2, 2};
-        System.out.println(process(nums, 8));
+        int[] nums = {-2,-1,-1,1,1,2,2};
+        System.out.println(process(nums, 0));
     }
 
     private static List<List<Integer>> process(int[] nums, int target) {
@@ -52,8 +52,14 @@ public class No18 {
             int total = num1 + num2 + nums[left] + nums[right];
             if (total == target) {
                 res.add(Arrays.asList(num1, num2, nums[left], nums[right]));
-                right--;
+                while (left < right && nums[left] == nums[left +1]){
+                    left++;
+                }
+                while (left < right && nums[right] == nums[right-1]){
+                    right--;
+                }
                 left++;
+                right--;
             } else if (total > target) {
                 right--;
             } else {

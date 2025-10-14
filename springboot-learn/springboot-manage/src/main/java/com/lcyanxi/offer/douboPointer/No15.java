@@ -51,7 +51,7 @@ public class No15 {
                 while (start < end && nums[end] == nums[end-1]){
                     end--;
                 }
-                if (start < end && nums[start] == nums[start+1]){
+                while (start < end && nums[start] == nums[start+1]){
                     start++;
                 }
                 start++;
