@@ -12,11 +12,11 @@ package com.lcyanxi.offer.dp;
  */
 public class No516 {
     public static void main(String[] args) {
-        System.out.println(process("bbbab"));
+        System.out.println(process("cbbd"));
     }
 
     private static Integer process(String str) {
-        int[][] dp = new int[str.length() + 1][str.length() + 1];
+        int[][] dp = new int[str.length()][str.length()];
         /**
          * i == j : dp[i,j] = dp[i+1,j-1] +2
          * i != j: max(dp[i+1][j],dp[i][j-1]);
