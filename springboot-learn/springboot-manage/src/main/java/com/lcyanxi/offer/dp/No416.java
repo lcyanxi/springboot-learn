@@ -26,7 +26,34 @@ import java.util.List;
 public class No416 {
 
     public static void main(String[] args) {
-        System.out.println(process(new int[]{1, 2, 3, 5}));
+        System.out.println(process(new int[]{1, 5, 11, 5}));
+        System.out.println(process2(new int[]{1, 5, 11, 5}));
+    }
+
+    /**
+     * dp[j] = max(dp[j],dp[j-num(i)] + num[i]
+     * @param nums
+     * @return
+     */
+    private static boolean process2(int[] nums) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        if (sum % 2 != 0) {
+            return false;
+        }
+        int target = sum / 2;
+        int[] dp = new int[target + 1];
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = target; j >= nums[i]; j--) {
+                dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
+            }
+            if (dp[target] == target){
+                break;
+            }
+        }
+        return dp[target] == target;
     }
 
     private static boolean process(int[] nums) {
@@ -42,13 +69,13 @@ public class No416 {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         boolean[] used = new boolean[nums.length];
-        backtrack(res, list, nums, 0,0, target, used);
+        backtrack(res, list, nums, 0, 0, target, used);
 
         System.out.println(res);
         return res.size() > 0;
     }
 
-    private static void backtrack(List<List<Integer>> res, List<Integer> list, int[] nums,int sum, int index, int target, boolean[] used) {
+    private static void backtrack(List<List<Integer>> res, List<Integer> list, int[] nums, int sum, int index, int target, boolean[] used) {
         if (sum == target) {
             res.add(new ArrayList<>(list));
         }
@@ -62,11 +89,11 @@ public class No416 {
             if (!used[i]) {
                 used[i] = true;
                 list.add(nums[i]);
-                sum+=nums[i];
-                backtrack(res, list, nums,sum, i, target, used);
+                sum += nums[i];
+                backtrack(res, list, nums, sum, i, target, used);
                 used[i] = false;
                 list.remove(list.size() - 1);
-                sum-=nums[i];
+                sum -= nums[i];
             }
         }
     }
