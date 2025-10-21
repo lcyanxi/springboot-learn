@@ -33,6 +33,16 @@ public class No121 {
     }
 
     /**
+     * 动态规划
+     * i 天持有： dp[i][0] = dp[i-1][1]
+     * i 天不持有
+     */
+    private static Integer process3(int[] arr){
+        return 0;
+    }
+
+
+    /**
      * 记录历史最低点， 当前值 - 最底点记录最大利润
      */
     private static Integer process2(int[] arr) {
