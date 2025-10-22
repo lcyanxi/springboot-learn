@@ -1,9 +1,6 @@
 package com.lcyanxi.offer.tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 二叉树的前序遍历
@@ -18,6 +15,7 @@ public class No144 {
         print(node);
         List<Integer> process = process(node);
         System.out.println(process);
+        System.out.println(process2(node));
     }
 
     /**
@@ -47,6 +45,27 @@ public class No144 {
                 queue.addAll(list);
             }
         }
+    }
+
+    /**
+     * 迭代法：前序遍历
+     * 遍历顺序： 根左右  入栈顺序： 根右左  （先进后出）
+     */
+    private static List<Integer> process2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> queue = new Stack<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode poll = queue.pop();
+            res.add(poll.val);
+            if (poll.right != null) {
+                queue.add(poll.right);
+            }
+            if (poll.left != null) {
+                queue.add(poll.left);
+            }
+        }
+        return res;
     }
 
     /**
