@@ -84,22 +84,6 @@ public class Nolcr046 {
         return res;
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            this.val = x;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            this.val = x;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     private static TreeNode buildTree(int[] nums) {
         TreeNode[] res = new TreeNode[nums.length];
         // 初始化节点
