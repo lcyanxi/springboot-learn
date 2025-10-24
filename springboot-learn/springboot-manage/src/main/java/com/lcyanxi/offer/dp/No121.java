@@ -29,16 +29,35 @@ public class No121 {
         int[] arr = {7, 1, 5, 3, 6, 4};
         System.out.println(process(arr));
         System.out.println(process2(arr));
+        System.out.println(process3(arr));
 
     }
 
     /**
-     * 动态规划
-     * i 天持有： dp[i][0] = dp[i-1][1]
-     * i 天不持有
+     * 确定递推公式
+     * 如果第i天持有股票即dp[i][0]， 那么可以由两个状态推出来
+     *
+     * 第i-1天就持有股票，那么就保持现状，所得现金就是昨天持有股票的所得现金 即：dp[i - 1][0]
+     * 第i天买入股票，所得现金就是买入今天的股票后所得现金即：-prices[i]
+     * 那么dp[i][0]应该选所得现金最大的，所以dp[i][0] = max(dp[i - 1][0], -prices[i]);
+     *
+     * 如果第i天不持有股票即dp[i][1]， 也可以由两个状态推出来
+     *
+     * 第i-1天就不持有股票，那么就保持现状，所得现金就是昨天不持有股票的所得现金 即：dp[i - 1][1]
+     * 第i天卖出股票，所得现金就是按照今天股票价格卖出后所得现金即：prices[i] + dp[i - 1][0]
+     * 同样dp[i][1]取最大的，dp[i][1] = max(dp[i - 1][1], prices[i] + dp[i - 1][0]);
      */
-    private static Integer process3(int[] arr){
-        return 0;
+    private static Integer process3(int[] arr) {
+        int[][] dp = new int[arr.length][arr.length];
+        dp[0][0] = -arr[0];
+        dp[0][1] = 0;
+        int max = 0;
+        for (int i = 1; i < arr.length; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], -arr[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + arr[i]);
+            max = Math.max(max, Math.max(dp[i][0], dp[i][1]));
+        }
+        return max;
     }
 
 

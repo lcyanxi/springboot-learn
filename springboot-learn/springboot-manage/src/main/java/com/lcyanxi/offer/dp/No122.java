@@ -34,9 +34,24 @@ package com.lcyanxi.offer.dp;
  */
 public class No122 {
     public static void main(String[] args) {
-        int[] nums = {7,6,4,3,1};
+        int[] nums = {7,1,5,3,6,4};
         System.out.println(process(nums));
+        System.out.println(process2(nums));
     }
+
+    private static Integer process2(int[] nums) {
+        int max = 0;
+        int[][] dp = new int[nums.length][nums.length];
+        dp[0][0] = -nums[0];
+        dp[0][1] = 0;
+        for (int i = 1; i < nums.length; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - nums[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + nums[i]);
+            max = Math.max(max, Math.max(dp[i][0], dp[i][1]));
+        }
+        return max;
+    }
+
 
     /**
      *贪心算法：
