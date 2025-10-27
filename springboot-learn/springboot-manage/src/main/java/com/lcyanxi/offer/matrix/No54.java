@@ -1,4 +1,4 @@
-package com.lcyanxi.offer.array;
+package com.lcyanxi.offer.matrix;
 
 import java.util.ArrayList;
 import java.util.List;

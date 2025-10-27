@@ -1,4 +1,4 @@
-package com.lcyanxi.offer.array;
+package com.lcyanxi.offer.matrix;
 
 /**
  * 调整数组顺序使奇数位于偶数前面
