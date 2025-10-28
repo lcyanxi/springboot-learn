@@ -18,8 +18,23 @@ public class No53 {
     public static void main(String[] args) {
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println(process(nums));
-
         System.out.println(process2(nums));
+        System.out.println(process3(nums));
+    }
+
+    /**
+     * 动态规划：
+     * dp[i] = max(dp[i-1] + arr[i], arr[i])
+     */
+    private static Integer process3(int[] arr) {
+        int max = arr[0];
+        int[] dp = new int[arr.length];
+        dp[0] = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            dp[i] = Math.max(dp[i - 1] + arr[i], arr[i]);
+            max = Math.max(max, dp[i]);
+        }
+        return max;
     }
 
     private static Integer process(int[] arr) {
@@ -39,15 +54,15 @@ public class No53 {
         int sum = 0;
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i] + sum;
-            if (temp < 0){
+            if (temp < 0) {
                 items = new ArrayList<>();
                 sum = 0;
-            }else {
+            } else {
                 sum = temp;
                 items.add(arr[i]);
             }
 
-            if (max < sum){
+            if (max < sum) {
                 max = sum;
                 res = new ArrayList<>(items);
             }
