@@ -26,7 +26,32 @@ import java.util.Queue;
  */
 public class No337 {
     public static void main(String[] args) {
+        int[] arr = {2, 2, 3, 0, 3, 0};
+        TreeNode treeNode = buildTree(arr);
+        System.out.println(process2(treeNode));
+        System.out.println(process(treeNode));
+    }
 
+    private static TreeNode buildTree(int[] nums) {
+        /**
+         * left = 2*i + 1
+         * right = 2*i + 2
+         */
+        TreeNode[] treeNodes = new TreeNode[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            treeNodes[i] = new TreeNode(nums[i]);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+            if (left < nums.length) {
+                treeNodes[i].left = treeNodes[left];
+            }
+            if (right < nums.length) {
+                treeNodes[i].right = treeNodes[right];
+            }
+        }
+        return treeNodes[0];
     }
 
     private static Integer process2(TreeNode root) {
@@ -35,7 +60,7 @@ public class No337 {
     }
 
     /**
-     * 当前节点选择不偷：当前节点能偷到的最大钱数 = 左孩子能偷到的钱 + 右孩子能偷到的钱
+     * 当前节点选择不偷：当前节点能偷到的最大钱数 = 左孩子能偷到的钱(包括偷和不偷取最大) + 右孩子能偷到的钱
      * 当前节点选择偷：当前节点能偷到的最大钱数 = 左孩子选择自己不偷时能得到的钱 + 右孩子选择不偷时能得到的钱 + 当前节点的钱数
      */
     private static int[] handle2(TreeNode root) {
