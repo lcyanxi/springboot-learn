@@ -30,6 +30,27 @@ public class No337 {
         TreeNode treeNode = buildTree(arr);
         System.out.println(process2(treeNode));
         System.out.println(process(treeNode));
+        System.out.println(process3(treeNode));
+    }
+
+    private static Integer process3(TreeNode root) {
+        int[] ints = handle3(root);
+        return Math.max(ints[0], ints[1]);
+    }
+
+    private static int[] handle3(TreeNode root) {
+        int[] dp = new int[2];
+        if (root == null) {
+            return dp;
+        }
+        int val = root.val;
+        int[] left = handle3(root.left);
+        int[] right = handle3(root.right);
+        // 偷当前节点
+        dp[0]  = left[1] + right[1] + val;
+        // 不偷当前节点
+        dp[1]  = Math.max(left[1], left[0]) + Math.max(right[1], right[0]);
+        return dp;
     }
 
     private static TreeNode buildTree(int[] nums) {
