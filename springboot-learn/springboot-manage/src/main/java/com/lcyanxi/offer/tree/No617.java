@@ -1,8 +1,5 @@
 package com.lcyanxi.offer.tree;
 
-import com.lcyanxi.offer.linkedList.Node;
-import org.apache.poi.ss.formula.functions.T;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
