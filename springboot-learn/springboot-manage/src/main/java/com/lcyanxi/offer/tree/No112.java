@@ -1,5 +1,7 @@
 package com.lcyanxi.offer.tree;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -32,11 +34,41 @@ import java.util.Queue;
  */
 public class No112 {
     public static void main(String[] args) {
-        Integer[] arr = new Integer[]{1, 2, 3};
+        Integer[] arr = new Integer[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1};
         TreeNode treeNode = buildTree(arr);
-        boolean process = process(treeNode, 5);
+        boolean process = process(treeNode, 22);
         System.out.println(process);
-        System.out.println(treeNode);
+        process = process2(treeNode, 22);
+        System.out.println(process);
+    }
+
+    /**
+     * 迭代法
+     */
+    private static boolean process2(TreeNode root, int target) {
+        if (root == null) {
+            return false;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer> valueQueue = new LinkedList<>();
+        queue.add(root);
+        valueQueue.add(root.val);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            Integer value = valueQueue.poll();
+            if (node.left == null && node.right == null && value == target) {
+                return true;
+            }
+            if (node.left != null) {
+                queue.add(node.left);
+                valueQueue.add(node.left.val + value);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+                valueQueue.add(node.right.val + value);
+            }
+        }
+        return false;
     }
 
     private static boolean process(TreeNode root, int target) {
