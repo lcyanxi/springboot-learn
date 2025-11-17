@@ -17,38 +17,35 @@ public class No131 {
         System.out.println(process("aab"));
     }
 
-    private static List<List<String>> process(String input) {
+    private static List<List<String>> process(String s) {
         List<List<String>> res = new ArrayList<>();
-        List<String> items = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        backtrack(res,items, sb,input,0);
+        backtrack(s, res, list, sb, 0);
         return res;
     }
 
-    private static void backtrack(List<List<String>> res, List<String> items, StringBuilder sb, String input, int startIndex) {
-        if (startIndex == input.length()) {
-            res.add(new ArrayList<>(items));
+    private static void backtrack(String s, List<List<String>> res, List<String> list, StringBuilder sb, int index) {
+        if (index == s.length()) {
+            res.add(new ArrayList<>(list));
             return;
         }
-        for (int i = startIndex; i < input.length(); i++) {
-            sb.append(input.charAt(i));
-            if (!checkProcess(sb.toString())) {
+        for (int i = index; i < s.length(); i++) {
+            sb.append(s.charAt(i));
+            if (!check(sb)) {
                 continue;
             }
-            items.add(sb.toString());
-            backtrack(res, items,new StringBuilder(), input, i + 1);
-            items.remove(items.size() - 1);
+            list.add(sb.toString());
+            backtrack(s, res, list, new StringBuilder(), i + 1);
+            list.remove(list.size() - 1);
         }
     }
 
-    private static boolean checkProcess(String input) {
-        if (input == null || input.isEmpty()) {
-            return true;
-        }
+    private static boolean check(StringBuilder s) {
         int left = 0;
-        int right = input.length() - 1;
+        int right = s.length() - 1;
         while (left <= right) {
-            if (input.charAt(left) != input.charAt(right)) {
+            if (s.charAt(left) != s.charAt(right)) {
                 return false;
             }
             left++;
