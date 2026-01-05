@@ -1,5 +1,6 @@
 package com.lcyanxi.offer.backtracking;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +19,11 @@ import java.util.List;
 public class No216 {
 
     public static void main(String[] args) {
-        System.out.println(combinationSum3(2, 18));
+        LocalDate now = LocalDate.now();
+        LocalDate end = LocalDate.now().plusDays(1);
+        System.out.println(now);
+        System.out.println(end);
     }
-
     private static List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> items = new ArrayList<>();
