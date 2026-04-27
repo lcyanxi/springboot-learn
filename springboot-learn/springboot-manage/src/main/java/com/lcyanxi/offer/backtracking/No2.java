@@ -12,38 +12,40 @@ import java.util.List;
  * 思路： 先把字符串排序，然后用递归方式，用一个变量数组标记是否访问过，用一个集合存储访问过的值，回溯的时候改回标记，删除集合最后一个元素
  */
 public class No2 {
-    public static List<String> permutation(String str) {
-        char[] charArray = str.toCharArray();
-        Arrays.sort(charArray);
-        boolean[] use = new boolean[charArray.length];
-        StringBuilder temp = new StringBuilder();
-        List<String> res = new ArrayList<>();
-        process(res, temp, use, charArray);
-        return res;
+
+
+    public static void main(String[] args) {
+        String str = "abc";
+        List<String> permutation = permutation(str);
+        for (String s : permutation) {
+            System.out.println(s);
+        }
     }
 
-    private static void process(List<String> res,StringBuilder temp, boolean[] use, char[] charArray) {
+    private static List<String> permutation(String str) {
+        char[] charArray = str.toCharArray();
+        Arrays.sort(charArray);
+        boolean[] visited = new boolean[charArray.length];
+        StringBuilder temp = new StringBuilder();
+        List<String> result = new ArrayList<>();
+        core(charArray, visited, temp, result);
+        return result;
+    }
+
+    private static void core(char[] charArray, boolean[] visited, StringBuilder temp, List<String> result) {
         if (temp.length() == charArray.length) {
-            res.add(temp.toString());
+            result.add(String.join("", temp));
             return;
         }
         for (int i = 0; i < charArray.length; i++) {
-            if (use[i] ||( i > 0 && charArray[i] == charArray[i-1]  && !use[i-1])) {
+            if (visited[i] || (i > 0 && charArray[i] == charArray[i - 1] && !visited[i - 1])) {
                 continue;
             }
+            visited[i] = true;
             temp.append(charArray[i]);
-            use[i] = true;
-            process(res, temp, use, charArray);
+            core(charArray, visited, temp, result);
+            visited[i] = false;
             temp.deleteCharAt(temp.length() - 1);
-            use[i] = false;
-        }
-    }
-
-    public static void main(String[] args) {
-        String str = "aac";
-        List<String> permutation = permutation(str);
-        for (String s : permutation){
-            System.out.println(s);
         }
     }
 
