@@ -28,11 +28,10 @@ public class No213 {
     }
 
     /**
-     * 首尾元素都不偷： dp[i] = max(dp[i-2] + num[i],dp[i-1])
-     * 偷首元素：i 的范围（0, length -1）
-     * 偷尾元素：i 的范围（1，length）
+     * 偷首节点： 范围（0，length - 1）
+     * 偷未节点： 范围 （1，length）
      */
-    private static Integer process(int[] nums) {
+    private static int process(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -42,20 +41,22 @@ public class No213 {
         if (nums.length == 2) {
             return Math.max(nums[0], nums[1]);
         }
-        Integer num1 = process2(nums, 0, nums.length - 1);
-        Integer num2 = process2(nums, 1, nums.length);
-        return Math.max(num2, num1);
+        // 偷首节点
+        int result1 = core(nums, 0, nums.length - 2);
+        // 偷尾节点
+        int result2 = core(nums, 1, nums.length - 1);
+        return Math.max(result1, result2);
     }
 
-    private static Integer process2(int[] nums, int start, int end) {
+    private static int core(int[] nums, int start, int end) {
         int[] dp = new int[nums.length];
         dp[start] = nums[start];
-        dp[start + 1] = Math.max(nums[start + 1], nums[start]);
-        int res = dp[start + 1];
-        for (int i = start + 2; i < end; i++) {
-            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
-            res = Math.max(res, dp[i]);
+        dp[start + 1] = Math.max(nums[start], nums[start + 1]);
+        int rest = dp[start + 1];
+        for (int i = start + 2; i <= end; i++) {
+            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
+            rest = Math.max(rest, dp[i]);
         }
-        return res;
+        return rest;
     }
 }
