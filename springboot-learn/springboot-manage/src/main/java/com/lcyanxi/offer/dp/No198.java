@@ -19,29 +19,25 @@ package com.lcyanxi.offer.dp;
  */
 public class No198 {
     public static void main(String[] args) {
-        int[] nums = {2, 7, 9, 3, 1, 2, 8, 1, 1, 4};
+        int[] nums = {2,7,9,3,1};
         System.out.println(process(nums));
 
     }
 
-    private static Integer process(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
-
-        /**
-         *  dp[i] 偷： sum = nums[i] + dp[i-2]
-         *       不偷： sum = dp[i-1]
-         *       res = max( nums[i] + dp[i-2],dp[i-1])
-         */
+    /**
+     * 第 i 个房间
+     * 偷： sum1 = num[i] + dp[i-2]
+     * 不偷： sum2 = dp[i-1]
+     * price = max(sum1, sum2);
+     */
+    private static int process(int[] nums) {
         int[] dp = new int[nums.length];
         dp[0] = nums[0];
-        dp[1] = Math.max(nums[0], nums[1]);
+        dp[1] = Math.max(nums[1], nums[0]);
         for (int i = 2; i < nums.length; i++) {
-            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
-            System.out.println("i: " + i + ",num:" + nums[i] + ",dp:" + dp[i]);
+            dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i]);
         }
-
         return dp[nums.length - 1];
     }
+
 }
