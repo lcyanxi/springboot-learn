@@ -24,28 +24,27 @@ import java.util.List;
  *              第四轮：4        取：4
  */
 public class No5 {
-    static List<List<Integer>> res = new ArrayList<>();
-    static List<Integer> temp = new ArrayList<>();
+    public static void main(String[] args) {
+        List<List<Integer>> combine = combine(4, 2);
+        combine.forEach(System.out::println);
+    }
 
-    public static List<List<Integer>> combine(int n, int k) {
-        backtrack(1, n, k);
+    private static List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
+        core(n,k,res,temp, 1);
         return res;
     }
 
-    private static void backtrack(int startIndex, int n, int k) {
-        if (temp.size() == k) {
-            res.add(new ArrayList<>(temp));
+    private static void core(int n, int k, List<List<Integer>> combine, List<Integer> temp, int startIndex) {
+        if (temp.size() == k){
+            combine.add(new ArrayList<>(temp));
             return;
         }
         for (int i = startIndex; i <= n; i++) {
             temp.add(i);
-            backtrack(i + 1, n, k);
+            core(n, k, combine, temp, i + 1);
             temp.remove(temp.size() - 1);
         }
-    }
-
-    public static void main(String[] args) {
-        List<List<Integer>> combine = combine(4, 2);
-        combine.forEach(System.out::println);
     }
 }
