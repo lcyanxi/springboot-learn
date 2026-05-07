@@ -1,5 +1,6 @@
 package com.lcyanxi.offer.dp;
 
+import javax.validation.constraints.Max;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +32,34 @@ public class No337 {
         System.out.println(process2(treeNode));
         System.out.println(process(treeNode));
         System.out.println(process3(treeNode));
+    }
+
+    private static Integer process2(TreeNode treeNode) {
+        if (treeNode == null) {
+            return 0;
+        }
+        Integer[] core = core(treeNode);
+        return Math.max(core[0], core[1]);
+    }
+
+    /**
+     * [0] 偷
+     * [1] 不偷
+     * @param treeNode
+     * @return
+     */
+    private static Integer[] core(TreeNode treeNode){
+        if (treeNode == null){
+            return new Integer[]{0,0};
+        }
+        // 左子树
+        Integer[] left = core(treeNode.left);
+        // 右子树
+        Integer[] right = core(treeNode.right);
+        // 跟
+        int val1 = treeNode.val + left[1] + right[1];
+        int val2 = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        return new Integer[]{val1,val2};
     }
 
     private static Integer process3(TreeNode root) {
@@ -73,30 +102,6 @@ public class No337 {
             }
         }
         return treeNodes[0];
-    }
-
-    private static Integer process2(TreeNode root) {
-        int[] ints = handle2(root);
-        return Math.max(ints[0], ints[1]);
-    }
-
-    /**
-     * 当前节点选择不偷：当前节点能偷到的最大钱数 = 左孩子能偷到的钱(包括偷和不偷取最大) + 右孩子能偷到的钱
-     * 当前节点选择偷：当前节点能偷到的最大钱数 = 左孩子选择自己不偷时能得到的钱 + 右孩子选择不偷时能得到的钱 + 当前节点的钱数
-     */
-    private static int[] handle2(TreeNode root) {
-        // 当前节点状态： 0 偷  1 不偷
-        int[] dp = new int[2];
-        if (root == null) {
-            return dp;
-        }
-        int[] left = handle2(root.left);
-        int[] right = handle2(root.right);
-        // 偷当前节点
-        dp[0] = left[1] + right[1] + root.val;
-        // 不偷
-        dp[1] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
-        return dp;
     }
 
 
