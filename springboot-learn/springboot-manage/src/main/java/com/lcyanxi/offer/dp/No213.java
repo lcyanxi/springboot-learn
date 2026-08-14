@@ -1,5 +1,7 @@
 package com.lcyanxi.offer.dp;
 
+import javax.validation.constraints.Max;
+
 /**
  * 打家劫舍II
  * 你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都 围成一圈 ，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警 。
@@ -23,14 +25,10 @@ package com.lcyanxi.offer.dp;
  */
 public class No213 {
     public static void main(String[] args) {
-        int[] nums = {1, 7, 9, 2};
+        int[] nums = {1, 3, 1, 3, 100};
         System.out.println(process(nums));
     }
 
-    /**
-     * 偷首节点： 范围（0，length - 1）
-     * 偷未节点： 范围 （1，length）
-     */
     private static int process(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -42,21 +40,20 @@ public class No213 {
             return Math.max(nums[0], nums[1]);
         }
         // 偷首节点
-        int result1 = core(nums, 0, nums.length - 2);
-        // 偷尾节点
-        int result2 = core(nums, 1, nums.length - 1);
-        return Math.max(result1, result2);
+        int core1 = core(0, nums.length - 2, nums);
+        int core2 = core(1, nums.length - 1, nums);
+        return Math.max(core1, core2);
     }
 
-    private static int core(int[] nums, int start, int end) {
+    private static int core(int start, int end, int[] nums) {
+        // num[i] + dp[i-2], dp[i-1]
         int[] dp = new int[nums.length];
         dp[start] = nums[start];
-        dp[start + 1] = Math.max(nums[start], nums[start + 1]);
-        int rest = dp[start + 1];
+        dp[start + 1] = Math.max(nums[start + 1], nums[start]);
         for (int i = start + 2; i <= end; i++) {
-            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
-            rest = Math.max(rest, dp[i]);
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
         }
-        return rest;
+        return dp[end];
     }
+
 }
