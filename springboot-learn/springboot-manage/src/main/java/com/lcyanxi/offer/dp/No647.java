@@ -29,52 +29,51 @@ public class No647 {
     }
 
     /**
-     * num[i] == num[j] : dp[i,j] = dp[i+1,j-1] + 2
+     * 动态规划： dp[i+1][j-1] 是否是回文串即可
      */
-    private static Integer process2(String str) {
-        List<String> res = new ArrayList<>();
-        boolean[][] dp = new boolean[str.length()][str.length()];
-        for (int i = str.length() - 1; i >= 0; i--) {
-            for (int j = i; j < str.length(); j++) {
-                if (str.charAt(i) == str.charAt(j)) {
+    private static int process(String s) {
+        List<String> result = new ArrayList<>();
+        boolean[][] dp = new boolean[s.length() + 1][s.length() + 1];
+        char[] chars = s.toCharArray();
+        for (int i = chars.length - 1; i >= 0; i--) {
+            for (int j = i; j < chars.length; j++) {
+                if (chars[i] == chars[j]) {
                     if (j - i <= 1) {
-                        res.add(str.substring(i, j + 1));
                         dp[i][j] = true;
+                        result.add(s.substring(i, j + 1));
                     } else if (dp[i + 1][j - 1]) {
-                        res.add(str.substring(i, j + 1));
                         dp[i][j] = true;
+                        result.add(s.substring(i, j + 1));
                     }
                 }
             }
         }
-        System.out.println(res);
-        return res.size();
+        System.out.println(result);
+        return result.size();
     }
 
     /**
-     * 双指针: 中心扩散法
+     * 暴力解法: 中间扩散法
      */
-    private static Integer process(String str) {
-        List<String> res = new ArrayList<>();
-        for (int i = 0; i < str.length(); i++) {
-            handle(str, i, i, res);
-            handle(str, i, i + 1, res);
-
+    private static int process2(String s) {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            core(i, i, s, result);
+            core(i, i + 1, s, result);
         }
-        System.out.println(res);
-        return res.size();
+        System.out.println(result);
+        return result.size();
     }
 
-    private static void handle(String str, int left, int right, List<String> res) {
-        while (left >= 0 && right < str.length()) {
-            if (str.charAt(left) == str.charAt(right)) {
-                res.add(str.substring(left, right + 1));
-                left--;
-                right++;
-            } else {
-                break;
+    private static List<String> core(int i, int j, String s, List<String> result) {
+        while (i >= 0 && j < s.length()) {
+            if (s.charAt(i) == s.charAt(j)) {
+                result.add(s.substring(i, j + 1));
             }
+            i--;
+            j++;
         }
+        return result;
     }
 
 }

@@ -18,32 +18,30 @@ import java.util.Stack;
  */
 public class No42 {
     public static void main(String[] args) {
-        int[] arr = {0,1,0,2,1,0,1,3,2,1,2,1};
+        int[] arr = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
         System.out.println(process(arr));
     }
 
-    private static Integer process(int[] nums) {
+    private static int process(int[] arr) {
         Stack<Integer> stack = new Stack<>();
         stack.push(0);
-        int res = 0;
-        for (int i = 1; i < nums.length; i++) {
-            Integer top = stack.peek(); // 查看栈顶元素
-            if (nums[i] <= nums[top]) {
+        int sum = 0;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] <= arr[stack.peek()]) {
                 stack.push(i);
             } else {
-                while (!stack.isEmpty() && nums[i] > nums[stack.peek()]) {
-                    int mid = stack.pop();
-                    if (stack.isEmpty()){
+                while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
+                    int mind = stack.pop();
+                    if (stack.isEmpty()) {
                         break;
                     }
-                    int left = stack.peek();
-                    int height = Math.min(nums[left], nums[i]) - nums[mid];
-                    int length = i - left - 1;
-                    res += height * length;
+                    int heigh = Math.min(arr[stack.peek()], arr[i]) - arr[mind];
+                    int length = i - stack.peek() - 1;
+                    sum += heigh * length;
                 }
                 stack.push(i);
             }
         }
-        return res;
+        return sum;
     }
 }
