@@ -1,5 +1,7 @@
 package com.lcyanxi.offer.backtracking;
 
+import org.assertj.core.util.Lists;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,83 +15,55 @@ import java.util.List;
  */
 public class No77 {
     public static void main(String[] args) {
-        System.out.println(process(4, 2));
+        System.out.println(process(4, 4));
 
         System.out.println(process2(4, 2));
-
-        System.out.println(process3(4, 2));
     }
 
     private static List<List<Integer>> process(int n, int k) {
-
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer> itemList = new ArrayList<>();
-
-        backtracking(res, itemList, n, k, 1);
+        List<Integer> tmp = Lists.newArrayList();
+        core(n, k,1, tmp, res);
         return res;
-    }
 
-    // 组合
-    private static void backtracking(List<List<Integer>> res, List<Integer> itemList, int n, int k, int index) {
-        if (itemList.size() == k) {
-            res.add(new ArrayList<>(itemList));
+    }
+    private static void core(int n, int k, int startIndex,List<Integer> temp, List<List<Integer>> res) {
+        if (temp.size() == k){
+            res.add(Lists.newArrayList(temp));
             return;
         }
-        for (int i = index; i <= n; i++) {
-            itemList.add(i);
-            backtracking(res, itemList, n, k, i + 1);
-            itemList.remove(itemList.size() - 1);
+        for (int i = startIndex; i <= n; i++) {
+            temp.add(i);
+            core(n, k, i + 1, temp, res);
+            temp.remove(temp.size() - 1);
         }
     }
 
+    /**
+     * 排列
+     */
     private static List<List<Integer>> process2(int n, int k) {
-
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer> itemList = new ArrayList<>();
-        boolean[] used = new boolean[n + 1];
-        backtracking2(res, itemList, used, n, k);
+        List<Integer> tmp = Lists.newArrayList();
+        boolean[] visited = new boolean[n + 1];
+        core2(n, k, tmp, res, visited);
         return res;
     }
-
-    // 排列
-    private static void backtracking2(List<List<Integer>> res, List<Integer> itemList, boolean[] use, int n, int k) {
-        if (itemList.size() == k) {
-            res.add(new ArrayList<>(itemList));
+    private static void core2(int n, int k,  List<Integer> temp, List<List<Integer>> res, boolean[] visited) {
+        if (temp.size() == k){
+            res.add(Lists.newArrayList(temp));
             return;
         }
-
         for (int i = 1; i <= n; i++) {
-            if (use[i]) {
+            if (visited[i]){
                 continue;
             }
-            use[i] = true;
-            itemList.add(i);
-            backtracking2(res, itemList, use, n, k);
-            use[i] = false;
-            itemList.remove(itemList.size() - 1);
+            temp.add(i);
+            visited[i] = true;
+            core2(n, k, temp, res, visited);
+            temp.remove(temp.size() - 1);
+            visited[i] = false;
         }
     }
-
-    private static List<List<Integer>> process3(int n, int k) {
-
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> itemList = new ArrayList<>();
-        backtracking3(res, itemList, n, 1);
-        return res;
-    }
-
-    // 子集
-    private static void backtracking3(List<List<Integer>> res, List<Integer> itemList, int n, int index) {
-        if (index > n){
-            return;
-        }
-        res.add(new ArrayList<>(itemList));
-        for (int i = index; i <= n; i++) {
-            itemList.add(i);
-            backtracking3(res, itemList, n, i + 1);
-            itemList.remove(itemList.size() - 1);
-        }
-    }
-
 
 }

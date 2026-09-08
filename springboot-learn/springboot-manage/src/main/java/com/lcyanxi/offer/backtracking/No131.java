@@ -19,37 +19,39 @@ public class No131 {
 
     private static List<List<String>> process(String s) {
         List<List<String>> res = new ArrayList<>();
-        List<String> list = new ArrayList<>();
+        List<String> temp = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        backtrack(s, res, list, sb, 0);
+        backtrack(res, temp, sb, 0, s);
         return res;
+
     }
 
-    private static void backtrack(String s, List<List<String>> res, List<String> list, StringBuilder sb, int index) {
+    private static void backtrack(List<List<String>> res, List<String> temp, StringBuilder sb, int index, String s) {
         if (index == s.length()) {
-            res.add(new ArrayList<>(list));
+            res.add(new ArrayList<>(temp));
             return;
         }
+
         for (int i = index; i < s.length(); i++) {
             sb.append(s.charAt(i));
             if (!check(sb)) {
                 continue;
             }
-            list.add(sb.toString());
-            backtrack(s, res, list, new StringBuilder(), i + 1);
-            list.remove(list.size() - 1);
+            temp.add(sb.toString());
+            backtrack(res, temp, new StringBuilder(), i + 1, s);
+            temp.remove(temp.size() - 1);
         }
     }
 
-    private static boolean check(StringBuilder s) {
-        int left = 0;
-        int right = s.length() - 1;
-        while (left <= right) {
-            if (s.charAt(left) != s.charAt(right)) {
+    private static boolean check(StringBuilder sb) {
+        int i = 0;
+        int j = sb.length() - 1;
+        while (i <= j) {
+            if (sb.charAt(i) != sb.charAt(j)) {
                 return false;
             }
-            left++;
-            right--;
+            i++;
+            j--;
         }
         return true;
     }
