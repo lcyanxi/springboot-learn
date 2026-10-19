@@ -1,5 +1,7 @@
 package com.lcyanxi.offer.matrix;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,65 +9,64 @@ import java.util.stream.Collectors;
 
 /**
  * 给定一个正整数 n，生成一个包含 1 到 n^2 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。
- *
+ * <p>
  * 示例:
- *
+ * <p>
  * 输入: 3 输出: [
- *                 [ 1, 2, 3 ],
- *                 [ 8, 9, 4 ],
- *                 [ 7, 6, 5 ]
- *              ]
- *
- *             1  2  3  4
- *             12 13 14 5
- *             11 16 15 6
- *             10 9  8  7
+ * [ 1, 2, 3 ],
+ * [ 8, 9, 4 ],
+ * [ 7, 6, 5 ]
+ * ]
+ * <p>
+ * 1  2  3  4
+ * 12 13 14 5
+ * 11 16 15 6
+ * 10 9  8  7
  *
  * @author chang.li
- * @date 2025/10/15
  * @version 1.0
+ * @date 2025/10/15
  */
 public class No59 {
     public static void main(String[] args) {
-        System.out.println(process(4));
+        int[][] process = process(5);
+        for (int[] data : process) {
+            for (int i : data) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
     }
 
-    private static List<List<Integer>> process(int n) {
-        int[][] res = new int[n][n];
-        int count = 1;
-        int row = 0;
-        int col = 0;
+    private static int[][] process(int n) {
+        int startX = 0;
+        int startY = 0;
         int offset = 1;
-        int flag = n / 2;
-        while (offset <= flag) {
-            int i = row;
-            int j = col;
-            for (; j < n - offset; j++) {
-                res[i][j] = count++;
+        int count = 1;
+        int temp = n / 2;
+        int[][] result = new int[n][n];
+        while (temp > 0) {
+            int length = n - offset;
+            for (int j = startY; j < length; j++) {
+                result[startX][j] = count++;
             }
-            for (; i < n - offset; i++) {
-                res[i][j] = count++;
+            for (int i = startX; i < length; i++) {
+                result[i][length] = count++;
             }
-            for (; j > col; j--) {
-                res[i][j] = count++;
+            for (int j = length; j > startY; j--) {
+                result[length][j] = count++;
             }
-            for (; i > row; i--) {
-                res[i][j] = count++;
+            for (int i = length; i > startX; i--) {
+                result[i][startY] = count++;
             }
-            row++;
-            col++;
+            temp--;
+            startX++;
+            startY++;
             offset++;
         }
-
-        if (flag == 1) {
-            res[row][col] = count;
+        if (n % 2 != 0) {
+            result[startX][startY] = count;
         }
-
-        List<List<Integer>> resList = new ArrayList<>();
-        for (int[] r : res) {
-            List<Integer> list = Arrays.stream(r).boxed().collect(Collectors.toList());
-            resList.add(list);
-        }
-        return resList;
+        return result;
     }
 }
