@@ -9,16 +9,17 @@ import java.util.Stack;
  * 输出：6
  * 解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。
  * 示例 2：
- *
+ * <p>
  * 输入：height = [4,2,0,3,2,5]
  * 输出：9
+ *
  * @author chang.li
- * @date 2025/10/23
  * @version 1.0
+ * @date 2025/10/23
  */
 public class No42 {
     public static void main(String[] args) {
-        int[] arr = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        int[] arr = {3, 1, 2, 5, 2, 4};
         System.out.println(process(arr));
     }
 
@@ -30,14 +31,14 @@ public class No42 {
             if (arr[i] <= arr[stack.peek()]) {
                 stack.push(i);
             } else {
-                while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
-                    int mind = stack.pop();
+                while (!stack.isEmpty() && arr[i] > arr[stack.peek()]) {
+                    Integer mind = stack.pop();
                     if (stack.isEmpty()) {
                         break;
                     }
-                    int heigh = Math.min(arr[stack.peek()], arr[i]) - arr[mind];
                     int length = i - stack.peek() - 1;
-                    sum += heigh * length;
+                    int height = Math.min(arr[stack.peek()], arr[i]) - arr[mind];
+                    sum += length * height;
                 }
                 stack.push(i);
             }
