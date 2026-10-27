@@ -1,6 +1,8 @@
 package com.lcyanxi.offer.tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -15,49 +17,78 @@ import java.util.Queue;
  * 示例 3：
  * 输入：root = []
  * 输出：[]
+ *
  * @author chang.li
- * @date 2025/10/24
  * @version 1.0
+ * @date 2025/10/24
  */
 public class No226 {
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(4);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(7);
-        root.left.left = new TreeNode(1);
-        root.left.right = new TreeNode(3);
-        root.right.left = new TreeNode(6);
-        root.right.right = new TreeNode(9);
-
-        TreeNode process = process(root);
-        System.out.println(process.val);
-
-    }
-
-    private static TreeNode process(TreeNode root) {
-        if (root == null) {
-            return root;
-        }
+        int[] nums = {4, 2, 7, 1, 3, 6, 9};
+        TreeNode root = TreeNode.buildTree(nums);
+        TreeNode process = process2(root);
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        queue.add(process);
         while (!queue.isEmpty()) {
             int size = queue.size();
-            while (size-- > 0) {
+            List<Integer> temp = new ArrayList<>();
+            while (!queue.isEmpty() && size > 0) {
                 TreeNode poll = queue.poll();
                 if (poll == null) {
                     break;
                 }
-                TreeNode left = poll.left;
-                poll.left = poll.right;
-                poll.right = left;
+                temp.add(poll.val);
                 if (poll.left != null) {
                     queue.add(poll.left);
                 }
                 if (poll.right != null) {
                     queue.add(poll.right);
                 }
+                size--;
+            }
+            System.out.println(temp);
+        }
+
+    }
+
+    private static TreeNode process2(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (!queue.isEmpty() && size > 0) {
+                TreeNode poll = queue.poll();
+                if (poll == null) {
+                    break;
+                }
+                TreeNode temp = poll.left;
+                poll.left = poll.right;
+                poll.right = temp;
+                if (poll.left != null) {
+                    queue.add(poll.left);
+                }
+                if (poll.right != null) {
+                    queue.add(poll.right);
+                }
+                size--;
             }
         }
+        return root;
+    }
+
+    private static TreeNode process(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        process(root.left);
+        process(root.right);
+
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
         return root;
     }
 }
