@@ -20,58 +20,39 @@ public class No54 {
         System.out.println(process(matrix));
     }
 
-    private static List<Integer> process2(int[][] matrix){
-        List<Integer> res = new ArrayList<>();
-        int row = 0;
-        int col = 0;
-        while (row < matrix.length && col < matrix[0].length){
-            while (col < matrix[0].length){
-                res.add(matrix[row][col]);
-                col++;
-            }
-            row++;
-            while (row < matrix.length){
-                res.add(matrix[row][col]);
-                row++;
-            }
-            col--;
-            while (row >=0){
-                res.add(matrix[row][col]);
-                col--;
-            }
-            row--;
-            while (col >=0){
-                res.add(matrix[row][col]);
-                row--;
-            }
-        }
-        return res;
-    }
-
     private static List<Integer> process(int[][] matrix) {
-        List<Integer> res = new ArrayList<>();
-        int left = 0;
-        int right = matrix[0].length - 1;
         int top = 0;
         int bottom = matrix.length - 1;
-        while (left <= right && top <= bottom) {
+        int left = 0;
+        int right = matrix[0].length - 1;
+        List<Integer> result = new ArrayList<>();
+        while (true) {
             for (int i = left; i <= right; i++) {
-                res.add(matrix[top][i]);
+                result.add(matrix[top][i]);
             }
             top++;
+            if (top > bottom) {
+                break;
+            }
             for (int i = top; i <= bottom; i++) {
-                res.add(matrix[i][right]);
+                result.add(matrix[i][right]);
             }
             right--;
+            if (right < left) {
+                break;
+            }
             for (int i = right; i >= left; i--) {
-                res.add(matrix[bottom][i]);
+                result.add(matrix[bottom][i]);
             }
             bottom--;
+            if (bottom < top) {
+                break;
+            }
             for (int i = bottom; i >= top; i--) {
-                res.add(matrix[i][left]);
+                result.add(matrix[i][left]);
             }
             left++;
         }
-        return res;
+        return result;
     }
 }
